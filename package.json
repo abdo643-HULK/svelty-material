@@ -1,16 +1,14 @@
 {
-	"name": "@svelterialjs/form",
-	"version": "0.0.0",
+	"name": "svelte-material-components",
+	"version": "1.0.0",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.esm.js",
+	"types": "dist/index.d.ts",
 	"scripts": {
-		"build": "concurrently \"yarn:build:js\" \"yarn:build:minimal\"",
-		"build:js": "rollup -c",
-		"build:minimal": "node preprocess.js",
-		"check": "svelte-check --workspace src/components",
-		"prepublishOnly": "concurrently \"yarn:build:js\" \"yarn:build:minimal\"",
-		"test": "jest",
-		"version": "standard-changelog && git add CHANGELOG.md"
+		"build": "rollup --config",
+		"dev": "rollup --config --watch"
 	},
 	"files": [
 		"compiled",
@@ -27,8 +25,6 @@
 	"bugs": {
 		"url": "https://github.com/abdo643-HULK/svelte-material-components/issues"
 	},
-	"main": "compiled/index.js",
-	"module": "compiled/index.mjs",
 	"keywords": [
 		"svelte",
 		"sapper",
@@ -46,7 +42,12 @@
 	},
 	"svelte": "dist/index.js",
 	"devDependencies": {
+		"@rollup/plugin-typescript": "^8.2.4",
 		"@sveltejs/kit": "^1.0.0-next.1",
+		"build-esm": "^4.2.2",
+		"esbuild": "^0.12.17",
+		"rollup": "^2.55.1",
+		"rollup-plugin-esbuild": "^4.5.0",
 		"svelte": "^3.41.0",
 		"tslib": "^2.3.0",
 		"typescript": "^4.3.5"
