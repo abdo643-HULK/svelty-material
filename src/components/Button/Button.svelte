@@ -43,8 +43,8 @@
 	class:outlined
 	class:rounded
 	class:disabled
-	{...$$restProps}
 >
+	<!-- {...$$restProps} -->
 	<span class="s-btn__content">
 		<slot />
 	</span>
