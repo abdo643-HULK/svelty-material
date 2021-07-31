@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Ripple from '../../actions/Ripple';
 	import Class from '../../internal/Class';
 
@@ -18,12 +18,21 @@
 	export let activeClass = 'active';
 	export let type = 'button';
 	export let ripple = {};
-	export let style = null;
-	export let button = null;
+	export let style: string | undefined = undefined;
+	export let button: HTMLButtonElement | null = null;
+	export let tabindex: number | undefined = undefined;
 </script>
 
 <button
+	{type}
+	{style}
+	{disabled}
+	{tabindex}
+	aria-disabled={disabled}
 	bind:this={button}
+	use:Class={[active ? activeClass : '']}
+	use:Ripple={ripple}
+	on:click
 	class="s-btn size-{size} {klass}"
 	class:s-btn--fab={fab}
 	class:icon
@@ -34,13 +43,6 @@
 	class:outlined
 	class:rounded
 	class:disabled
-	use:Class={[active && activeClass]}
-	{type}
-	{style}
-	{disabled}
-	aria-disabled={disabled}
-	use:Ripple={ripple}
-	on:click
 	{...$$restProps}
 >
 	<span class="s-btn__content">
@@ -48,5 +50,4 @@
 	</span>
 </button>
 
-<style lang="scss" src="./Button.scss" global>
-</style>
+<style lang="scss" src="./Button.scss" global></style>
