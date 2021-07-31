@@ -1,5 +1,5 @@
 @use "sass:math";
-@import "./variables";
+@import './variables';
 
 .s-btn {
 	align-items: center;
@@ -32,18 +32,22 @@
 		line-height: normal;
 		position: relative;
 		font-size: inherit;
-		font-weight: map-deep-get($headings, "button", "weight");
-		letter-spacing: map-deep-get($headings, "button", "letter-spacing");
-		text-transform: map-deep-get($headings, "button", "text-transform");
+		font-weight: map-deep-get($headings, 'button', 'weight');
+		letter-spacing: map-deep-get($headings, 'button', 'letter-spacing');
+		text-transform: map-deep-get($headings, 'button', 'text-transform');
 	}
 
 	@include elevation(2);
+
+	&:focus-visible {
+		box-shadow: 0 0 2px 2px #51a7e8;
+	}
 
 	&::before {
 		border-radius: inherit;
 		bottom: 0;
 		color: inherit;
-		content: "";
+		content: '';
 		left: 0;
 		opacity: 0;
 		pointer-events: none;
@@ -76,7 +80,7 @@
 
 	&:not(.outlined) {
 		@include has-theme-bg {
-			color: map-deep-get($material-dark-theme, "text", "primary");
+			color: map-deep-get($material-dark-theme, 'text', 'primary');
 		}
 	}
 
@@ -84,9 +88,7 @@
 		@each $name, $size in $btn-sizes {
 			&.size-#{$name} {
 				height: #{$size}px;
-				min-width: #{round(
-						$size * 1.777777777777778
-					)}px; // default ratio
+				min-width: #{round($size * 1.777777777777778)}px; // default ratio
 				padding: 0 #{math.div($size, 2.25)}px;
 			}
 		}
@@ -121,7 +123,7 @@
 	}
 
 	&.rounded {
-		border-radius: map-get($rounded, "pill");
+		border-radius: map-get($rounded, 'pill');
 	}
 
 	&.disabled {
