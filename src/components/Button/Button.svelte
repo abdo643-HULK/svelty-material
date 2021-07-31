@@ -18,6 +18,7 @@
 	export let activeClass = 'active';
 	export let type = 'button';
 	export let ripple = {};
+	export let role: string | undefined = undefined;
 	export let style: string | undefined = undefined;
 	export let button: HTMLButtonElement | null = null;
 	export let tabindex: number | undefined = undefined;
@@ -28,6 +29,7 @@
 	{style}
 	{disabled}
 	{tabindex}
+	{role}
 	aria-disabled={disabled}
 	bind:this={button}
 	use:Class={[active ? activeClass : '']}
