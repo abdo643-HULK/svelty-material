@@ -10,7 +10,7 @@ specifiers:
   sass: ^1.37.0
   svelte: ^3.34.0
   svelte-material-components: file:../
-  svelte-preprocess: ^4.7.1
+  svelte-preprocess: ^4.7.4
   tslib: ^2.0.0
   typescript: ^4.0.0
 
@@ -1304,8 +1304,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /@types/node/16.4.7:
-    resolution: {integrity: sha512-aDDY54sst8sx47CWT6QQqIZp45yURq4dic0+HCYfYNcY5Ejlb/CLmFnRLfy3wQuYafOeh3lB/DAKaqRKBtcZmA==}
+  /@types/node/16.4.8:
+    resolution: {integrity: sha512-VL7RZyCpfYEmbyd3/Eq5RNYhZt7yoL1JThZQ3KzimzhLya2Qa86U1ZZmioNWAAjiz99z1ED1xF9NUV2srvfVrA==}
     dev: true
 
   /@types/pug/2.0.5:
@@ -1315,7 +1315,7 @@ packages:
   /@types/sass/1.16.1:
     resolution: {integrity: sha512-iZUcRrGuz/Tbg3loODpW7vrQJkUtpY2fFSf4ELqqkApcS2TkZ1msk7ie8iZPB86lDOP8QOTTmuvWjc5S0R9OjQ==}
     dependencies:
-      '@types/node': 16.4.7
+      '@types/node': 16.4.8
     dev: true
 
   /alphanum-sort/1.0.2:
