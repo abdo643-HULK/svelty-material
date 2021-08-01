@@ -21,6 +21,7 @@
 	export let role: string | undefined = undefined;
 	export let name: string | undefined = undefined;
 	export let style: string | undefined = undefined;
+	export let formaction: string | undefined = undefined;
 	export let button: HTMLButtonElement | null = null;
 	export let tabindex: number | undefined = undefined;
 	export let value: string | number | string[] | null | undefined = null;
@@ -34,6 +35,7 @@
 	{role}
 	{value}
 	{name}
+	{formaction}
 	aria-disabled={disabled}
 	bind:this={button}
 	use:Class={[active ? activeClass : '']}
