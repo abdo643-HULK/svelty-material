@@ -25,6 +25,16 @@
 	export let button: HTMLButtonElement | null = null;
 	export let tabindex: number | undefined = undefined;
 	export let value: string | number | string[] | null | undefined = null;
+	export let ariaHasPopup:
+		| boolean
+		| 'dialog'
+		| 'false'
+		| 'true'
+		| 'menu'
+		| 'listbox'
+		| 'tree'
+		| 'grid'
+		| undefined = undefined;
 </script>
 
 <button
@@ -36,6 +46,7 @@
 	{value}
 	{name}
 	{formaction}
+	aria-haspopup={ariaHasPopup}
 	aria-disabled={disabled}
 	bind:this={button}
 	use:Class={[active ? activeClass : '']}
