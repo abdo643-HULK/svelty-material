@@ -1,9 +1,9 @@
-<script>
-	import TextColor from "../../internal/TextColor";
+<script lang="ts">
+	import TextColor from '../../internal/TextColor';
 
-	let klass = "";
+	let klass = '';
 	export { klass as class };
-	export let color: string = "";
+	export let color: string = '';
 	export let dense = false;
 	export let readonly = false;
 	export let disabled = false;
@@ -20,7 +20,7 @@
 	class:readonly
 	class:disabled
 	{style}
-	use:TextColor={success ? "success" : error ? "error" : color}
+	use:TextColor={success ? 'success' : error ? 'error' : color}
 >
 	<slot name="prepend-outer" />
 	<div class="s-input__control">
