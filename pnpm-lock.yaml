@@ -7,6 +7,7 @@ specifiers:
   esbuild: ^0.12.17
   rollup: ^2.55.1
   rollup-plugin-esbuild: ^4.5.0
+  sass: ^1.37.5
   svelte: ^3.41.0
   svelte-preprocess: ^4.7.4
   tslib: ^2.3.0
@@ -19,8 +20,9 @@ devDependencies:
   esbuild: 0.12.17
   rollup: 2.55.1
   rollup-plugin-esbuild: 4.5.0_esbuild@0.12.17+rollup@2.55.1
+  sass: 1.37.5
   svelte: 3.41.0
-  svelte-preprocess: 4.7.4_svelte@3.41.0+typescript@4.3.5
+  svelte-preprocess: 4.7.4_41ff52bbc3d072e9efaa8fa8465ad24b
   tslib: 2.3.0
   typescript: 4.3.5
 
@@ -3292,6 +3294,14 @@ packages:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     dev: true
 
+  /sass/1.37.5:
+    resolution: {integrity: sha512-Cx3ewxz9QB/ErnVIiWg2cH0kiYZ0FPvheDTVC6BsiEGBTZKKZJ1Gq5Kq6jy3PKtL6+EJ8NIoaBW/RSd2R6cZOA==}
+    engines: {node: '>=8.9.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.2
+    dev: true
+
   /scorta/1.0.0:
     resolution: {integrity: sha512-q6qyZNQEeJopoG5eWMVb92qeeKVRaThhaDwlyhu7V2MAROZjD0BJyGaNnf4d+QJcaJu+Mv72RqEB+BZVo+ONCA==}
     engines: {node: '>=6'}
@@ -3506,7 +3516,7 @@ packages:
       has-flag: 4.0.0
     dev: true
 
-  /svelte-preprocess/4.7.4_svelte@3.41.0+typescript@4.3.5:
+  /svelte-preprocess/4.7.4_41ff52bbc3d072e9efaa8fa8465ad24b:
     resolution: {integrity: sha512-mDAmaltQl6e5zU2VEtoWEf7eLTfuOTGr9zt+BpA3AGHo8MIhKiNSPE9OLTCTOMgj0vj/uL9QBbaNmpG4G1CgIA==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -3550,6 +3560,7 @@ packages:
       '@types/pug': 2.0.5
       '@types/sass': 1.16.1
       detect-indent: 6.1.0
+      sass: 1.37.5
       strip-indent: 3.0.0
       svelte: 3.41.0
       typescript: 4.3.5
