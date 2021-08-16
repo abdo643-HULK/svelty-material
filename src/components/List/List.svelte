@@ -1,7 +1,7 @@
-<script>
-	import { setContext, getContext } from "svelte";
+<script lang="ts">
+	import { setContext, getContext } from 'svelte';
 
-	let klass = "";
+	let klass = '';
 	export { klass as class };
 	export let dense: boolean | null = null;
 	export let disabled = false;
@@ -12,9 +12,9 @@
 	export let style: string | undefined = undefined;
 
 	let role: string | undefined = undefined;
-	if (!getContext("S_ListItemRole")) {
-		setContext("S_ListItemRole", "listitem");
-		role = "list";
+	if (!getContext('S_ListItemRole')) {
+		setContext('S_ListItemRole', 'listitem');
+		role = 'list';
 	}
 </script>
 

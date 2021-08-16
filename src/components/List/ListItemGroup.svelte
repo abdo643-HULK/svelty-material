@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { setContext } from "svelte";
-	import ItemGroup, { ITEM_GROUP } from "../ItemGroup/ItemGroup.svelte";
+	import { setContext } from 'svelte';
+	import ItemGroup, { ITEM_GROUP } from '../ItemGroup/ItemGroup.svelte';
 
-	setContext("S_ListItemRole", "option");
-	setContext("S_ListItemGroup", ITEM_GROUP);
+	setContext('S_ListItemRole', 'option');
+	setContext('S_ListItemGroup', ITEM_GROUP);
 
-	let klass = "primary-text";
+	let klass = 'primary-text';
 	export { klass as class };
-	export let value: any[] = [];
-	export let activeClass = "active";
+	export let value: any[] | any = [];
+	export let activeClass = 'active';
 	export let multiple = false;
 	export let mandatory = false;
 	export let max = Infinity;
