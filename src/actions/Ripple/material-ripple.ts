@@ -22,17 +22,12 @@ const defaults = {
  * @param {*} options
  * @returns Ripple element
  */
-export function RippleStart(
-	e: TouchEvent | AppTouchEvent | MouseEvent | KeyboardEvent,
-	options: any = {}
-) {
+export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options: any = {}) {
 	e.stopImmediatePropagation();
 	const opts = { ...defaults, ...options };
 
 	const isTouchEvent =
-		e instanceof (typeof TouchEvent !== 'undefined' ? TouchEvent : AppTouchEvent)
-			? !!e.touches[0]
-			: false;
+		typeof TouchEvent !== 'undefined' && e instanceof TouchEvent ? !!e.touches[0] : false;
 	// Parent element
 	const target = isTouchEvent
 		? //@ts-ignore
