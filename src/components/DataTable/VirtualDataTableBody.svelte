@@ -1,19 +1,22 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
-	import DataTableBody from 'svelte-material-components/src/components/DataTable/DataTableBody.svelte';
+
 	import DataTableRow from 'svelte-material-components/src/components/DataTable/DataTableRow.svelte';
 
 	// props
+	let klass = '';
+	export { klass as class };
 	export let items: any[];
 	export let height = '100%';
-	export let itemHeight = undefined;
+	export let itemHeight: number | undefined = undefined;
+	export let style: string | undefined;
 
 	// read-only, but visible to consumers via bind:start
 	export let start = 0;
 	export let end = 0;
 
 	// local state
-	let height_map = [];
+	let height_map: number[] = [];
 	let rows: string | any[] | HTMLCollectionOf<Element>;
 	let viewport: HTMLTableSectionElement;
 	let viewport_height = 0;
@@ -31,7 +34,11 @@
 	// whenever `items` changes, invalidate the current heightmap
 	$: if (mounted) refresh(items, viewport_height, itemHeight);
 
-	async function refresh(items, viewport_height, itemHeight) {
+	async function refresh(
+		items: string | any[],
+		viewport_height: number,
+		itemHeight: number | undefined
+	) {
 		const { scrollTop } = viewport;
 
 		await tick(); // wait until the DOM is up to date
@@ -125,8 +132,6 @@
 		// more. maybe we can just call handle_scroll again?
 	}
 
-	$: console.log(viewport_height);
-
 	// trigger initial refresh
 	onMount(() => {
 		try {
@@ -143,8 +148,8 @@
 	bind:this={viewport}
 	bind:offsetHeight={viewport_height}
 	on:scroll={handle_scroll}
-	style="height: {height};"
-	class="virtual-table-viewport"
+	style="height: {height}; {style}"
+	class="s-tbl-body virtual-table-viewport {klass}"
 >
 	{#each visible as row (row.index)}
 		<DataTableRow class="virtual-table-row">
