@@ -13,7 +13,7 @@ const defaults = {
 	spreadingTimingFunction: 'linear',
 	clearingDuration: '1s',
 	clearingDelay: '0s',
-	clearingTimingFunction: 'ease-in-out',
+	clearingTimingFunction: 'ease-in-out'
 };
 
 /**
@@ -23,13 +23,16 @@ const defaults = {
  * @returns Ripple element
  */
 export function RippleStart(
-	e: TouchEvent | MouseEvent | KeyboardEvent,
+	e: TouchEvent | AppTouchEvent | MouseEvent | KeyboardEvent,
 	options: any = {}
 ) {
 	e.stopImmediatePropagation();
 	const opts = { ...defaults, ...options };
 
-	const isTouchEvent = e instanceof TouchEvent ? !!e.touches[0] : false;
+	const isTouchEvent =
+		e instanceof (typeof TouchEvent !== 'undefined' ? TouchEvent : AppTouchEvent)
+			? !!e.touches[0]
+			: false;
 	// Parent element
 	const target = isTouchEvent
 		? //@ts-ignore
