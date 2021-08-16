@@ -1,0 +1,7 @@
+@use "./DataTableBody.scss" as *;
+
+.virtual-table-viewport {
+	/* position: relative; */
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
