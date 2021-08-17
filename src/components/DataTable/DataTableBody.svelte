@@ -6,7 +6,7 @@
 	export let tbody: HTMLTableSectionElement;
 </script>
 
-<tbody bind:this={tbody} bind:offsetHeight {style} class="s-tbl-body {klass}">
+<tbody on:click bind:this={tbody} bind:offsetHeight {style} class="s-tbl-body {klass}">
 	<slot />
 </tbody>
 

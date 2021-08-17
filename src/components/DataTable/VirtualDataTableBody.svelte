@@ -150,6 +150,7 @@
 	on:scroll={handle_scroll}
 	style="height: calc({height} - var(--theme-th-height,56px));{style}"
 	class="virtual-table-viewport"
+	on:click
 >
 	<tbody
 		bind:this={content}
