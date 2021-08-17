@@ -9,7 +9,7 @@
 	export let items: any[];
 	export let height = '100%';
 	export let itemHeight: number | undefined = undefined;
-	export let style: string | undefined;
+	export let style: string = '';
 
 	// read-only, but visible to consumers via bind:start
 	export let start = 0;
@@ -148,7 +148,7 @@
 	bind:this={viewport}
 	bind:offsetHeight={viewport_height}
 	on:scroll={handle_scroll}
-	style="height: {height} - var(--theme-th-height);{style}"
+	style="height: calc({height} - var(--theme-th-height,56px));{style}"
 	class="virtual-table-viewport"
 >
 	<tbody
