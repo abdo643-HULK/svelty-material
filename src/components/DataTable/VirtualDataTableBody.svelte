@@ -16,6 +16,7 @@
 	export let end = 0;
 
 	// local state
+	let content: HTMLElement;
 	let height_map: number[] = [];
 	let rows: string | any[] | HTMLCollectionOf<Element>;
 	let viewport: HTMLTableSectionElement;
@@ -135,8 +136,7 @@
 	// trigger initial refresh
 	onMount(() => {
 		try {
-			rows = viewport.getElementsByClassName('virtual-table-row');
-			console.log(viewport);
+			rows = content.getElementsByClassName('virtual-table-row');
 			mounted = true;
 		} catch (error) {
 			console.error(error);
@@ -144,19 +144,25 @@
 	});
 </script>
 
-<tbody
+<div
 	bind:this={viewport}
 	bind:offsetHeight={viewport_height}
 	on:scroll={handle_scroll}
-	style="height: {height}; {style}"
-	class="s-tbl-body virtual-table-viewport {klass}"
+	style="height: {height} - var(--theme-th-height);{style}"
+	class="virtual-table-viewport"
 >
-	{#each visible as row (row.index)}
-		<DataTableRow class="virtual-table-row">
-			<slot item={row.data}>Missing template</slot>
-		</DataTableRow>
-	{/each}
-</tbody>
+	<tbody
+		bind:this={content}
+		class="s-tbl-body virtual-table-content"
+		style="padding-top: {top}px; padding-bottom: {bottom}px;"
+	>
+		{#each visible as row (row.index)}
+			<DataTableRow class="virtual-table-row">
+				<slot item={row.data}>Missing template</slot>
+			</DataTableRow>
+		{/each}
+	</tbody>
+</div>
 
 <style lang="scss" src="./VirtualDataTableBody.scss" global>
 </style>

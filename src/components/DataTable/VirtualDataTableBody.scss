@@ -5,3 +5,19 @@
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 }
+
+.virtual-table-content {
+	display: block;
+	width: 100%;
+
+	.s-tbl-row {
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+	}
+
+	.s-tbl-cell {
+		display: block;
+		height: 100%;
+	}
+}
