@@ -158,7 +158,7 @@
 		style="padding-top: {top}px; padding-bottom: {bottom}px;"
 	>
 		{#each visible as row (row.index)}
-			<DataTableRow data-index={row.index} class="virtual-table-row">
+			<DataTableRow index={row.index} class="virtual-table-row">
 				<slot item={row.data} index={row.index}>Missing template</slot>
 			</DataTableRow>
 		{/each}

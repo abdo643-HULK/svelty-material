@@ -1,8 +1,9 @@
 <script>
-  let klass = '';
-  export { klass as class };
+	let klass = '';
+	export { klass as class };
+	export let index: number | undefined = undefined;
 </script>
 
-<tr class="s-tbl-row {klass}">
-  <slot />
+<tr data-index={index} class="s-tbl-row {klass}">
+	<slot />
 </tr>
