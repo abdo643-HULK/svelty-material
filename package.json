@@ -1,6 +1,6 @@
 {
 	"name": "svelte-material-components",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
 	"type": "module",
