@@ -1,4 +1,4 @@
-<script>
+<scrip lang="ts">
   import ProgressLinear from '../ProgressLinear';
 
   let klass = '';
@@ -12,8 +12,8 @@
   export let link = false;
   export let loading = false;
   export let disabled = false;
-  export let style = null;
-</script>
+  export let style: string | undefined = undefined;
+</scrip>
 
 <style lang="scss" src="./Card.scss" global>
 </style>
