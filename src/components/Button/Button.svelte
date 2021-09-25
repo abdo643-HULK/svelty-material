@@ -24,7 +24,7 @@
 	export let formaction: string | undefined = undefined;
 	export let button: HTMLButtonElement | null = null;
 	export let tabindex: number | undefined = undefined;
-	export let value: string | number | string[] | null | undefined = null;
+	export let value: string | number | string[] | undefined = undefined;
 	export let ariaHasPopup:
 		| boolean
 		| 'dialog'
