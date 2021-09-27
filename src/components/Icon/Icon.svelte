@@ -1,11 +1,6 @@
 <script lang="ts">
 	import Style from '../../internal/Style';
 
-	interface Dataset {
-		name: string;
-		value: any;
-	}
-
 	let klass = '';
 	export { klass as class };
 	export let size = 24;
