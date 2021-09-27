@@ -43,9 +43,9 @@
 	{disabled}
 	{tabindex}
 	{role}
-	{...value ? { value } : {}}
 	{name}
 	{formaction}
+	{...value ? { value } : {}}
 	aria-haspopup={ariaHasPopup}
 	aria-disabled={disabled}
 	bind:this={button}
@@ -69,4 +69,5 @@
 	</span>
 </button>
 
-<style lang="scss" src="./Button.scss" global></style>
+<style lang="scss" src="./Button.scss" global>
+</style>
