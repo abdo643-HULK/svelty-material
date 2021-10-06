@@ -11,6 +11,7 @@
 	export let width = 500;
 	export let fullscreen = false;
 	export let transition = scale;
+	export let role: 'dialog' | 'alert' | 'alertdialog' | 'document' = 'dialog';
 	export let overlay = {};
 
 	function close() {
@@ -20,7 +21,12 @@
 </script>
 
 {#if visible}
-	<div role="document" class="s-dialog" use:Style={{ 'dialog-width': width }}>
+	<!--
+		A dialog can have more than just the "document" role.
+		In most situations a "dialog" or "alertdialog" would 
+		be a more appropriate role.
+	-->
+	<div {role} class="s-dialog" use:Style={{ 'dialog-width': width }}>
 		<div
 			class="s-dialog__content {klass}"
 			class:fullscreen
