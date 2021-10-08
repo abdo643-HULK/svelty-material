@@ -8,16 +8,30 @@
 	export let active = false;
 	export let persistent = false;
 	export let disabled = false;
-	export let width = 500;
+	export let width: string | number = 500;
 	export let fullscreen = false;
 	export let transition = scale;
 	export let role: 'dialog' | 'alert' | 'alertdialog' | 'document' = 'dialog';
+	export let ariaLabel: string | undefined = undefined;
+	export let ariaLabelledBy: string | undefined = undefined;
+	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
+
+	function changeBodyOverflow(visible: boolean) {
+		if (visible) {
+			document.body.style.overflow = 'hidden';
+			return;
+		}
+
+		document.body.style.overflow = 'auto';
+	}
 
 	function close() {
 		if (!persistent) active = false;
 	}
+
 	$: visible = active && !disabled;
+	$: changeBodyOverflow(visible);
 </script>
 
 {#if visible}
@@ -26,7 +40,15 @@
 		In most situations a "dialog" or "alertdialog" would 
 		be a more appropriate role.
 	-->
-	<div {role} class="s-dialog" use:Style={{ 'dialog-width': width }}>
+	<div
+		aria-label={ariaLabel}
+		aria-labelledby={ariaLabelledBy}
+		aria-describedby={ariaDescribedBy}
+		aria-modal="true"
+		class="s-dialog"
+		{role}
+		use:Style={{ 'dialog-width': width }}
+	>
 		<div
 			class="s-dialog__content {klass}"
 			class:fullscreen
