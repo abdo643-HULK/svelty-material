@@ -18,12 +18,14 @@
 	export let overlay = {};
 
 	function changeBodyOverflow(visible: boolean) {
-		if (visible) {
-			document.body.style.overflow = 'hidden';
-			return;
-		}
+		if (typeof window !== 'undefined') {
+			if (visible) {
+				document.body.style.overflow = 'hidden';
+				return;
+			}
 
-		document.body.style.overflow = 'auto';
+			document.body.style.overflow = 'auto';
+		}
 	}
 
 	function close() {
