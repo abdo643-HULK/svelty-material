@@ -5,27 +5,17 @@
 	let klass = '';
 	export { klass as class };
 	export let href: string;
-	export let fab = false;
-	export let icon = false;
-	export let block = false;
-	export let size = 'default';
-	export let tile = false;
-	export let text = false;
-	export let depressed = false;
-	export let outlined = false;
-	export let rounded = false;
-	export let disabled = false;
-	export let active = false;
-	export let activeClass = 'active';
-	export let type = 'button';
-	export let ripple = {};
-	export let role: string | undefined = undefined;
-	export let name: string | undefined = undefined;
+	export let anchor: HTMLAnchorElement | null = null;
 	export let style: string | undefined = undefined;
-	export let formaction: string | undefined = undefined;
-	export let button: HTMLAnchorElement | null = null;
+	export let target: '_self' | '_blank' | '_parent' | '_top' | undefined = undefined;
+	export let type: string | undefined = undefined;
+	export let hreflang: string | undefined = undefined;
+	export let ping: string | undefined = undefined;
+	export let download: string | undefined = undefined;
+	export let rel: string | undefined = undefined;
+	export let referrerpolicy: string | undefined = undefined;
+	export let role: string | undefined = undefined;
 	export let tabindex: number | undefined = undefined;
-	export let value: string | number | string[] | null | undefined = undefined;
 	export let ariaHasPopup:
 		| boolean
 		| 'dialog'
@@ -36,21 +26,35 @@
 		| 'tree'
 		| 'grid'
 		| undefined = undefined;
+
+	export let fab = false;
+	export let icon = false;
+	export let block = false;
+	export let size = 'default';
+	export let tile = false;
+	export let text = false;
+	export let depressed = false;
+	export let outlined = false;
+	export let rounded = false;
+	export let active = false;
+	export let activeClass = 'active';
+	export let ripple = {};
 </script>
 
 <a
+	{download}
+	{rel}
+	{referrerpolicy}
 	{href}
-	{type}
+	{hreflang}
 	{style}
-	{disabled}
 	{tabindex}
 	{role}
-	{name}
-	{formaction}
-	{...value ? { value } : {}}
+	{target}
+	{type}
+	{ping}
 	aria-haspopup={ariaHasPopup}
-	aria-disabled={disabled}
-	bind:this={button}
+	bind:this={anchor}
 	use:Class={[active ? activeClass : '']}
 	use:Ripple={ripple}
 	on:click
@@ -60,10 +64,9 @@
 	class:block
 	class:tile
 	class:text={text || icon}
-	class:depressed={depressed || text || disabled || outlined || icon}
+	class:depressed={depressed || text || outlined || icon}
 	class:outlined
 	class:rounded
-	class:disabled
 >
 	<span class="s-btn__content">
 		<slot />
