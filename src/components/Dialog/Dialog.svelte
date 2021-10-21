@@ -24,7 +24,7 @@
 				return;
 			}
 
-			document.body.style.overflow = 'auto';
+			document.body.style.overflow = undefined;
 		}
 	}
 
