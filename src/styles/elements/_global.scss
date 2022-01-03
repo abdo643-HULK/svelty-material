@@ -30,6 +30,6 @@ p {
 
 input:invalid + label,
 input:invalid::placeholder {
-	color: var(--error-text-color, $error-color);
-	caret-color: var(--error-text-caret-color, $error-color);
+	color: var(--error-text-color, #{$error-color});
+	caret-color: var(--error-text-caret-color, #{$error-color});
 }
