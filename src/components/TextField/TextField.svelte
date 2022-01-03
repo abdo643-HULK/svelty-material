@@ -95,7 +95,6 @@
 				{autocomplete}
 				bind:this={inputElement}
 				bind:value
-				on:focus={onFocus}
 				on:blur={onBlur}
 				on:input={onInput}
 				on:focus
@@ -107,6 +106,7 @@
 				on:keyup
 				{...$$restProps}
 			/>
+			<!-- on:focus={onFocus} -->
 		</div>
 
 		{#if clearable && value !== ''}
