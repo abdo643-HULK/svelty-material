@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Input from '../Input';
 	import Icon from '../Icon';
+	import Input from '../Input';
 	import uid from '../../internal/uid';
 	import clearIcon from '../../internal/Icons/close';
 
@@ -32,26 +32,17 @@
 	export let autocomplete: HTMLAutoCompleteAttribute = 'off';
 	export let autofocus: true | undefined = undefined;
 
-	let focused = false;
 	let errorMessages: string[] = [];
 
 	// $: labelActive = !!placeholder || value || focused;
 
 	export function validate() {
 		errorMessages = rules.map((r) => r(value)).filter((r) => typeof r === 'string');
-		if (errorMessages.length) error = true;
-		else {
-			error = false;
-		}
+		error = errorMessages.length ? true : false;
 		return error;
 	}
 
-	function onFocus() {
-		focused = true;
-	}
-
 	function onBlur() {
-		focused = false;
 		if (validateOnBlur) validate();
 	}
 
@@ -94,7 +85,6 @@
 				bind:value
 				on:blur={onBlur}
 				on:input={onInput}
-				on:focus={onFocus}
 				on:focus
 				on:blur
 				on:input
@@ -105,7 +95,6 @@
 				{...$$restProps}
 			/>
 			<label for={id}>
-				<!-- class:active={labelActive} -->
 				<slot />
 			</label>
 		</div>
