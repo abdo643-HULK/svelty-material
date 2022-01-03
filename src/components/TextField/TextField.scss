@@ -20,10 +20,10 @@
 		}
 	}
 
-	input:focus + label {
-		max-width: 133%;
-		transform: $text-field-label-active-transform;
-	}
+	// input:focus + label {
+	// 	max-width: 133%;
+	// 	transform: $text-field-label-active-transform;
+	// }
 
 	input {
 		caret-color: inherit;

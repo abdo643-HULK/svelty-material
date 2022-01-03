@@ -94,6 +94,7 @@
 				bind:value
 				on:blur={onBlur}
 				on:input={onInput}
+				on:focus={onFocus}
 				on:focus
 				on:blur
 				on:input
@@ -106,7 +107,6 @@
 			<label for={id} class:active={labelActive}>
 				<slot />
 			</label>
-			<!-- on:focus={onFocus} -->
 		</div>
 
 		{#if clearable && value !== ''}
