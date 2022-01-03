@@ -6,7 +6,7 @@
 
 	let klass = '';
 	export { klass as class };
-	export let value = '';
+	export let value: string | undefined = undefined;
 	export let color = 'primary';
 	export let filled = false;
 	export let solo = false;
@@ -122,7 +122,7 @@
 				</span>
 			{/each}
 		</div>
-		{#if counter}<span>{value.length} / {counter}</span>{/if}
+		{#if counter}<span>{value?.length || 0} / {counter}</span>{/if}
 	</div>
 
 	<!-- Slot for append outside the input. -->
