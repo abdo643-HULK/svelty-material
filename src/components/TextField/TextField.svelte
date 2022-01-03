@@ -17,7 +17,7 @@
 	export let clearable = false;
 	export let readonly = false;
 	export let disabled = false;
-	export let placeholder: string | undefined = undefined;
+	export let placeholder: string = ' ';
 	export let hint = '';
 	export let counter: boolean | number | string = false;
 	export let messages: string[] = [];
@@ -35,7 +35,7 @@
 	let focused = false;
 	let errorMessages: string[] = [];
 
-	$: labelActive = !!placeholder || value || focused;
+	// $: labelActive = !!placeholder || value || focused;
 
 	export function validate() {
 		errorMessages = rules.map((r) => r(value)).filter((r) => typeof r === 'string');
@@ -104,7 +104,8 @@
 				on:keyup
 				{...$$restProps}
 			/>
-			<label for={id} class:active={labelActive}>
+			<label for={id}>
+				<!-- class:active={labelActive} -->
 				<slot />
 			</label>
 		</div>

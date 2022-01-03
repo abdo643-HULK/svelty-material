@@ -20,11 +20,6 @@
 		}
 	}
 
-	// input:focus + label {
-	// 	max-width: 133%;
-	// 	transform: $text-field-label-active-transform;
-	// }
-
 	input {
 		caret-color: inherit;
 		flex: 1 1 auto;
@@ -33,6 +28,12 @@
 		max-width: 100%;
 		min-width: 0;
 		width: 100%;
+
+		&:focus + label,
+		&:not(:placeholder-shown) + label {
+			max-width: 133%;
+			transform: $text-field-label-active-transform;
+		}
 	}
 }
 
@@ -90,11 +91,11 @@
 
 	& > {
 		[slot='prepend'] {
-			margin-right: $text-field-prepend-append-margin;
+			margin-inline-end: $text-field-prepend-append-margin;
 		}
 
 		[slot='append'] {
-			margin-right: $text-field-prepend-append-margin;
+			margin-inline-end: $text-field-prepend-append-margin;
 		}
 	}
 
@@ -113,6 +114,13 @@
 			border-width: 2px;
 		}
 
+		input:focus + label,
+		input:not(:placeholder-shown) + label {
+			padding: 0 4px;
+			background-color: var(--theme-surface);
+			transform: $text-field-outlined-label-active-transform;
+		}
+
 		label {
 			top: $text-field-outlined-label-top;
 
@@ -128,6 +136,8 @@
 	&.solo,
 	&.filled {
 		padding: $text-field-wrapper-padding;
+		padding-inline-start: var(--s-text-field-wrapper-padding-inline-start, 12px);
+		padding-inline-end: var(--s-text-field-wrapper-padding-inline-end, 1px);
 	}
 
 	&.filled,
@@ -155,6 +165,11 @@
 				transform: $text-field-filled-label-active-transform;
 			}
 		}
+
+		input:focus + label,
+		input:not(:placeholder-shown) + label {
+			transform: $text-field-filled-label-active-transform;
+		}
 	}
 
 	&.outlined,
@@ -167,7 +182,7 @@
 
 	&.outlined,
 	&.solo {
-		border-radius: $text-field-border-radius;
+		border-radius: var(--s-text-field-wrapper-border-radius, $text-field-border-radius);
 	}
 
 	&.solo {
@@ -223,6 +238,11 @@
 						transform: $text-field-outlined-dense-label-active-transform;
 					}
 				}
+
+				input:focus + label,
+				input:not(:placeholder-shown) + label {
+					transform: $text-field-outlined-dense-label-active-transform;
+				}
 			}
 
 			&.solo {
@@ -241,6 +261,11 @@
 					&.active {
 						transform: $text-field-filled-dense-label-active-transform;
 					}
+				}
+
+				input:focus + label,
+				input:not(:placeholder-shown) + label {
+					transform: $text-field-filled-dense-label-active-transform;
 				}
 			}
 		}
