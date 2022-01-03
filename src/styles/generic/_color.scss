@@ -49,11 +49,11 @@
 		)
 {
 	:root {
-		--#{$color}-text-color: #{$value} !important;
-		--#{$color}-text-caret-color: #{$value} !important;
+		--#{$color}-text-color: #{$value};
+		--#{$color}-text-caret-color: #{$value};
 
-		--#{$color}-color-border-color: #{$value} !important;
-		--#{$color}-color-background-color: #{$value} !important;
+		--#{$color}-color-border-color: #{$value};
+		--#{$color}-color-background-color: #{$value};
 	}
 
 	.#{$color}-color {
