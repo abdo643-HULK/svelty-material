@@ -79,9 +79,6 @@
 		<slot name="prepend" />
 
 		<div class="s-text-field__input">
-			<label for={id} class:active={labelActive}>
-				<slot />
-			</label>
 			<slot name="content" />
 			<!-- keypress Event is deprecated. Use keydown or keyup instead -->
 			<!-- svelte-ignore a11y-autofocus -->
@@ -106,6 +103,9 @@
 				on:keyup
 				{...$$restProps}
 			/>
+			<label for={id} class:active={labelActive}>
+				<slot />
+			</label>
 			<!-- on:focus={onFocus} -->
 		</div>
 
