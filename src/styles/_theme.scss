@@ -51,9 +51,3 @@
 	--theme-bp-lg: #{map-get($grid-breakpoints, 'lg')};
 	--theme-bp-xl: #{map-get($grid-breakpoints, 'xl')};
 }
-
-input:invalid + label,
-input:invalid::placeholder {
-	color: var(--error-text-color, #{$error-color}) !important;
-	caret-color: var(--error-text-caret-color, #{$error-color}) !important;
-}

@@ -34,6 +34,12 @@
 			max-width: 133%;
 			transform: $text-field-label-active-transform;
 		}
+
+		&:invalid + label,
+		&:invalid::placeholder {
+			color: var(--error-text-color, #{$error-color}) !important;
+			caret-color: var(--error-text-caret-color, #{$error-color}) !important;
+		}
 	}
 }
 
@@ -85,7 +91,7 @@
 		}
 
 		label {
-			color: inherit;
+			color: var(--theme-primary-text-color, var(--primary-text-color, #{$primary-color}));
 		}
 	}
 
