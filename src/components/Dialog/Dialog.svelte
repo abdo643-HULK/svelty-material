@@ -33,6 +33,7 @@
 
 <script lang="ts">
 	import Overlay from '../Overlay';
+	import Alert from '../Alert';
 
 	let klass = '';
 	export { klass as class };
@@ -65,7 +66,6 @@
 		// Bind a focus event listener to the body element to make sure the focus
 		// stays trapped inside the dialog while open, and start listening for some
 		// specific key presses (TAB and ESC)
-		document.body.addEventListener('focus', maintainFocus, true);
 		document.addEventListener('keydown', bindKeypress);
 
 		return hide;
@@ -78,7 +78,6 @@
 		previouslyFocused?.focus();
 
 		document.body.style.overflow = '';
-		document.body.removeEventListener('focus', maintainFocus, true);
 		document.removeEventListener('keypress', bindKeypress);
 	}
 
@@ -126,35 +125,38 @@
 	}
 </script>
 
-{#if active}
-	<!--
+<svelte:body on:focus|capture={maintainFocus} />
+
+<!--
 		A dialog can have more than just the "document" role.
 		In most situations a "dialog" or "alertdialog" would 
 		be a more appropriate role.
 	-->
+<div
+	class="s-dialog"
+	aria-modal="true"
+	aria-hidden={active}
+	aria-label={ariaLabel}
+	aria-labelledby={ariaLabelledBy}
+	aria-describedby={ariaDescribedBy}
+	{role}
+	bind:this={dialog}
+	use:Style={{ 'dialog-width': width }}
+	{...$$restProps}
+>
 	<div
-		class="s-dialog"
-		aria-modal="true"
-		aria-label={ariaLabel}
-		aria-labelledby={ariaLabelledBy}
-		aria-describedby={ariaDescribedBy}
-		{role}
-		bind:this={dialog}
-		use:Style={{ 'dialog-width': width }}
+		class="s-dialog__content {klass}"
+		class:fullscreen
+		transition:transition={{ duration: 300, start: 0.1 }}
+		on:introstart
+		on:outrostart
+		on:introend
+		on:outroend
 	>
-		<div
-			class="s-dialog__content {klass}"
-			class:fullscreen
-			transition:transition={{ duration: 300, start: 0.1 }}
-			on:introstart
-			on:outrostart
-			on:introend
-			on:outroend
-		>
-			<slot />
-		</div>
+		<slot />
 	</div>
-{/if}
+</div>
+
 <Overlay {...overlay} {active} on:click={close} />
 
 <style lang="scss" src="./Dialog.scss" global>
