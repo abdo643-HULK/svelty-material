@@ -22,14 +22,14 @@
 
 		async function open() {
 			console.log('opening');
-
-			await tick();
-
+			// await tick();
 			// Set the focus to the dialog element
-			moveFocusToDialog();
-
 			attachListeners();
 			document.body.style.overflow = 'hidden';
+
+			requestAnimationFrame(() => {
+				moveFocusToDialog();
+			});
 		}
 
 		function hide() {
