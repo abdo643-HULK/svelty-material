@@ -134,19 +134,19 @@
 		In most situations a "dialog" or "alertdialog" would 
 		be a more appropriate role.
 	-->
-<div
-	class="s-dialog"
-	aria-modal="true"
-	aria-hidden={!active}
-	aria-label={ariaLabel}
-	aria-labelledby={ariaLabelledBy}
-	aria-describedby={ariaDescribedBy}
-	{role}
-	bind:this={dialog}
-	use:Style={{ 'dialog-width': width }}
-	{...$$restProps}
->
-	{#key active}
+{#key active}
+	<div
+		class="s-dialog"
+		aria-modal="true"
+		aria-hidden={!active}
+		aria-label={ariaLabel}
+		aria-labelledby={ariaLabelledBy}
+		aria-describedby={ariaDescribedBy}
+		{role}
+		bind:this={dialog}
+		use:Style={{ 'dialog-width': width }}
+		{...$$restProps}
+	>
 		<div
 			class="s-dialog__content {klass}"
 			class:fullscreen
@@ -158,8 +158,8 @@
 		>
 			<slot />
 		</div>
-	{/key}
-</div>
+	</div>
+{/key}
 
 <Overlay {...overlay} {active} on:click={close} />
 
