@@ -13,9 +13,6 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch --threshold error --ignore .svelte-kit",
 		"sveltekit": "svelte-kit dev"
 	},
-	"files": [
-		"src"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/abdo643-HULK/svelty-material/svelty-material.git",
