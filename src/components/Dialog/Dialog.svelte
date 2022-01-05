@@ -122,8 +122,9 @@
 		if (!persistent) active = false;
 	}
 
-	$: typeof document !== 'undefined' &&
-		(active ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = ''));
+	$: if (typeof document !== 'undefined') {
+		active ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
+	}
 </script>
 
 <svelte:body on:focus|capture={maintainFocus} />
@@ -145,17 +146,19 @@
 	use:Style={{ 'dialog-width': width }}
 	{...$$restProps}
 >
-	<div
-		class="s-dialog__content {klass}"
-		class:fullscreen
-		transition:transition={{ duration: 300, start: 0.1 }}
-		on:introstart
-		on:outrostart
-		on:introend
-		on:outroend
-	>
-		<slot />
-	</div>
+	{#key active}
+		<div
+			class="s-dialog__content {klass}"
+			class:fullscreen
+			transition:transition={{ duration: 300, start: 0.1 }}
+			on:introstart
+			on:outrostart
+			on:introend
+			on:outroend
+		>
+			<slot />
+		</div>
+	{/key}
 </div>
 
 <Overlay {...overlay} {active} on:click={close} />
