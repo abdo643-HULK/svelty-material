@@ -122,7 +122,7 @@
 		if (!persistent) active = false;
 	}
 
-	$: typeof window !== 'undefined' && active
+	$: typeof document !== 'undefined' && active
 		? (document.body.style.overflow = 'hidden')
 		: (document.body.style.overflow = '');
 </script>
