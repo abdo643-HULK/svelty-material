@@ -54,8 +54,6 @@
 	const dispatch = createEventDispatcher();
 
 	onMount(() => {
-		document.body.style.overflow = 'hidden';
-
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
 		previouslyFocused = document.activeElement as HTMLElement | null;
@@ -77,7 +75,7 @@
 		// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
 		previouslyFocused?.focus();
 
-		document.body.style.overflow = '';
+		// document.body.style.overflow = '';
 		document.removeEventListener('keypress', bindKeypress);
 	}
 
@@ -123,6 +121,8 @@
 	function close() {
 		if (!persistent) active = false;
 	}
+
+	$: active ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
 </script>
 
 <svelte:body on:focus|capture={maintainFocus} />
@@ -135,7 +135,7 @@
 <div
 	class="s-dialog"
 	aria-modal="true"
-	aria-hidden={active}
+	aria-hidden={!active}
 	aria-label={ariaLabel}
 	aria-labelledby={ariaLabelledBy}
 	aria-describedby={ariaDescribedBy}
