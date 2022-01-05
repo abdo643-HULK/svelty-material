@@ -38,7 +38,7 @@
 			previouslyFocused?.focus();
 
 			removeListeners();
-			document.body.style.overflow = '';
+			document.body.style.overflow = 'auto';
 		}
 
 		function attachListeners() {
@@ -50,7 +50,7 @@
 		}
 
 		function removeListeners() {
-			document.removeEventListener('keypress', bindKeypress);
+			document.removeEventListener('keydown', bindKeypress);
 			document.body.removeEventListener('focus', maintainFocus, true);
 		}
 
