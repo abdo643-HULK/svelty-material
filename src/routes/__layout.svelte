@@ -12,7 +12,7 @@
 	import { setContext } from 'svelte';
 
 	import Dialog from '$lib/components/Dialog/Dialog.svelte';
-	import ModalBody from '$lib/_test-components/ModalBody.svelte';
+	import ModalBody from '$lib/site/ModalBody.svelte';
 	import MaterialApp from '$lib/components/MaterialApp';
 
 	let active = false;
@@ -46,7 +46,7 @@
 
 <MaterialApp>
 	<slot />
-	<Dialog width="auto" role="dialog" bind:active >
+	<Dialog width="auto" role="dialog" bind:active>
 		<svelte:component this={modalBody} {...componentProps} on:close={close} />
 	</Dialog>
 </MaterialApp>
