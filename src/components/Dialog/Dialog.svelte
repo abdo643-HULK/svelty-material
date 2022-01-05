@@ -6,7 +6,7 @@
 	import Style from '../../internal/Style';
 
 	import { scale } from 'svelte/transition';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { getFocusableChildren } from '../../utils/focus';
 
 	function trapTabKey(node: HTMLElement, event: KeyboardEvent) {
@@ -50,11 +50,21 @@
 	let dialog: HTMLDivElement;
 	let previouslyFocused: HTMLElement | null;
 
-	console.log(active);
+	let isMounted = false;
+
+	onMount(() => {
+		isMounted = true;
+
+		return () => {
+			isMounted = false;
+		};
+	});
 
 	const dispatch = createEventDispatcher();
 
-	function open() {
+	async function open() {
+		await tick();
+		console.log('opening');
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
 		previouslyFocused = document.activeElement as HTMLElement | null;
@@ -62,24 +72,39 @@
 		// Set the focus to the dialog element
 		moveFocusToDialog();
 
-		// Bind a focus event listener to the body element to make sure the focus
-		// stays trapped inside the dialog while open, and start listening for some
-		// specific key presses (TAB and ESC)
-		document.addEventListener('keydown', bindKeypress);
-		document.body.addEventListener('focus', maintainFocus, true);
+		attachListeners();
 		document.body.style.overflow = 'hidden';
 	}
 
-	function hide() {
+	async function hide() {
+		console.log('hiding');
+		await tick();
 		// If there was a focused element before the dialog was opened (and it has a
 		// `focus` method), restore the focus back to it
 		// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
 		previouslyFocused?.focus();
 
-		// document.body.style.overflow = '';
+		removeListeners();
+		document.body.style.overflow = '';
+		dispatch('hide');
+		active = false;
+	}
+
+	function close() {
+		if (!persistent) hide();
+	}
+
+	function attachListeners() {
+		// Bind a focus event listener to the body element to make sure the focus
+		// stays trapped inside the dialog while open, and start listening for some
+		// specific key presses (TAB and ESC)
+		document.addEventListener('keydown', bindKeypress);
+		document.body.addEventListener('focus', maintainFocus, true);
+	}
+
+	function removeListeners() {
 		document.removeEventListener('keypress', bindKeypress);
 		document.body.removeEventListener('focus', maintainFocus, true);
-		document.body.style.overflow = '';
 	}
 
 	function moveFocusToDialog() {
@@ -97,8 +122,7 @@
 			role !== 'alertdialog'
 		) {
 			ev.preventDefault();
-			dispatch('hide', { event: ev });
-			active = false;
+			hide();
 		}
 
 		console.log(active, dialog);
@@ -125,11 +149,7 @@
 		}
 	}
 
-	function close() {
-		if (!persistent) active = false;
-	}
-
-	$: if (typeof document !== 'undefined') {
+	$: if (isMounted) {
 		active ? open() : hide();
 	}
 </script>
