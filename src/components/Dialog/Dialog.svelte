@@ -122,9 +122,9 @@
 		if (!persistent) active = false;
 	}
 
-	$: typeof document !== 'undefined' && active
-		? (document.body.style.overflow = 'hidden')
-		: (document.body.style.overflow = '');
+	// $: typeof document !== 'undefined' && active
+	// 	? (document.body.style.overflow = 'hidden')
+	// 	: (document.body.style.overflow = '');
 </script>
 
 <svelte:body on:focus|capture={maintainFocus} />
