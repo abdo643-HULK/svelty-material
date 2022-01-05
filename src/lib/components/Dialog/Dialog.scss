@@ -11,7 +11,7 @@
 	top: 0;
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
 	width: 100%;
-	z-index: 6;
+	z-index: 20;
 	outline: none;
 
 	&[aria-hidden='true'] {
