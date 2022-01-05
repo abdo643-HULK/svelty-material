@@ -1,5 +1,5 @@
 {
-	"name": "svelte-material-components",
+	"name": "svelteify-material-ui",
 	"version": "1.0.14",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
