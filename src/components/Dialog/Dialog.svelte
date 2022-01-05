@@ -53,7 +53,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	onMount(() => {
+	function open() {
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
 		previouslyFocused = document.activeElement as HTMLElement | null;
@@ -65,9 +65,8 @@
 		// stays trapped inside the dialog while open, and start listening for some
 		// specific key presses (TAB and ESC)
 		document.addEventListener('keydown', bindKeypress);
-
-		return hide;
-	});
+		document.body.style.overflow = 'hidden';
+	}
 
 	function hide() {
 		// If there was a focused element before the dialog was opened (and it has a
@@ -77,6 +76,7 @@
 
 		// document.body.style.overflow = '';
 		document.removeEventListener('keypress', bindKeypress);
+		document.body.style.overflow = '';
 	}
 
 	function moveFocusToDialog() {
@@ -123,7 +123,7 @@
 	}
 
 	$: if (typeof document !== 'undefined') {
-		active ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
+		active ? open() : hide();
 	}
 </script>
 
