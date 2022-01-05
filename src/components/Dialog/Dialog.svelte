@@ -12,6 +12,8 @@
 		// because attributes can change any time, we need to
 		// get the elements every time
 		const focusableChildren = getFocusableChildren(node);
+		console.debug(focusableChildren);
+
 		const focusedItemIndex = focusableChildren.indexOf(document.activeElement as HTMLElement);
 
 		// If the SHIFT key is being pressed while tabbing (moving backwards) and
@@ -47,110 +49,100 @@
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
 
-	let dialog: HTMLDivElement;
-	let previouslyFocused: HTMLElement | null;
-
-	let isMounted = false;
-
-	onMount(() => {
-		isMounted = true;
-
-		return () => {
-			isMounted = false;
-		};
-	});
-
 	const dispatch = createEventDispatcher();
 
-	async function open() {
-		await tick();
-		console.log('opening');
-		// Keep a reference to the currently focused element to be able to restore
-		// it later
-		previouslyFocused = document.activeElement as HTMLElement | null;
+	function dialog(node: HTMLElement) {
+		let previouslyFocused: HTMLElement | null;
 
-		// Set the focus to the dialog element
-		moveFocusToDialog();
+		console.debug(node);
 
-		attachListeners();
-		document.body.style.overflow = 'hidden';
-	}
+		open();
 
-	async function hide() {
-		console.log('hiding');
-		await tick();
-		// If there was a focused element before the dialog was opened (and it has a
-		// `focus` method), restore the focus back to it
-		// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
-		previouslyFocused?.focus();
+		function open() {
+			console.log('opening');
+			// Keep a reference to the currently focused element to be able to restore
+			// it later
+			previouslyFocused = document.activeElement as HTMLElement | null;
 
-		removeListeners();
-		document.body.style.overflow = '';
-		dispatch('hide');
-		active = false;
+			// Set the focus to the dialog element
+			moveFocusToDialog();
+
+			attachListeners();
+			document.body.style.overflow = 'hidden';
+		}
+
+		function hide() {
+			console.log('hiding');
+			// If there was a focused element before the dialog was opened (and it has a
+			// `focus` method), restore the focus back to it
+			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
+			previouslyFocused?.focus();
+
+			removeListeners();
+			document.body.style.overflow = '';
+			dispatch('hide');
+			active = false;
+		}
+
+		function attachListeners() {
+			// Bind a focus event listener to the body element to make sure the focus
+			// stays trapped inside the dialog while open, and start listening for some
+			// specific key presses (TAB and ESC)
+			document.addEventListener('keydown', bindKeypress);
+			document.body.addEventListener('focus', maintainFocus, true);
+		}
+
+		function removeListeners() {
+			document.removeEventListener('keypress', bindKeypress);
+			document.body.removeEventListener('focus', maintainFocus, true);
+		}
+
+		function moveFocusToDialog() {
+			const focused = node.querySelector<HTMLElement>('[autofocus]') || node;
+			focused.focus();
+		}
+
+		function bindKeypress(ev: KeyboardEvent) {
+			if (
+				(ev.key === ESC_KEY || ev.key === ESCAPE_KEY) &&
+				// ev.which === ESCAPE_KEY &&
+				role !== 'alertdialog'
+			) {
+				ev.preventDefault();
+				hide();
+			}
+
+			// If the dialog is shown and the TAB key is being pressed, make sure the
+			// focus stays trapped within the dialog element
+			if (active && ev.key === TAB_KEY) {
+				trapTabKey(node, ev);
+			}
+		}
+
+		function maintainFocus(event: FocusEvent) {
+			// If the dialog is shown and the focus is not within a dialog element (either
+			// this one or another one in case of nested dialogs) or within an element
+			// with the `data-a11y-dialog-focus-trap-ignore` attribute, move it back to
+			// its first focusable child.
+			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/177
+			const element = event.target as HTMLElement | null;
+			if (
+				!element?.closest('[aria-modal="true"]') &&
+				!element?.closest('[data-ignore-focus-trap]')
+			) {
+				moveFocusToDialog();
+			}
+		}
+
+		return {
+			destroy: () => {
+				hide();
+			}
+		};
 	}
 
 	function close() {
-		if (!persistent) hide();
-	}
-
-	function attachListeners() {
-		// Bind a focus event listener to the body element to make sure the focus
-		// stays trapped inside the dialog while open, and start listening for some
-		// specific key presses (TAB and ESC)
-		document.addEventListener('keydown', bindKeypress);
-		document.body.addEventListener('focus', maintainFocus, true);
-	}
-
-	function removeListeners() {
-		document.removeEventListener('keypress', bindKeypress);
-		document.body.removeEventListener('focus', maintainFocus, true);
-	}
-
-	function moveFocusToDialog() {
-		console.log(dialog);
-
-		const focused = dialog.querySelector<HTMLElement>('[autofocus]') || dialog;
-		focused.focus();
-	}
-
-	function bindKeypress(ev: KeyboardEvent) {
-		if (
-			active &&
-			(ev.key === ESC_KEY || ev.key === ESCAPE_KEY) &&
-			// ev.which === ESCAPE_KEY &&
-			role !== 'alertdialog'
-		) {
-			ev.preventDefault();
-			hide();
-		}
-
-		console.log(active, dialog);
-
-		// If the dialog is shown and the TAB key is being pressed, make sure the
-		// focus stays trapped within the dialog element
-		if (active && ev.key === TAB_KEY) {
-			trapTabKey(dialog, ev);
-		}
-	}
-
-	function maintainFocus(event: FocusEvent) {
-		// If the dialog is shown and the focus is not within a dialog element (either
-		// this one or another one in case of nested dialogs) or within an element
-		// with the `data-a11y-dialog-focus-trap-ignore` attribute, move it back to
-		// its first focusable child.
-		// See: https://github.com/KittyGiraudel/a11y-dialog/issues/177
-		if (
-			active &&
-			!(event.target as HTMLElement)?.closest('[aria-modal="true"]') &&
-			!(event.target as HTMLElement)?.closest('[data-ignore-focus-trap]')
-		) {
-			moveFocusToDialog();
-		}
-	}
-
-	$: if (isMounted) {
-		active ? open() : hide();
+		if (!persistent) active = false;
 	}
 </script>
 
@@ -159,7 +151,7 @@
 	In most situations a "dialog" or "alertdialog" would 
 	be a more appropriate role.
 -->
-{#key active}
+{#if active}
 	<div
 		class="s-dialog"
 		aria-modal="true"
@@ -168,8 +160,8 @@
 		aria-labelledby={ariaLabelledBy}
 		aria-describedby={ariaDescribedBy}
 		{role}
-		bind:this={dialog}
 		use:Style={{ 'dialog-width': width }}
+		use:dialog
 		{...$$restProps}
 	>
 		<div
@@ -184,7 +176,7 @@
 			<slot />
 		</div>
 	</div>
-{/key}
+{/if}
 
 <Overlay {...overlay} {active} on:click={close} />
 
