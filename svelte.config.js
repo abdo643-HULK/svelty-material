@@ -9,7 +9,7 @@ const config = {
 			style: 'scss'
 		},
 		scss: {
-			includePaths: ['src/styles', 'node_modules', 'src/theme']
+			includePaths: ['src/theme']
 		},
 		typescript: {
 			tsconfigFile: './tsconfig.json'
