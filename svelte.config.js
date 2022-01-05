@@ -21,7 +21,7 @@ const config = {
 			emitTypes: true,
 			// excludes all .d.ts and files starting with _ as the name
 			exports: (filepath) => !/^_|\/_|\.d\.ts$/.test(filepath),
-			files: () => true
+			files: (id) => !id.startsWith('site/')
 		}
 	}
 };
