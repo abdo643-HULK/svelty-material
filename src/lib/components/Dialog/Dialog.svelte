@@ -6,6 +6,7 @@
 	import Style from '../../internal/Style';
 
 	import { scale } from 'svelte/transition';
+	import { createEventDispatcher, tick } from 'svelte';
 	import { getFocusableChildren } from '../../utils/focus';
 
 	interface DialogOptions {
@@ -13,15 +14,16 @@
 	}
 
 	function dialog(node: HTMLElement, { onEscape }: DialogOptions) {
-		let previouslyFocused: HTMLElement | null;
+		// Keep a reference to the currently focused element to be able to restore
+		// it later
+		const previouslyFocused = document.activeElement as HTMLElement | null;
 
 		open();
 
-		function open() {
+		async function open() {
 			console.log('opening');
-			// Keep a reference to the currently focused element to be able to restore
-			// it later
-			previouslyFocused = document.activeElement as HTMLElement | null;
+
+			await tick();
 
 			// Set the focus to the dialog element
 			moveFocusToDialog();
@@ -60,6 +62,8 @@
 		}
 
 		function bindKeypress(ev: KeyboardEvent) {
+			if (!node.contains(document.activeElement)) return;
+
 			if (
 				(ev.key === ESC_KEY || ev.key === ESCAPE_KEY) &&
 				// ev.which === ESCAPE_KEY &&
@@ -123,7 +127,6 @@
 
 <script lang="ts">
 	import Overlay from '../Overlay';
-	import { createEventDispatcher } from 'svelte';
 
 	let klass = '';
 	export { klass as class };
