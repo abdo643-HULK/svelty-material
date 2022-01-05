@@ -1,19 +1,19 @@
 {
-	"name": "svelte-material-components",
+	"name": "@abdo1504/svelte-material-components",
 	"version": "1.0.14",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
 	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.esm.js",
-	"types": "dist/index.d.ts",
 	"scripts": {
-		"build": "rollup --config",
-		"dev": "rollup --config --watch"
+		"dev": "sveltekit",
+		"dev:check": "npm-run-all --parallel sveltekit check:watch",
+		"package": "svelte-kit package",
+		"build": "svelte-kit build",
+		"check": "svelte-check --tsconfig ./tsconfig.json --threshold error",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch --threshold error --ignore .svelte-kit",
+		"sveltekit": "svelte-kit dev"
 	},
 	"files": [
-		"compiled",
-		"dist",
 		"src"
 	],
 	"repository": {
@@ -43,16 +43,21 @@
 	},
 	"svelte": "dist/index.js",
 	"devDependencies": {
-		"@rollup/plugin-typescript": "^8.2.4",
-		"@sveltejs/kit": "^1.0.0-next.1",
+		"@rollup/plugin-typescript": "^8.3.0",
+		"@sveltejs/kit": "^1.0.0-next.216",
+		"@sveltejs/vite-plugin-svelte": "^1.0.0-next.33",
 		"build-esm": "^4.2.2",
-		"esbuild": "^0.12.17",
-		"rollup": "^2.55.1",
-		"rollup-plugin-esbuild": "^4.5.0",
-		"sass": "^1.37.5",
-		"svelte": "^3.41.0",
-		"svelte-preprocess": "^4.7.4",
-		"tslib": "^2.3.0",
-		"typescript": "^4.3.5"
+		"esbuild": "^0.12.29",
+		"npm-run-all": "^4.1.5",
+		"rollup": "^2.63.0",
+		"rollup-plugin-esbuild": "^4.8.2",
+		"sass": "^1.45.2",
+		"svelte": "^3.44.3",
+		"svelte-check": "^2.2.11",
+		"svelte-preprocess": "^4.10.1",
+		"svelte2tsx": "^0.4.12",
+		"tslib": "^2.3.1",
+		"typescript": "^4.5.4",
+		"vite": "^2.7.10"
 	}
 }
