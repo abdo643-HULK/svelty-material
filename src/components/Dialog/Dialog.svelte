@@ -97,6 +97,8 @@
 			active = false;
 		}
 
+		console.log(active, dialog);
+
 		// If the dialog is shown and the TAB key is being pressed, make sure the
 		// focus stays trapped within the dialog element
 		if (active && ev.key === TAB_KEY) {
