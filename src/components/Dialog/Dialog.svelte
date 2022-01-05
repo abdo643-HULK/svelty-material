@@ -143,7 +143,6 @@
 	{role}
 	bind:this={dialog}
 	use:Style={{ 'dialog-width': width }}
-	{...$$restProps}
 >
 	<div
 		class="s-dialog__content {klass}"
