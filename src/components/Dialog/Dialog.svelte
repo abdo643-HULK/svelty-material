@@ -33,7 +33,6 @@
 
 <script lang="ts">
 	import Overlay from '../Overlay';
-	import Alert from '../Alert';
 
 	let klass = '';
 	export { klass as class };
@@ -80,6 +79,8 @@
 	}
 
 	function moveFocusToDialog() {
+		console.log(dialog);
+
 		const focused = dialog.querySelector<HTMLElement>('[autofocus]') || dialog;
 		focused.focus();
 	}
