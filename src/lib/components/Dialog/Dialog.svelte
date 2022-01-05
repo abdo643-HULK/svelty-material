@@ -14,15 +14,15 @@
 	}
 
 	function dialog(node: HTMLElement, { onEscape }: DialogOptions) {
+		const dispatch = createEventDispatcher();
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
 		const previouslyFocused = document.activeElement as HTMLElement | null;
 
 		open();
+		dispatch('open');
 
 		async function open() {
-			console.log('opening');
-
 			// Set the focus to the dialog element
 			moveFocusToDialog();
 
@@ -36,7 +36,6 @@
 		}
 
 		function hide() {
-			console.log('hiding');
 			// If there was a focused element before the dialog was opened (and it has a
 			// `focus` method), restore the focus back to it
 			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
@@ -54,8 +53,6 @@
 		}
 
 		function bindKeypress(ev: KeyboardEvent) {
-			if (!node.contains(document.activeElement)) return;
-
 			if (
 				(ev.key === ESC_KEY || ev.key === ESCAPE_KEY) &&
 				// ev.which === ESCAPE_KEY &&
@@ -90,6 +87,7 @@
 		return {
 			destroy() {
 				hide();
+				dispatch('hide');
 			}
 		};
 	}
@@ -132,8 +130,6 @@
 	export let ariaLabelledBy: string | undefined = undefined;
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
-
-	const dispatch = createEventDispatcher();
 
 	function close() {
 		if (!persistent) active = false;

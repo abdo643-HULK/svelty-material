@@ -46,7 +46,13 @@
 
 <MaterialApp>
 	<slot />
-	<Dialog width="auto" role="dialog" bind:active>
+	<Dialog
+		width="auto"
+		role="dialog"
+		bind:active
+		on:open={() => console.log('open')}
+		on:hide={() => console.log('hide')}
+	>
 		<svelte:component this={modalBody} {...componentProps} on:close={close} />
 	</Dialog>
 </MaterialApp>

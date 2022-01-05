@@ -1,8 +1,24 @@
 <script>
-	import Button from '$lib/components/Button';
 	import Card from '$lib/components/Card';
+	import PCard from '$lib/site/P-Card.svelte';
+	import Button from '$lib/components/Button';
+
 	import { getContext } from 'svelte';
 
+	const product = {
+		ID: 'sdmsld',
+		name: 'Hamburger',
+		description: '',
+		price: 4.5,
+		categories: ['burger'],
+		image: {
+			src: '',
+			alt: 'Bild von einem Burger'
+		},
+		variations: {
+			toppings: ['Beilagen', 'Saucen']
+		}
+	};
 	const modal = getContext<{ open: Function }>('MODAL');
 </script>
 
@@ -15,6 +31,14 @@
 	<Button on:click={() => modal?.open()}>In den Warenkorb</Button>
 </Card>
 
+<div>
+	<PCard {product} />
+	<PCard {product} />
+	<PCard {product} />
+</div>
+
 <style>
-	/* your styles go here */
+	div {
+		display: flex;
+	}
 </style>
