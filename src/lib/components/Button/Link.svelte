@@ -10,7 +10,6 @@
 	export let target: '_self' | '_blank' | '_parent' | '_top' | undefined = undefined;
 	export let type: string | undefined = undefined;
 	export let hreflang: string | undefined = undefined;
-	export let ping: string | undefined = undefined;
 	export let download: string | undefined = undefined;
 	export let rel: string | undefined = undefined;
 	export let referrerpolicy: string | undefined = undefined;
@@ -52,7 +51,6 @@
 	{role}
 	{target}
 	{type}
-	{ping}
 	aria-haspopup={ariaHasPopup}
 	bind:this={anchor}
 	use:Class={[active ? activeClass : '']}
@@ -67,6 +65,7 @@
 	class:depressed={depressed || text || outlined || icon}
 	class:outlined
 	class:rounded
+	{...$$restProps}
 >
 	<span class="s-btn__content">
 		<slot />

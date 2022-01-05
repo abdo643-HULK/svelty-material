@@ -102,7 +102,7 @@
 		// because attributes can change any time, we need to
 		// get the elements every time
 		const focusableChildren = getFocusableChildren(node);
-
+		console.debug(focusableChildren);
 		const focusedItemIndex = focusableChildren.indexOf(document.activeElement as HTMLElement);
 
 		// If the SHIFT key is being pressed while tabbing (moving backwards) and
