@@ -104,7 +104,7 @@
 		const focusableChildren = getFocusableChildren(node);
 		console.debug(focusableChildren);
 		const focusedItemIndex = focusableChildren.indexOf(document.activeElement as HTMLElement);
-
+		console.debug(focusedItemIndex);
 		// If the SHIFT key is being pressed while tabbing (moving backwards) and
 		// the currently focused item is the first one, move the focus to the last
 		// focusable item from the dialog element
