@@ -50,6 +50,8 @@
 	let dialog: HTMLDivElement;
 	let previouslyFocused: HTMLElement | null;
 
+	console.log(active);
+
 	const dispatch = createEventDispatcher();
 
 	function open() {
