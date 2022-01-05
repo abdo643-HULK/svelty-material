@@ -1,5 +1,5 @@
 {
-	"name": "svelteify-material-ui",
+	"name": "svelty-material",
 	"version": "1.0.14",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
@@ -18,13 +18,13 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/abdo643-HULK/svelte-material-components/svelte-material-components.git",
-		"directory": "svelte-material-components"
+		"url": "git+https://github.com/abdo643-HULK/svelty-material/svelty-material.git",
+		"directory": "svelty-material"
 	},
 	"author": "abdo643-HULK",
-	"homepage": "https://github.com/abdo643-HULK/svelte-material-components",
+	"homepage": "https://github.com/abdo643-HULK/svelty-material",
 	"bugs": {
-		"url": "https://github.com/abdo643-HULK/svelte-material-components/issues"
+		"url": "https://github.com/abdo643-HULK/svelty-material/issues"
 	},
 	"keywords": [
 		"svelte",
