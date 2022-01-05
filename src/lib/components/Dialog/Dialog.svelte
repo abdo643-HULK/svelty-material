@@ -22,14 +22,17 @@
 
 		async function open() {
 			console.log('opening');
-			// await tick();
-			// Set the focus to the dialog element
-			attachListeners();
-			document.body.style.overflow = 'hidden';
 
-			requestAnimationFrame(() => {
-				moveFocusToDialog();
-			});
+			// Set the focus to the dialog element
+			moveFocusToDialog();
+
+			// Bind a focus event listener to the body element to make sure the focus
+			// stays trapped inside the dialog while open, and start listening for some
+			// specific key presses (TAB and ESC)
+			document.body.addEventListener('focus', maintainFocus, true);
+			document.addEventListener('keydown', bindKeypress);
+
+			document.body.style.overflow = 'hidden';
 		}
 
 		function hide() {
@@ -39,25 +42,14 @@
 			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
 			previouslyFocused?.focus();
 
-			removeListeners();
-			document.body.style.overflow = 'auto';
-		}
-
-		function attachListeners() {
-			// Bind a focus event listener to the body element to make sure the focus
-			// stays trapped inside the dialog while open, and start listening for some
-			// specific key presses (TAB and ESC)
-			document.addEventListener('keydown', bindKeypress);
-			document.body.addEventListener('focus', maintainFocus, true);
-		}
-
-		function removeListeners() {
 			document.removeEventListener('keydown', bindKeypress);
 			document.body.removeEventListener('focus', maintainFocus, true);
+			document.body.style.overflow = 'auto';
 		}
 
 		function moveFocusToDialog() {
 			const focused = node.querySelector<HTMLElement>('[autofocus]') || node;
+			console.debug(focused);
 			focused.focus();
 		}
 
