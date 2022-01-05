@@ -64,6 +64,7 @@
 		// stays trapped inside the dialog while open, and start listening for some
 		// specific key presses (TAB and ESC)
 		document.addEventListener('keydown', bindKeypress);
+		document.body.addEventListener('focus', maintainFocus, true);
 		document.body.style.overflow = 'hidden';
 	}
 
@@ -75,6 +76,7 @@
 
 		// document.body.style.overflow = '';
 		document.removeEventListener('keypress', bindKeypress);
+		document.body.removeEventListener('focus', maintainFocus, true);
 		document.body.style.overflow = '';
 	}
 
@@ -130,13 +132,11 @@
 	}
 </script>
 
-<svelte:body on:focus|capture={maintainFocus} />
-
 <!--
-		A dialog can have more than just the "document" role.
-		In most situations a "dialog" or "alertdialog" would 
-		be a more appropriate role.
-	-->
+	A dialog can have more than just the "document" role.
+	In most situations a "dialog" or "alertdialog" would 
+	be a more appropriate role.
+-->
 {#key active}
 	<div
 		class="s-dialog"
