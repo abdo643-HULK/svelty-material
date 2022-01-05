@@ -6,7 +6,6 @@
 	import Style from '../../internal/Style';
 
 	import { scale } from 'svelte/transition';
-	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { getFocusableChildren } from '../../utils/focus';
 
 	function trapTabKey(node: HTMLElement, event: KeyboardEvent) {
@@ -33,6 +32,7 @@
 
 <script lang="ts">
 	import Overlay from '../Overlay';
+	import { createEventDispatcher, onMount, tick } from 'svelte';
 
 	let klass = '';
 	export { klass as class };
