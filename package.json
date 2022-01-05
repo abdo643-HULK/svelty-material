@@ -11,7 +11,8 @@
 		"build": "svelte-kit build",
 		"check": "svelte-check --tsconfig ./tsconfig.json --threshold error",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch --threshold error --ignore .svelte-kit",
-		"sveltekit": "svelte-kit dev"
+		"sveltekit": "svelte-kit dev",
+		"release": "npm run publish && cd package && npm publish"
 	},
 	"repository": {
 		"type": "git",
