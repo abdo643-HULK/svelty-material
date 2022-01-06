@@ -1,17 +1,17 @@
 <script context="module">
-	import uid from "../../internal/uid";
+	import uid from '../../internal/uid';
 </script>
 
 <script lang="ts">
-	import TextColor from "../../internal/TextColor";
-	import Ripple from "../../actions/Ripple";
+	import TextColor from '../../internal/TextColor';
+	import Ripple from '../../actions/Ripple';
 
 	// Add class to radio wrapper.
-	let klass = "";
+	let klass = '';
 	export { klass as class };
 
 	// Color of the radio when active.
-	export let color = "primary";
+	export let color = 'primary';
 
 	// Disables the radio.
 	export let disabled = false;
@@ -48,6 +48,7 @@
 			role="radio"
 			aria-selected={active}
 			bind:group
+			on:click
 			{id}
 			{value}
 			{disabled}

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Input from "../Input";
-	import Icon from "../Icon";
-	import uid from "../../internal/uid";
-	import clearIcon from "../../internal/Icons/close";
+	import Input from '../Input';
+	import Icon from '../Icon';
+	import uid from '../../internal/uid';
+	import clearIcon from '../../internal/Icons/close';
 
-	export let value = "";
-	export let color = "primary";
+	export let value = '';
+	export let color = 'primary';
 	export let filled = false;
 	export let solo = false;
 	export let outlined = false;
@@ -18,7 +18,7 @@
 	export let noResize = false;
 	export let disabled = false;
 	export let placeholder: string | undefined = undefined;
-	export let hint = "";
+	export let hint = '';
 	export let counter = false;
 	export let rules: Function[] = [];
 	export let errorCount = 1;
@@ -30,13 +30,22 @@
 	export let style: string | null = null;
 	export let textarea: HTMLTextAreaElement | null = null;
 
-	let labelActive: string | boolean = !!placeholder || value;
+	let focused = false;
 	let errorMessages: string[] = [];
+	let labelActive: string | boolean;
+	$: labelActive = !!placeholder || value;
+
+	export function validate() {
+		errorMessages = rules.map(r => r(value)).filter(r => typeof r === 'string');
+		if (errorMessages.length) error = true;
+		else {
+			error = false;
+		}
+		return error;
+	}
 
 	function checkRules() {
-		errorMessages = rules
-			.map((r) => r(value))
-			.filter((r) => typeof r === "string");
+		errorMessages = rules.map(r => r(value)).filter(r => typeof r === 'string');
 		if (errorMessages.length) error = true;
 		else {
 			error = false;
@@ -44,40 +53,31 @@
 	}
 
 	function onFocus() {
-		labelActive = true;
+		focused = true;
 	}
 
 	function onBlur() {
-		if (!value && !placeholder) labelActive = false;
+		focused = false;
 		if (validateOnBlur) checkRules();
 	}
 
 	function clear() {
-		value = "";
-		if (!placeholder) labelActive = false;
+		value = '';
 	}
 
 	function onInput() {
-		if (!validateOnBlur) checkRules();
-		if (autogrow) {
-			if (!textarea) {
-				return;
-			}
-			textarea.style.height = "auto";
-			textarea.style.height = `${textarea.scrollHeight}px`;
-		}
+		if (!validateOnBlur) validate();
 	}
+
+	function updateTextareaHeight(..._: any) {
+		textarea!.style.height = 'auto';
+		textarea!.style.height = `${textarea!.scrollHeight}px`;
+	}
+
+	$: if (textarea && autogrow) updateTextareaHeight(value);
 </script>
 
-<Input
-	class="s-text-field s-textarea"
-	{color}
-	{readonly}
-	{disabled}
-	{error}
-	{success}
-	{style}
->
+<Input class="s-text-field s-textarea" {color} {readonly} {disabled} {error} {success} {style}>
 	<!-- Slot for prepend outside the input. -->
 	<slot slot="prepend-outer" name="prepend-outer" />
 	<div
@@ -117,7 +117,7 @@
 			/>
 		</div>
 
-		{#if clearable && value !== ""}
+		{#if clearable && value !== ''}
 			<div on:click={clear} style="cursor:pointer">
 				<!-- Slot for the icon when `clearable` is true. -->
 				<slot name="clear-icon">
@@ -134,9 +134,7 @@
 		<div>
 			<span>{hint}</span>
 			{#each messages as message}<span>{message}</span>{/each}
-			{#each errorMessages.slice(0, errorCount) as message}<span
-					>{message}</span
-				>{/each}
+			{#each errorMessages.slice(0, errorCount) as message}<span>{message}</span>{/each}
 		</div>
 		{#if counter}<span>{value.length} / {counter}</span>{/if}
 	</div>

@@ -1,26 +1,29 @@
 <script>
-	import { slide } from "svelte/transition";
-	import { onMount, setContext } from "svelte";
-	import ListItem from "./ListItem.svelte";
-	import Style from "../../internal/Style";
+	import { slide } from 'svelte/transition';
+	import { onMount, setContext } from 'svelte';
+	import ListItem from './ListItem.svelte';
+	import Style from '../../internal/Style';
 
-	let klass = "primary-text";
+	let klass = 'primary-text';
 	export { klass as class };
-	export let activatorClass = "";
+	export let activatorClass = '';
 	export let activatorProps = {};
 	export let active = true;
 	export let eager = false;
 	export let transition = slide;
 	export let transitionOpts = {};
-	export let offset: Object | null = null;
+	export let offset: number | null = null;
 	export let disabled = false;
 	export let ripple = {};
 	export let style: string | undefined = undefined;
 
-	setContext("S_ListItemRipple", ripple);
+	setContext('S_ListItemRipple', ripple);
 
 	function toggle() {
 		active = !active;
+		const tempOffSet = offset;
+		offset! += 0.0001;
+		offset = tempOffSet;
 	}
 
 	if (eager) {
@@ -54,7 +57,7 @@
 			class="s-list-group__items"
 			class:offset
 			{style}
-			use:Style={{ "list-group-offset": offset ?? {} }}
+			use:Style={{ 'list-group-offset': offset ?? {} }}
 		>
 			<slot />
 		</div>
