@@ -1,44 +1,49 @@
 <script>
-  import { getContext } from 'svelte';
-  import { SLIDE_GROUP } from './SlideGroup.svelte';
-  import { ITEM_GROUP } from '../ItemGroup/ItemGroup.svelte';
-  import Class from '../../internal/Class';
+	import Class from '../../internal/Class';
 
-  const moveGroup = getContext(SLIDE_GROUP);
-  const ITEM = getContext(ITEM_GROUP);
+	import { getContext } from 'svelte';
+	import { SLIDE_GROUP } from './SlideGroup.svelte';
+	import { ITEM_GROUP } from '../ItemGroup/ItemGroup.svelte';
 
-  let active;
-  let itemElement;
+	import type { ItemGroup } from '../ItemGroup/ItemGroup.svelte';
+	import type { SlideGroup } from './SlideGroup.svelte';
 
-  let klass = '';
-  export { klass as class };
-  export let activeClass = ITEM.activeClass;
-  export let value = ITEM.index();
-  export let disabled = null;
+	const moveGroup = getContext<SlideGroup>(SLIDE_GROUP);
+	const ITEM = getContext<ItemGroup>(ITEM_GROUP);
 
-  ITEM.register((values) => {
-    active = values.includes(value);
-  });
+	let active: boolean;
+	let itemElement: HTMLElement;
 
-  function selectItem() {
-    if (!disabled) {
-      moveGroup(itemElement);
-      ITEM.select(value);
-    }
-  }
+	let klass = '';
+	export { klass as class };
+	export let activeClass = ITEM.activeClass;
+	export let value = ITEM.index();
+	export let disabled: boolean | undefined = undefined;
+
+	ITEM.register(values => {
+		active = values.includes(value);
+	});
+
+	function selectItem() {
+		if (!disabled) {
+			moveGroup(itemElement);
+			ITEM.select(value);
+		}
+	}
 </script>
 
-<style global>
-  .s-slide-item {
-    display: inline-flex;
-    flex: 0 1 auto;
-  }
-</style>
-
 <div
-  bind:this={itemElement}
-  class="s-slide-item {klass}"
-  use:Class={[active && activeClass]}
-  on:click={selectItem}>
-  <slot {active} />
+	bind:this={itemElement}
+	class="s-slide-item {klass}"
+	use:Class={[active ? activeClass : '']}
+	on:click={selectItem}
+>
+	<slot {active} />
 </div>
+
+<style global>
+	.s-slide-item {
+		display: inline-flex;
+		flex: 0 1 auto;
+	}
+</style>

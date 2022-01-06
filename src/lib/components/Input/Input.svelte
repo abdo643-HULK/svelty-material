@@ -9,7 +9,7 @@
 	export let disabled = false;
 	export let error = false;
 	export let success = false;
-	export let style: string | undefined = undefined;
+	export let style: string | undefined | null = undefined;
 </script>
 
 <div
@@ -35,5 +35,5 @@
 </div>
 
 <style lang="scss" global>
-	@use "./Input.scss" as *;
+	@use './Input.scss' as *;
 </style>

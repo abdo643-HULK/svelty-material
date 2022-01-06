@@ -1,53 +1,58 @@
-<script>
-  import { getContext, onMount } from 'svelte';
-  import { SLIDE_GROUP } from '../SlideGroup/SlideGroup.svelte';
-  import { ITEM_GROUP } from '../ItemGroup/ItemGroup.svelte';
-  import { TABS } from './Tabs.svelte';
-  import Class from '../../internal/Class';
-  import Ripple from '../../actions/Ripple';
+<script lang="ts">
+	import Class from '../../internal/Class';
+	import Ripple from '../../actions/Ripple';
 
-  let tab;
-  const click = getContext(SLIDE_GROUP);
-  const ITEM = getContext(ITEM_GROUP);
-  const { ripple, registerTab } = getContext(TABS);
+	import { getContext, onMount } from 'svelte';
+	import { SLIDE_GROUP } from '../SlideGroup/SlideGroup.svelte';
+	import { ITEM_GROUP } from '../ItemGroup/ItemGroup.svelte';
+	import { TABS } from './Tabs.svelte';
 
-  let klass = '';
-  export { klass as class };
-  export let value = ITEM.index();
-  export let activeClass = ITEM.activeClass;
-  export let disabled = false;
+	import type { ItemGroup } from '../ItemGroup/ItemGroup.svelte';
+	import type { SlideGroup } from '../SlideGroup/SlideGroup.svelte';
 
-  let active;
-  ITEM.register((values) => {
-    active = values.includes(value);
-  });
+	let tab: HTMLButtonElement;
 
-  function selectTab({ target }) {
-    if (!disabled) {
-      click(target);
-      ITEM.select(value);
-    }
-  }
+	const click = getContext<SlideGroup>(SLIDE_GROUP);
+	const ITEM = getContext<ItemGroup>(ITEM_GROUP);
+	const { ripple, registerTab } = getContext(TABS);
 
-  onMount(() => {
-    registerTab(tab);
-  });
+	let klass = '';
+	export { klass as class };
+	export let value = ITEM.index();
+	export let activeClass = ITEM.activeClass;
+	export let disabled = false;
+
+	let active: boolean;
+
+	ITEM.register(values => {
+		active = values.includes(value);
+	});
+
+	function selectTab({ target }: Event) {
+		if (disabled) return;
+		click(target as HTMLElement);
+	}
+
+	onMount(() => {
+		registerTab(tab);
+	});
 </script>
+
+<button
+	bind:this={tab}
+	class="s-tab s-slide-item {klass}"
+	role="tab"
+	aria-selected={active}
+	tabindex={disabled ? -1 : 0}
+	class:disabled
+	class:active
+	use:Class={[active ? activeClass : '']}
+	on:click={selectTab}
+	on:click
+	use:Ripple={ripple}
+>
+	<slot />
+</button>
 
 <style lang="scss" src="./Tab.scss" global>
 </style>
-
-<button
-  bind:this={tab}
-  class="s-tab s-slide-item {klass}"
-  role="tab"
-  aria-selected={active}
-  tabindex={disabled ? -1 : 0}
-  class:disabled
-  class:active
-  use:Class={[active && activeClass]}
-  on:click={selectTab}
-  on:click
-  use:Ripple={ripple}>
-  <slot />
-</button>

@@ -1,6 +1,6 @@
 {
 	"name": "svelty-material",
-	"version": "1.0.25",
+	"version": "1.0.26",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
 	"type": "module",
@@ -16,7 +16,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/abdo643-HULK/svelty-material/svelty-material.git",
+		"url": "https://github.com/abdo643-HULK/svelty-material/svelty-material.git",
 		"directory": "svelty-material"
 	},
 	"author": "abdo643-HULK",
@@ -51,5 +51,8 @@
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.4",
 		"vite": "^2.7.10"
+	},
+	"dependencies": {
+		"nouislider": "^15.5.0"
 	}
 }

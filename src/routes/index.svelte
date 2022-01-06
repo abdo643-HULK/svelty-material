@@ -31,6 +31,15 @@
 	<Button on:click={() => modal?.open()}>In den Warenkorb</Button>
 </Card>
 
+<Card>
+	<div>
+		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, ratione doloremque, earum
+		fuga id facere porro dolores temporibus impedit, omnis vitae tenetur fugiat voluptates
+		explicabo nostrum aspernatur possimus ipsa debitis?
+	</div>
+	<Button on:click={() => modal?.open()}>In den Warenkorb</Button>
+</Card>
+
 <div>
 	<PCard {product} />
 	<PCard {product} />

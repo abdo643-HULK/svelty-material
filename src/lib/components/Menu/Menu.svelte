@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { fade } from "svelte/transition";
-	import { onMount, setContext, createEventDispatcher } from "svelte";
-	import ClickOutside from "../../actions/ClickOutside";
+	import { fade } from 'svelte/transition';
+	import { onMount, setContext, createEventDispatcher } from 'svelte';
+	import ClickOutside from '../../actions/ClickOutside';
 
-	let klass = "";
+	let klass = '';
 	export { klass as class };
 	export let active = false;
 	export let absolute = false;
@@ -23,16 +23,16 @@
 	export let tile = false;
 	export let disabled = false;
 	export let index = 8;
-	export let style = "";
+	export let style = '';
 
-	let origin = "top left";
+	let origin = 'top left';
 	let position: string;
 	let wrapper: HTMLDivElement;
 	const dispatch = createEventDispatcher();
-	const align = { x: right ? "right" : "left", y: bottom ? "bottom" : "top" };
+	const align = { x: right ? 'right' : 'left', y: bottom ? 'bottom' : 'top' };
 
-	setContext("S_ListItemRole", "menuitem");
-	setContext("S_ListItemRipple", true);
+	setContext('S_ListItemRole', 'menuitem');
+	setContext('S_ListItemRipple', true);
 
 	// For opening the menu
 	function open(posX = 0, posY = 0) {
@@ -54,7 +54,7 @@
 		 * Event when menu is opened.
 		 * @returns Nothing
 		 */
-		dispatch("open");
+		dispatch('open');
 	}
 
 	// For closing the menu.
@@ -64,7 +64,7 @@
 		 * Event when menu is closed.
 		 * @returns Nothing
 		 */
-		dispatch("close");
+		dispatch('close');
 	}
 
 	// When the activator slot is clicked.
@@ -89,22 +89,29 @@
 	}
 
 	onMount(() => {
-		const trigger =
-			wrapper.querySelector<HTMLElement>("[slot='activator']");
+		const trigger = wrapper.querySelector<HTMLElement>("[slot='activator']");
 		// Opening the menu if active is set to true.
 		if (active) open();
 
-		trigger?.addEventListener("click", triggerClick, { passive: true });
+		trigger?.addEventListener('click', triggerClick, { passive: true });
+
+		const tmpOpen = () => open();
+
 		if (hover) {
-			wrapper.addEventListener("mouseenter", open, { passive: true });
-			wrapper.addEventListener("mouseleave", close, { passive: true });
+			wrapper.addEventListener('mouseenter', tmpOpen, { passive: true });
+			wrapper.addEventListener('mouseleave', close, { passive: true });
 		}
 
 		return () => {
-			trigger?.removeEventListener("click", triggerClick);
+			// passing the same options is better because of the
+			// different browser behaviour, but ts doesn't care
+			//@ts-ignore
+			trigger?.removeEventListener('click', triggerClick, { passive: true });
 			if (hover) {
-				wrapper.removeEventListener("mouseenter", open);
-				wrapper.removeEventListener("mouseleave", close);
+				//@ts-ignore
+				wrapper.removeEventListener('mouseenter', tmpOpen, { passive: true });
+				//@ts-ignore
+				wrapper.removeEventListener('mouseleave', close, { passive: true });
 			}
 		};
 	});

@@ -1,4 +1,8 @@
-@import "./variables";
+@import './variables';
+
+$nav-width: 256px;
+$clipped-height: 56px;
+$mini-nav-width: 56px;
 
 .s-navigation-drawer__border {
 	position: absolute;
@@ -22,15 +26,16 @@
 	flex-direction: column;
 	left: 0;
 	max-width: 100%;
-	width: var(--s-nav-width);
+	width: var(--s-nav-width, #{$nav-width});
 	height: 100%;
 	overflow: hidden;
 	pointer-events: auto;
 	top: 0;
 	transition-duration: 0.2s;
-	transition-timing-function: map-get($transitions, "fast-out-slow-in");
+	transition-timing-function: map-get($transitions, 'fast-out-slow-in');
 	will-change: transform;
 	transition-property: transform, visibility, width;
+	z-index: var(--s-navigation-drawer-z-index, 4);
 
 	&:not(.active) {
 		transform: translateX(-100%);
@@ -64,12 +69,12 @@
 	}
 
 	&.clipped {
-		top: var(--s-nav-clipped-height);
-		max-height: calc(100% - var(--s-nav-clipped-height));
+		top: var(--s-nav-clipped-height, #{$clipped-height});
+		max-height: calc(100% - var(--s-nav-clipped-height, #{$clipped-height}));
 	}
 
 	&.mini {
-		width: var(--s-nav-min-width);
+		width: var(--s-nav-mini-width, #{$mini-nav-width});
 		overflow: hidden;
 
 		.s-list-item {

@@ -19,7 +19,7 @@
 	let content: HTMLElement;
 	let height_map: number[] = [];
 	let rows: string | any[] | HTMLCollectionOf<Element>;
-	let viewport: HTMLTableSectionElement;
+	let viewport: HTMLDivElement;
 	let viewport_height = 0;
 	let visible: Array<{ index: number; data: any }>;
 	let mounted: boolean;
@@ -38,7 +38,7 @@
 	async function refresh(
 		items: string | any[],
 		viewport_height: number,
-		itemHeight: number | undefined
+		itemHeight: number | undefined,
 	) {
 		const { scrollTop } = viewport;
 

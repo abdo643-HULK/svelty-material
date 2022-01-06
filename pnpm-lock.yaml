@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@sveltejs/kit': ^1.0.0-next.216
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.33
+  nouislider: ^15.5.0
   npm-run-all: ^4.1.5
   sass: ^1.45.2
   svelte: ^3.44.3
@@ -12,6 +13,9 @@ specifiers:
   tslib: ^2.3.1
   typescript: ^4.5.4
   vite: ^2.7.10
+
+dependencies:
+  nouislider: 15.5.0
 
 devDependencies:
   '@sveltejs/kit': 1.0.0-next.216_sass@1.45.2+svelte@3.44.3
@@ -848,6 +852,10 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /nouislider/15.5.0:
+    resolution: {integrity: sha512-p0Rn0a4XzrBJ+JZRhNDYpRYr6sDPkajsjbvEQoTp/AZlNI3NirO15s1t11D25Gk3zVyvNJAzc1DO48cq/KX5Sw==}
+    dev: false
 
   /npm-run-all/4.1.5:
     resolution: {integrity: sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==}

@@ -8,7 +8,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 9999;
+	z-index: var(--overlay-z-index, 5);
 	pointer-events: auto;
 
 	&.absolute {
@@ -26,6 +26,8 @@
 	top: 0;
 	transition: inherit;
 	width: 100%;
+	background-color: var(--overlay-bg-color, rgb(33, 33, 33));
+	opacity: var(--overlay-opacity, 0.46);
 	will-change: opacity;
 }
 

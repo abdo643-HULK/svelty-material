@@ -14,6 +14,7 @@
 	import Dialog from '$lib/components/Dialog/Dialog.svelte';
 	import ModalBody from '$lib/site/ModalBody.svelte';
 	import MaterialApp from '$lib/components/MaterialApp';
+	import MaterialAppMin from '$lib/components/MaterialApp/MaterialAppMin.svelte';
 
 	let active = false;
 
@@ -44,7 +45,7 @@
 	});
 </script>
 
-<MaterialApp>
+<MaterialAppMin>
 	<slot />
 	<Dialog
 		width="auto"
@@ -55,4 +56,4 @@
 	>
 		<svelte:component this={modalBody} {...componentProps} on:close={close} />
 	</Dialog>
-</MaterialApp>
+</MaterialAppMin>

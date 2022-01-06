@@ -48,7 +48,6 @@
 
 		function moveFocusToDialog() {
 			const focused = node.querySelector<HTMLElement>('[autofocus]') || node;
-			console.debug(focused);
 			focused.focus();
 		}
 
@@ -59,6 +58,7 @@
 				node.getAttribute('role') !== 'alertdialog'
 			) {
 				ev.preventDefault();
+				dispatch('escape');
 				onEscape();
 			}
 
@@ -149,6 +149,7 @@
 		aria-label={ariaLabel}
 		aria-labelledby={ariaLabelledBy}
 		aria-describedby={ariaDescribedBy}
+		tabindex="-1"
 		{role}
 		use:Style={{ 'dialog-width': width }}
 		use:dialog={{
