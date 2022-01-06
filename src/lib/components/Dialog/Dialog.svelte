@@ -88,7 +88,7 @@
 			destroy() {
 				hide();
 				dispatch('hide');
-			}
+			},
 		};
 	}
 
@@ -96,9 +96,8 @@
 		// because attributes can change any time, we need to
 		// get the elements every time
 		const focusableChildren = getFocusableChildren(node);
-		console.debug(focusableChildren);
 		const focusedItemIndex = focusableChildren.indexOf(document.activeElement as HTMLElement);
-		console.debug(focusedItemIndex);
+
 		// If the SHIFT key is being pressed while tabbing (moving backwards) and
 		// the currently focused item is the first one, move the focus to the last
 		// focusable item from the dialog element
@@ -153,7 +152,7 @@
 		{role}
 		use:Style={{ 'dialog-width': width }}
 		use:dialog={{
-			onEscape: () => (active = false)
+			onEscape: () => (active = false),
 		}}
 		{...$$restProps}
 	>
