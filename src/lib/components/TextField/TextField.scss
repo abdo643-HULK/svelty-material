@@ -262,7 +262,9 @@
 				}
 
 				label {
-					top: $text-field-filled-dense-label-top;
+					// top: $text-field-filled-dense-label-top;
+					align-self: center;
+					top: unset;
 
 					&.active {
 						transform: $text-field-filled-dense-label-active-transform;
