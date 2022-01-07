@@ -165,7 +165,9 @@
 		}
 
 		label {
-			top: $text-field-filled-label-top;
+			// top: $text-field-filled-label-top;
+			align-self: center;
+			top: unset;
 
 			&.active {
 				transform: $text-field-filled-label-active-transform;
