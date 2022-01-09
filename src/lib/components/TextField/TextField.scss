@@ -83,7 +83,7 @@
 	&:hover {
 		&::before {
 			border-color: var(--theme-text-fields-border-hover);
-			border-width: var(--theme-text-fields-border-width-hover, #{$default-border-width});
+			border-width: var(--theme-text-fields-border-width-hover);
 		}
 	}
 
@@ -114,7 +114,7 @@
 		}
 
 		&:hover::before {
-			border-width: var(--theme-text-fields-border-width-hover, thin);
+			border-width: var(--theme-text-fields-border-width-hover);
 		}
 
 		&:focus-within::before {
