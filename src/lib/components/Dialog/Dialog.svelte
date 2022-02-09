@@ -14,14 +14,15 @@
 	}
 
 	function dialog(node: HTMLElement, { onEscape }: DialogOptions) {
-		const isSafari =
-			/constructor/i.test(window.HTMLElement) ||
-			(function (p) {
-				return p.toString() === '[object SafariRemoteNotification]';
-			})(
-				!window['safari'] ||
-					(typeof safari !== 'undefined' && window['safari'].pushNotification),
-			);
+		//@ts-ignore
+		// const isSafari =
+		// 	/constructor/i.test(window.HTMLElement.toString()) ||
+		// 	(function (p) {
+		// 		return p.toString() === '[object SafariRemoteNotification]';
+		// 	})(
+		// 		!window['safari'] ||
+		// 			(typeof safari !== 'undefined' && window['safari'].pushNotification),
+		// 	);
 
 		const dispatch = createEventDispatcher();
 		// Keep a reference to the currently focused element to be able to restore
@@ -43,12 +44,13 @@
 			body.addEventListener('focus', maintainFocus, true);
 			document.addEventListener('keydown', bindKeypress);
 
-			if (isSafari) {
-				body.style.overflow = 'hidden';
-			} else {
-				body.classList.add('no-scroll');
-			}
+			// if (isSafari) {
+			// 	body.style.overflow = 'hidden';
+			// } else {
+			// 	body.classList.add('no-scroll');
+			// }
 			// body.style.top = `${-document.documentElement.scrollTop}px`;
+			body.classList.add('no-scroll');
 		}
 
 		function hide() {
@@ -62,11 +64,13 @@
 			document.removeEventListener('keydown', bindKeypress);
 			body.removeEventListener('focus', maintainFocus, true);
 
-			if (isSafari) {
-				body.style.overflow = 'auto';
-			} else {
-				body.classList.remove('no-scroll');
-			}
+			// if (isSafari) {
+			// 	body.style.overflow = 'auto';
+			// } else {
+			// 	body.classList.remove('no-scroll');
+			// }
+
+			body.classList.remove('no-scroll');
 
 			// document.documentElement.classList.remove('no-scroll');
 			// body.classList.remove('no-scroll');

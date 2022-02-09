@@ -69,6 +69,11 @@ body {
 .no-scroll {
 	position: fixed;
 	overflow-y: scroll;
+	@media not all and (min-resolution: 0.001dpcm) {
+		@supports (-webkit-appearance: none) and (stroke-color: transparent) {
+			overflow-y: hidden;
+		}
+	}
 }
 
 .fullscreen {
