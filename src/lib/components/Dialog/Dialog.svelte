@@ -49,7 +49,7 @@
 			// } else {
 			// 	body.classList.add('no-scroll');
 			// }
-			// body.style.top = `${-document.documentElement.scrollTop}px`;
+			body.style.top = `${-document.documentElement.scrollTop}px`;
 			body.classList.add('no-scroll');
 		}
 
@@ -71,10 +71,10 @@
 			// }
 
 			body.classList.remove('no-scroll');
+			body.style.top = '';
 
 			// document.documentElement.classList.remove('no-scroll');
 			// body.classList.remove('no-scroll');
-			// body.style.top = '';
 		}
 
 		function moveFocusToDialog() {

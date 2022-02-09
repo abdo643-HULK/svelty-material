@@ -2,6 +2,10 @@
 
 ## 1.0.34
 
+-   Preserve top position
+
+## 1.0.34
+
 -   Publishing mistake
 
 ## 1.0.33
