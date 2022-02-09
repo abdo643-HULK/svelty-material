@@ -9,6 +9,7 @@
 	pointer-events: none;
 	position: fixed;
 	top: 0;
+	transform-origin: center top;
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
 	width: 100%;
 	z-index: 20;
@@ -63,15 +64,16 @@
 }
 
 body {
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 
 .no-scroll {
-	position: fixed;
-	overflow-y: scroll;
+	// position: fixed !important;
+	overflow-y: visible !important;
+
 	@media not all and (min-resolution: 0.001dpcm) {
 		@supports (-webkit-appearance: none) and (stroke-color: transparent) {
-			overflow-y: hidden;
+			overflow-y: hidden !important;
 		}
 	}
 }

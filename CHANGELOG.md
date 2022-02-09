@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.36
+
+-   No layout shift anymore when opening a modal/dialog
+
 ## 1.0.35
 
 -   Preserve top position

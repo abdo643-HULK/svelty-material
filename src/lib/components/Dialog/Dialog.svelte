@@ -11,9 +11,10 @@
 
 	interface DialogOptions {
 		onEscape: Function;
+		target: string;
 	}
 
-	function dialog(node: HTMLElement, { onEscape }: DialogOptions) {
+	function dialog(node: HTMLElement, { onEscape, target: selector }: DialogOptions) {
 		//@ts-ignore
 		// const isSafari =
 		// 	/constructor/i.test(window.HTMLElement.toString()) ||
@@ -29,14 +30,16 @@
 		// it later
 		const previouslyFocused = document.activeElement as HTMLElement | null;
 
+		const body = document.body;
+		const target =
+			selector !== 'body' ? (document.querySelector(selector) as HTMLElement) : body;
+
 		open();
 		dispatch('open');
 
 		async function open() {
 			// Set the focus to the dialog element
 			moveFocusToDialog();
-
-			const body = document.body;
 
 			// Bind a focus event listener to the body element to make sure the focus
 			// stays trapped inside the dialog while open, and start listening for some
@@ -49,17 +52,16 @@
 			// } else {
 			// 	body.classList.add('no-scroll');
 			// }
-			body.style.top = `${-document.documentElement.scrollTop}px`;
-			body.classList.add('no-scroll');
+			// target.style.top = `-${
+			// 	document.body.scrollTop || document.documentElement.scrollTop
+			// }px`;
+			target.classList.add('no-scroll');
 		}
 
 		function hide() {
 			// If there was a focused element before the dialog was opened (and it has a
 			// `focus` method), restore the focus back to it
 			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
-			previouslyFocused?.focus();
-
-			const body = document.body;
 
 			document.removeEventListener('keydown', bindKeypress);
 			body.removeEventListener('focus', maintainFocus, true);
@@ -70,8 +72,14 @@
 			// 	body.classList.remove('no-scroll');
 			// }
 
-			body.classList.remove('no-scroll');
-			body.style.top = '';
+			target.classList.remove('no-scroll');
+
+			requestAnimationFrame(() => {
+				// target.style.position = 'static';
+				// target.style.top = '';
+
+				previouslyFocused?.focus();
+			});
 
 			// document.documentElement.classList.remove('no-scroll');
 			// body.classList.remove('no-scroll');
@@ -160,6 +168,7 @@
 	export let ariaLabelledBy: string | undefined = undefined;
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
+	export let target = 'body';
 
 	function close() {
 		if (!persistent) active = false;
@@ -184,6 +193,7 @@
 		use:Style={{ 'dialog-width': width }}
 		use:dialog={{
 			onEscape: () => (active = false),
+			target,
 		}}
 		{...$$restProps}
 	>

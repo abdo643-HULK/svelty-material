@@ -41,15 +41,18 @@
 	}
 
 	setContext('MODAL', {
-		open: openProductModal
+		open: openProductModal,
 	});
 </script>
 
 <MaterialAppMin>
-	<slot />
+	<div id="main-content">
+		<slot />
+	</div>
 	<Dialog
 		width="auto"
 		role="dialog"
+		target="#main-content"
 		bind:active
 		on:open={() => console.log('open')}
 		on:hide={() => console.log('hide')}
