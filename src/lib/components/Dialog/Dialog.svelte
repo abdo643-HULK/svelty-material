@@ -6,7 +6,7 @@
 	import Style from '../../internal/Style';
 
 	import { scale } from 'svelte/transition';
-	import { createEventDispatcher, tick } from 'svelte';
+	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { getFocusableChildren } from '../../utils/focus';
 
 	interface DialogOptions {
@@ -26,13 +26,18 @@
 			// Set the focus to the dialog element
 			moveFocusToDialog();
 
+			const body = document.body;
+
 			// Bind a focus event listener to the body element to make sure the focus
 			// stays trapped inside the dialog while open, and start listening for some
 			// specific key presses (TAB and ESC)
-			document.body.addEventListener('focus', maintainFocus, true);
+			body.addEventListener('focus', maintainFocus, true);
 			document.addEventListener('keydown', bindKeypress);
 
-			document.body.style.overflow = 'hidden';
+			body.style.overflow = 'hidden';
+
+			// body.style.top = `${-document.documentElement.scrollTop}px`;
+			// body.classList.add('no-scroll');
 		}
 
 		function hide() {
@@ -41,9 +46,14 @@
 			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
 			previouslyFocused?.focus();
 
+			const body = document.body;
+
 			document.removeEventListener('keydown', bindKeypress);
-			document.body.removeEventListener('focus', maintainFocus, true);
-			document.body.style.overflow = 'auto';
+			body.removeEventListener('focus', maintainFocus, true);
+			body.style.overflow = 'auto';
+
+			// body.classList.remove('no-scroll');
+			// body.style.top = '';
 		}
 
 		function moveFocusToDialog() {

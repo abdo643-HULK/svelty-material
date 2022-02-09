@@ -13,11 +13,11 @@
 		categories: ['burger'],
 		image: {
 			src: '',
-			alt: 'Bild von einem Burger'
+			alt: 'Bild von einem Burger',
 		},
 		variations: {
-			toppings: ['Beilagen', 'Saucen']
-		}
+			toppings: ['Beilagen', 'Saucen'],
+		},
 	};
 	const modal = getContext<{ open: Function }>('MODAL');
 </script>
@@ -43,6 +43,35 @@
 <div>
 	<PCard {product} />
 	<PCard {product} />
+	<PCard {product} />
+</div>
+
+<div>
+	<PCard {product} />
+</div>
+
+<div>
+	<PCard {product} />
+</div>
+<div>
+	<PCard {product} />
+</div>
+<div>
+	<PCard {product} />
+</div>
+<div>
+	<PCard {product} />
+</div>
+<div>
+	<PCard {product} />
+</div>
+<div>
+	<PCard {product} />
+</div>
+<div>
+	<PCard {product} />
+</div>
+<div>
 	<PCard {product} />
 </div>
 
