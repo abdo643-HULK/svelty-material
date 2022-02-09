@@ -12,7 +12,7 @@
 	transform-origin: center top;
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
 	width: 100%;
-	z-index: 20;
+	z-index: 1010;
 	outline: none;
 
 	&[aria-hidden='true'] {
@@ -63,19 +63,25 @@
 	}
 }
 
-body {
-	overflow-y: scroll;
-}
+// html,
+// body {
+// 	height: 100%;
+// }
+
+// body {
+// 	overflow-y: scroll;
+// }
 
 .no-scroll {
+	height: 100%;
 	// position: fixed !important;
-	overflow-y: visible !important;
+	// overflow-y: visible !important;
 
-	@media not all and (min-resolution: 0.001dpcm) {
-		@supports (-webkit-appearance: none) and (stroke-color: transparent) {
-			overflow-y: hidden !important;
-		}
-	}
+	// @media not all and (min-resolution: 0.001dpcm) {
+	// 	@supports (-webkit-appearance: none) and (stroke-color: transparent) {
+	// 		overflow-y: hidden !important;
+	// 	}
+	// }
 }
 
 .fullscreen {

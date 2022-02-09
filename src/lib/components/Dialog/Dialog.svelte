@@ -52,10 +52,11 @@
 			// } else {
 			// 	body.classList.add('no-scroll');
 			// }
+			// target.style.position = '';
 			// target.style.top = `-${
 			// 	document.body.scrollTop || document.documentElement.scrollTop
 			// }px`;
-			target.classList.add('no-scroll');
+			// target.classList.add('no-scroll');
 		}
 
 		function hide() {
@@ -66,21 +67,17 @@
 			document.removeEventListener('keydown', bindKeypress);
 			body.removeEventListener('focus', maintainFocus, true);
 
+			requestAnimationFrame(() => {
+				// target.style.position = 'static';
+				// target.style.top = '';
+				previouslyFocused?.focus();
+			});
+
 			// if (isSafari) {
 			// 	body.style.overflow = 'auto';
 			// } else {
 			// 	body.classList.remove('no-scroll');
 			// }
-
-			target.classList.remove('no-scroll');
-
-			requestAnimationFrame(() => {
-				// target.style.position = 'static';
-				// target.style.top = '';
-
-				previouslyFocused?.focus();
-			});
-
 			// document.documentElement.classList.remove('no-scroll');
 			// body.classList.remove('no-scroll');
 		}
@@ -169,6 +166,16 @@
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
 	export let target = 'body';
+	export let preventScroll = true;
+
+	onMount(() => {
+		if (preventScroll) {
+			const body = document.body;
+			body.style.overflowY = 'scroll';
+			body.style.height = '100%';
+			document.documentElement.style.height = '100%';
+		}
+	});
 
 	function close() {
 		if (!persistent) active = false;
