@@ -34,10 +34,10 @@
 			body.addEventListener('focus', maintainFocus, true);
 			document.addEventListener('keydown', bindKeypress);
 
-			body.style.overflow = 'hidden';
+			// body.style.overflow = 'hidden';
 
-			// body.style.top = `${-document.documentElement.scrollTop}px`;
-			// body.classList.add('no-scroll');
+			body.style.top = `${-document.documentElement.scrollTop}px`;
+			body.classList.add('no-scroll');
 		}
 
 		function hide() {
@@ -50,10 +50,10 @@
 
 			document.removeEventListener('keydown', bindKeypress);
 			body.removeEventListener('focus', maintainFocus, true);
-			body.style.overflow = 'auto';
+			// body.style.overflow = 'auto';
 
-			// body.classList.remove('no-scroll');
-			// body.style.top = '';
+			body.classList.remove('no-scroll');
+			body.style.top = '';
 		}
 
 		function moveFocusToDialog() {
