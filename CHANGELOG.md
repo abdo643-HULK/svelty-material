@@ -1,8 +1,12 @@
 # Svelty-Material
 
+## 1.0.40
+
+-   removed pointer event from dialog
+
 ## 1.0.39
 
--   Overflow property added and removed pointer event from dialog
+-   Overflow property added
 
 ## 1.0.38
 
