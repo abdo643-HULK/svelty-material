@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.39
+
+-   Overflow property added
+
 ## 1.0.38
 
 -   Fixed Dialog Overflow

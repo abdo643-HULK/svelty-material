@@ -19,6 +19,7 @@
 	width: 100%;
 	z-index: 1020;
 	outline: none;
+	overflow: auto;
 
 	&[aria-hidden='true'] {
 		display: none;
