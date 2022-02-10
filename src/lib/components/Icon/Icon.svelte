@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Style from '../../internal/Style';
 
+	import type { Dataset } from '$lib/@types';
+
 	let klass = '';
 	export { klass as class };
 	export let size = 24;
@@ -68,5 +70,5 @@
 </i>
 
 <style lang="scss" global>
-	@use "./Icon.scss" as *;
+	@use './Icon.scss' as *;
 </style>

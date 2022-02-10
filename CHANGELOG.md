@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.41
+
+-   Dialog types fixed
+
 ## 1.0.40
 
 -   removed pointer event from dialog

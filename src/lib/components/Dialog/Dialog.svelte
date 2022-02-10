@@ -9,6 +9,8 @@
 	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { getFocusableChildren } from '../../utils/focus';
 
+	import type { AlignItems } from '$lib/@types';
+
 	interface DialogOptions {
 		onEscape: Function;
 		target: HTMLElement;
