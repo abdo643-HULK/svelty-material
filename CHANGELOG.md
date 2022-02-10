@@ -2,7 +2,7 @@
 
 ## 1.0.39
 
--   Overflow property added
+-   Overflow property added and removed pointer event from dialog
 
 ## 1.0.38
 

@@ -52,7 +52,7 @@
 	<Dialog
 		width="auto"
 		role="dialog"
-		target="#main-content"
+		alignItems="flex-start"
 		bind:active
 		on:open={() => console.log('open')}
 		on:hide={() => console.log('hide')}

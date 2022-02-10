@@ -3,7 +3,7 @@
 	const ESC_KEY = 'Esc';
 	const ESCAPE_KEY = 'Escape';
 
-	import Style from '../../internal/Style';
+	import clickOutside from '$lib/actions/ClickOutside';
 
 	import { scale } from 'svelte/transition';
 	import { createEventDispatcher, onMount, tick } from 'svelte';
@@ -11,10 +11,10 @@
 
 	interface DialogOptions {
 		onEscape: Function;
-		target: string;
+		target: HTMLElement;
 	}
 
-	function dialog(node: HTMLElement, { onEscape, target: selector }: DialogOptions) {
+	function dialog(node: HTMLElement, { onEscape, target }: DialogOptions) {
 		//@ts-ignore
 		// const isSafari =
 		// 	/constructor/i.test(window.HTMLElement.toString()) ||
@@ -29,10 +29,7 @@
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
 		const previouslyFocused = document.activeElement as HTMLElement | null;
-
 		const body = document.body;
-		const target =
-			selector !== 'body' ? (document.querySelector(selector) as HTMLElement) : body;
 
 		open();
 		dispatch('open');
@@ -165,14 +162,25 @@
 	export let ariaLabelledBy: string | undefined = undefined;
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
-	export let target = 'body';
+	export let target: string | HTMLElement = 'body';
 	export let preventScroll = true;
+	export let alignItems: AlignItems | '' = '';
+
+	$: _alignItems = alignItems as string;
+
+	let _target: HTMLElement;
+	$: {
+		if (typeof window !== 'undefined') {
+			_target =
+				typeof target === 'string'
+					? (document.querySelector(target) as HTMLElement)
+					: target;
+		}
+	}
 
 	onMount(() => {
 		if (preventScroll) {
-			const body = document.body;
-			body.style.overflowY = 'scroll';
-			body.style.height = '100%';
+			_target.classList.add('scroll');
 			document.documentElement.style.height = '100%';
 		}
 	});
@@ -182,17 +190,18 @@
 	}
 </script>
 
-<!--
+<div class="s-dialog__container">
+	<Overlay {...overlay} {active} on:click={close} />
+	<!--
 	A dialog can have more than just the "document" role.
 	In most situations a "dialog" or "alertdialog" would 
 	be a more appropriate role.
 -->
-{#if active}
-	<!-- 
+	{#if active}
+		<!-- 
 		Without this container we wouldn't be able to 
 		use display flex to center and also support overflow
 	-->
-	<div class="s-dialog__container">
 		<div
 			class="s-dialog"
 			aria-modal="true"
@@ -200,18 +209,22 @@
 			aria-label={ariaLabel}
 			aria-labelledby={ariaLabelledBy}
 			aria-describedby={ariaDescribedBy}
+			style:--s-dialog-align-items={_alignItems}
+			style:--s-dialog-width={width}
 			tabindex="-1"
 			{role}
-			use:Style={{ 'dialog-width': width }}
 			use:dialog={{
 				onEscape: () => (active = false),
-				target,
+				target: _target,
 			}}
 			{...$$restProps}
 		>
 			<div
 				class="s-dialog__content {klass}"
 				class:fullscreen
+				use:clickOutside={{
+					cb: () => (active = false),
+				}}
 				transition:transition={{ duration: 300, start: 0.1 }}
 				on:introstart
 				on:outrostart
@@ -221,9 +234,8 @@
 				<slot />
 			</div>
 		</div>
-	</div>
-{/if}
-<Overlay {...overlay} {active} on:click={close} />
+	{/if}
+</div>
 
 <style lang="scss" src="./Dialog.scss" global>
 </style>

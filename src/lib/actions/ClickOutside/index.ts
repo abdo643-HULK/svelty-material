@@ -2,23 +2,27 @@
  * Click Outside
  */
 export default (node: Node, _options = {}) => {
-	const options = { include: [], ..._options };
+	const options = { include: [], cb: () => {}, ..._options };
 
-	function detect({ target }: { target: EventTarget | null }) {
-		if (
-			!node.contains(target as Node) ||
-			options.include.some((i) => (target as Node)?.isSameNode(i))
-		) {
-			node.dispatchEvent(new CustomEvent("clickOutside"));
+	function detect({ target, defaultPrevented }: MouseEvent | TouchEvent) {
+		console.debug(target);
+		console.debug(node.contains(target as Node));
+		if (!node.contains(target as Node) && !defaultPrevented) {
+			node.dispatchEvent(new CustomEvent('clickOutside'));
+			options.cb();
 		}
 	}
-	document.addEventListener("click", detect, {
+
+	const opt: AddEventListenerOptions = {
 		passive: true,
 		capture: true,
-	});
+	};
+
+	document.addEventListener('click', detect, opt);
+
 	return {
 		destroy() {
-			document.removeEventListener("click", detect);
+			document.removeEventListener('click', detect, opt as EventListenerOptions);
 		},
 	};
 };

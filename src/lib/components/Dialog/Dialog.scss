@@ -6,13 +6,12 @@
 }
 
 .s-dialog {
-	align-items: center;
-	display: block;
+	align-items: var(--s-dialog-align-items, center);
+	display: flex;
 	height: var(--s-dialog-height, 100%);
 	justify-content: var(--s-dialog-justify-content, center);
-	left: 0;
-	pointer-events: none;
 	position: fixed;
+	left: 0;
 	top: 0;
 	transform-origin: center top;
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
@@ -78,6 +77,11 @@
 // body {
 // 	overflow-y: scroll;
 // }
+
+.scroll {
+	height: 100%;
+	overflow-y: scroll;
+}
 
 .no-scroll {
 	height: 100%;
