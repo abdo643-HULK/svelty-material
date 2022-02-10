@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.38
+
+-   Fixed Dialog Overflow
+
 ## 1.0.37
 
 -   Previous fix didn't work. Now it's fixed for real

@@ -31,7 +31,7 @@
 					.fill(0)
 					.map(_ => {
 						return {
-							ID: typeof window !== 'undefined' ? window.crypto.randomUUID() : 'ga',
+							ID: typeof window !== 'undefined' ? crypto.randomUUID() : 'ga',
 							name: 'Hamburger',
 							description: '',
 							price: 4.5,

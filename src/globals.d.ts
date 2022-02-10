@@ -3,3 +3,7 @@
 
 type AppTouchEvent = TouchEvent;
 var AppTouchEvent = TouchEvent;
+
+interface Crypto {
+	randomUUID: () => string;
+}

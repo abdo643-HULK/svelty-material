@@ -188,36 +188,41 @@
 	be a more appropriate role.
 -->
 {#if active}
-	<div
-		class="s-dialog"
-		aria-modal="true"
-		aria-hidden={!active}
-		aria-label={ariaLabel}
-		aria-labelledby={ariaLabelledBy}
-		aria-describedby={ariaDescribedBy}
-		tabindex="-1"
-		{role}
-		use:Style={{ 'dialog-width': width }}
-		use:dialog={{
-			onEscape: () => (active = false),
-			target,
-		}}
-		{...$$restProps}
-	>
+	<!-- 
+		Without this container we wouldn't be able to 
+		use display flex to center and also support overflow
+	-->
+	<div class="s-dialog__container">
 		<div
-			class="s-dialog__content {klass}"
-			class:fullscreen
-			transition:transition={{ duration: 300, start: 0.1 }}
-			on:introstart
-			on:outrostart
-			on:introend
-			on:outroend
+			class="s-dialog"
+			aria-modal="true"
+			aria-hidden={!active}
+			aria-label={ariaLabel}
+			aria-labelledby={ariaLabelledBy}
+			aria-describedby={ariaDescribedBy}
+			tabindex="-1"
+			{role}
+			use:Style={{ 'dialog-width': width }}
+			use:dialog={{
+				onEscape: () => (active = false),
+				target,
+			}}
+			{...$$restProps}
 		>
-			<slot />
+			<div
+				class="s-dialog__content {klass}"
+				class:fullscreen
+				transition:transition={{ duration: 300, start: 0.1 }}
+				on:introstart
+				on:outrostart
+				on:introend
+				on:outroend
+			>
+				<slot />
+			</div>
 		</div>
 	</div>
 {/if}
-
 <Overlay {...overlay} {active} on:click={close} />
 
 <style lang="scss" src="./Dialog.scss" global>
