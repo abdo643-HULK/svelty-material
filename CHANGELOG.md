@@ -1,5 +1,10 @@
 # Svelty-Material
 
+## 1.0.44
+
+-   custom property fixed
+-   event types on dialog added
+
 ## 1.0.43
 
 -   overflow changed to overflow-y

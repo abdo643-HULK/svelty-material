@@ -55,7 +55,7 @@
 		alignItems="flex-start"
 		bind:active
 		on:open={() => console.log('open')}
-		on:hide={() => console.log('hide')}
+		on:close={() => console.log('hide')}
 	>
 		<svelte:component this={modalBody} {...componentProps} on:close={close} />
 	</Dialog>

@@ -14,6 +14,7 @@
 	interface DialogOptions {
 		onEscape: Function;
 		preventScroll: Boolean;
+		scrollPadding: string;
 	}
 
 	// function getPaddingRight(element: Element): number {
@@ -30,12 +31,13 @@
 	// 	return container.scrollHeight > container.clientHeight;
 	// }
 
-	function dialog(node: HTMLElement, { onEscape, preventScroll }: DialogOptions) {
+	function dialog(node: HTMLElement, { onEscape, preventScroll, scrollPadding }: DialogOptions) {
 		const dispatch = createEventDispatcher();
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
 		const previouslyFocused = document.activeElement as HTMLElement | null;
 		const body = document.body;
+		body.style.setProperty('--s-scroll-padding', scrollPadding);
 
 		open();
 		dispatch('open');
@@ -170,6 +172,15 @@
 	export let preventScroll = true;
 	export let alignItems: AlignItems | '' = '';
 
+	interface $$Events {
+		open: () => void;
+		close: () => void;
+		introstart: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		outrostart: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		introend: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		outroend: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+	}
+
 	$: _alignItems = alignItems as string;
 
 	let scrollPadding = '';
@@ -207,12 +218,12 @@
 			aria-describedby={ariaDescribedBy}
 			style:--s-dialog-align-items={_alignItems}
 			style:--s-dialog-width={width}
-			style:--scroll-padding={scrollPadding}
 			tabindex="-1"
 			{role}
 			use:dialog={{
 				onEscape: () => (active = false),
 				preventScroll,
+				scrollPadding,
 			}}
 			{...$$restProps}
 		>
