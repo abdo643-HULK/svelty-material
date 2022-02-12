@@ -18,7 +18,7 @@
 	width: 100%;
 	z-index: 1020;
 	outline: none;
-	overflow: var(--s-dialog-overflow, scroll);
+	overflow-y: var(--s-dialog-overflow, scroll);
 
 	&[aria-hidden='true'] {
 		display: none;

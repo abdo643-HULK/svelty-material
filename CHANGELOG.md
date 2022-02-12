@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.43
+
+-   overflow changed to overflow-y
+
 ## 1.0.42
 
 -   Dialog fixes layout shift by adding padding on windows and linux devices, who have a scrollbar
