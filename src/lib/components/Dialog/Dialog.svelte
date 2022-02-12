@@ -13,20 +13,24 @@
 
 	interface DialogOptions {
 		onEscape: Function;
-		target: HTMLElement;
+		preventScroll: Boolean;
 	}
 
-	function dialog(node: HTMLElement, { onEscape, target }: DialogOptions) {
-		//@ts-ignore
-		// const isSafari =
-		// 	/constructor/i.test(window.HTMLElement.toString()) ||
-		// 	(function (p) {
-		// 		return p.toString() === '[object SafariRemoteNotification]';
-		// 	})(
-		// 		!window['safari'] ||
-		// 			(typeof safari !== 'undefined' && window['safari'].pushNotification),
-		// 	);
+	// function getPaddingRight(element: Element): number {
+	// 	return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
+	// }
 
+	// function isOverflowing(container: Element): boolean {
+	// 	const doc = ownerDocument(container);
+
+	// 	if (doc.body === container) {
+	// 		return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
+	// 	}
+
+	// 	return container.scrollHeight > container.clientHeight;
+	// }
+
+	function dialog(node: HTMLElement, { onEscape, preventScroll }: DialogOptions) {
 		const dispatch = createEventDispatcher();
 		// Keep a reference to the currently focused element to be able to restore
 		// it later
@@ -40,6 +44,9 @@
 			// Set the focus to the dialog element
 			moveFocusToDialog();
 
+			if (preventScroll) {
+				body.classList.add('no-scroll');
+			}
 			// Bind a focus event listener to the body element to make sure the focus
 			// stays trapped inside the dialog while open, and start listening for some
 			// specific key presses (TAB and ESC)
@@ -59,18 +66,14 @@
 		}
 
 		function hide() {
+			body.classList.remove('no-scroll');
+			body.removeEventListener('focus', maintainFocus, true);
+			document.removeEventListener('keydown', bindKeypress);
+
 			// If there was a focused element before the dialog was opened (and it has a
 			// `focus` method), restore the focus back to it
 			// See: https://github.com/KittyGiraudel/a11y-dialog/issues/108
-
-			document.removeEventListener('keydown', bindKeypress);
-			body.removeEventListener('focus', maintainFocus, true);
-
-			requestAnimationFrame(() => {
-				// target.style.position = 'static';
-				// target.style.top = '';
-				previouslyFocused?.focus();
-			});
+			previouslyFocused?.focus();
 
 			// if (isSafari) {
 			// 	body.style.overflow = 'auto';
@@ -122,7 +125,7 @@
 		return {
 			destroy() {
 				hide();
-				dispatch('hide');
+				dispatch('close');
 			},
 		};
 	}
@@ -164,28 +167,19 @@
 	export let ariaLabelledBy: string | undefined = undefined;
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
-	export let target: string | HTMLElement = 'body';
 	export let preventScroll = true;
 	export let alignItems: AlignItems | '' = '';
 
 	$: _alignItems = alignItems as string;
 
-	let _target: HTMLElement;
-	$: {
-		if (typeof window !== 'undefined') {
-			_target =
-				typeof target === 'string'
-					? (document.querySelector(target) as HTMLElement)
-					: target;
-		}
-	}
+	let scrollPadding = '';
 
-	onMount(() => {
-		if (preventScroll) {
-			_target.classList.add('scroll');
-			document.documentElement.style.height = '100%';
-		}
-	});
+	if (
+		typeof window !== 'undefined' &&
+		(document.defaultView || window).innerWidth > document.documentElement.clientWidth
+	) {
+		scrollPadding = '17px';
+	}
 
 	function close() {
 		if (!persistent) active = false;
@@ -213,11 +207,12 @@
 			aria-describedby={ariaDescribedBy}
 			style:--s-dialog-align-items={_alignItems}
 			style:--s-dialog-width={width}
+			style:--scroll-padding={scrollPadding}
 			tabindex="-1"
 			{role}
 			use:dialog={{
 				onEscape: () => (active = false),
-				target: _target,
+				preventScroll,
 			}}
 			{...$$restProps}
 		>

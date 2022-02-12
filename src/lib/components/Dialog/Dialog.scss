@@ -18,7 +18,7 @@
 	width: 100%;
 	z-index: 1020;
 	outline: none;
-	overflow: auto;
+	overflow: var(--s-dialog-overflow, scroll);
 
 	&[aria-hidden='true'] {
 		display: none;
@@ -69,32 +69,6 @@
 	}
 }
 
-// html,
-// body {
-// 	height: 100%;
-// }
-
-// body {
-// 	overflow-y: scroll;
-// }
-
-.scroll {
-	height: 100%;
-	overflow-y: scroll;
-}
-
-.no-scroll {
-	height: 100%;
-	// position: fixed !important;
-	// overflow-y: visible !important;
-
-	// @media not all and (min-resolution: 0.001dpcm) {
-	// 	@supports (-webkit-appearance: none) and (stroke-color: transparent) {
-	// 		overflow-y: hidden !important;
-	// 	}
-	// }
-}
-
 .fullscreen {
 	border-radius: 0;
 	margin: 0;
@@ -110,4 +84,9 @@
 		margin: 0 !important;
 		padding: 0 !important;
 	}
+}
+
+.no-scroll {
+	overflow: hidden;
+	padding-right: var(--scroll-padding);
 }
