@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.45
+
+-   disbled styling added for attribute
+
 ## 1.0.44
 
 -   custom property fixed

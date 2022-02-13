@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 @import './variables';
 
 .s-btn {
@@ -130,7 +130,8 @@
 		border-radius: map-get($rounded, 'pill');
 	}
 
-	&.disabled {
+	&.disabled,
+	&:disabled {
 		pointer-events: none;
 		color: var(--theme-buttons-disabled);
 
