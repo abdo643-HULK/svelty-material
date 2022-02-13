@@ -35,8 +35,8 @@
 			transform: $text-field-label-active-transform;
 		}
 
-		&:invalid + label,
-		&:invalid::placeholder {
+		&:invalid:not(:placeholder-shown) + label,
+		&:invalid:not(:placeholder-shown)::placeholder {
 			color: var(--error-text-color, #{$error-color}) !important;
 			caret-color: var(--error-text-caret-color, #{$error-color}) !important;
 		}

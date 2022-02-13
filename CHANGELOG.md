@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.46
+
+-   texfield not doesn't color invalid if placeholder still there
+
 ## 1.0.45
 
 -   disbled styling added for attribute
