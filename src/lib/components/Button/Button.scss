@@ -39,9 +39,9 @@
 
 	@include elevation(2);
 
-	&:focus-visible {
-		box-shadow: 0 0 0 3px var(--theme-focus-visible);
-	}
+	// &:focus-visible {
+	// 	box-shadow: 0 0 0 3px var(--theme-focus-visible);
+	// }
 
 	&::before {
 		border-radius: inherit;
@@ -67,16 +67,16 @@
 	&:not(:disabled),
 	&:not(.disabled) {
 		&:hover::before {
-			opacity: $btn-hover-opacity;
+			opacity: var(--s-btn-hover-opacity, $btn-hover-opacity);
 		}
 
 		&.active::before {
-			opacity: $btn-active-opacity;
+			opacity: var(--s-btn-active-opacity, $btn-active-opacity);
 		}
 
 		&:focus-visible::before,
 		&.focus-visible::before {
-			opacity: $btn-focus-opacity;
+			opacity: var(--s-btn-focus-opacity, $btn-focus-opacity);
 		}
 	}
 
@@ -117,10 +117,6 @@
 
 	&.depressed {
 		box-shadow: none;
-
-		&:focus-visible {
-			box-shadow: 0 0 2px 2px var(--theme-focus-visible);
-		}
 	}
 
 	&.outlined {

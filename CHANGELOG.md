@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.49
+
+-   button: removed box-shadow on focus-visible
+
 ## 1.0.48
 
 -   real fix of the last one
