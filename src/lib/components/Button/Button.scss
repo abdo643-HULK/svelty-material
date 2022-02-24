@@ -64,7 +64,7 @@
 		}
 	}
 
-	&:not(.disabled) {
+	&:not(.disabled, :disabled) {
 		&:hover::before {
 			opacity: $btn-hover-opacity;
 		}
@@ -73,6 +73,7 @@
 			opacity: $btn-active-opacity;
 		}
 
+		&:focus-visible::before,
 		&.focus-visible::before {
 			opacity: $btn-focus-opacity;
 		}
