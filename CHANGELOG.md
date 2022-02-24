@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.48
+
+-   real fix of the last one
+
 ## 1.0.47
 
 -   fixed: focus-visible without js

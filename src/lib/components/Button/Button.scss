@@ -64,7 +64,8 @@
 		}
 	}
 
-	&:not(.disabled, :disabled) {
+	&:not(:disabled),
+	&:not(.disabled) {
 		&:hover::before {
 			opacity: $btn-hover-opacity;
 		}
