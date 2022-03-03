@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.50
+
+-   added `restProps` to the Button element
+
 ## 1.0.49
 
 -   button: removed box-shadow on focus-visible
