@@ -26,6 +26,7 @@
 	class:link
 	class:disabled
 	{style}
+	{...$$restProps}
 >
 	{#if loading}
 		<slot name="progress">
