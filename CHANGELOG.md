@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.51
+
+-   Expansionpanel out transition made local because of routing
+
 ## 1.0.50
 
 -   added `restProps` to the Button element

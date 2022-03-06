@@ -5,8 +5,7 @@
 	import Icon from '../Icon';
 	import down from '../../internal/Icons/down';
 
-	const { values, Disabled, selectPanel, index } =
-		getContext(EXPANSION_PANELS);
+	const { values, Disabled, selectPanel, index } = getContext(EXPANSION_PANELS);
 
 	// Classes to add to the panel.
 	let klass = '';
@@ -64,7 +63,8 @@
 	{#if active}
 		<div
 			class="s-expansion-panel__content"
-			transition:slide={slideOpts}
+			in:slide={slideOpts}
+			out:slide|local={slideOpts}
 			on:introstart
 			on:outrostart
 			on:introend
