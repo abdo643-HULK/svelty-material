@@ -1,8 +1,12 @@
 # Svelty-Material
 
-## 1.0.51
+## 1.0.52
 
 -   Expansionpanel out transition made local because of routing
+
+## 1.0.51
+
+-   added `restProps` to the Card element
 
 ## 1.0.50
 
