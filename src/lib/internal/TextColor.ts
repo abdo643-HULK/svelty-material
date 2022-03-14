@@ -1,5 +1,5 @@
 function formatClass(klass: string) {
-	return klass.split(' ').map((i) => {
+	return klass.split(' ').map(i => {
 		if (/^(lighten|darken|accent)-/.test(i)) {
 			return `text-${i}`;
 		}
@@ -24,14 +24,14 @@ function setTextColor(node: HTMLElement, text: string) {
 }
 
 export default (node: HTMLElement, text: string | boolean) => {
-	let klass: string[];
+	let klass: string[] | undefined;
 	if (typeof text === 'string') {
 		klass = setTextColor(node, text);
 	}
 
 	return {
 		update(newText: string) {
-			if (klass.length !== 0) {
+			if (klass) {
 				node.classList.remove(...klass);
 			} else {
 				node.style.color = '';
@@ -40,6 +40,6 @@ export default (node: HTMLElement, text: string | boolean) => {
 			if (typeof newText === 'string') {
 				klass = setTextColor(node, newText);
 			}
-		}
+		},
 	};
 };
