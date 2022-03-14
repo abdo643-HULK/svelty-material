@@ -13,7 +13,7 @@ const defaults = {
 	spreadingTimingFunction: 'linear',
 	clearingDuration: '1s',
 	clearingDelay: '0s',
-	clearingTimingFunction: 'ease-in-out'
+	clearingTimingFunction: 'ease-in-out',
 };
 
 /**
@@ -44,14 +44,19 @@ export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options:
 	rippleStyle.color = 'inherit';
 	rippleStyle.borderRadius = '50%';
 	rippleStyle.pointerEvents = 'none';
-	rippleStyle.width = '100px';
-	rippleStyle.height = '100px';
-	rippleStyle.marginTop = '-50px';
-	rippleStyle.marginLeft = '-50px';
+	// rippleStyle.width = '100px';
+	// rippleStyle.height = '100px';
+	// rippleStyle.marginTop = '-50px';
+	// rippleStyle.marginLeft = '-50px';
+
+	const diameter = Math.max(target.clientWidth, target.clientHeight);
+	rippleStyle.width = rippleStyle.height = `${diameter}px`;
+	rippleStyle.marginTop = rippleStyle.marginLeft = `-${diameter / 2}px`;
+
 	target.appendChild(ripple);
 	rippleStyle.opacity = opts.opacity;
 	rippleStyle.transition = `transform ${opts.spreadingDuration} ${opts.spreadingTimingFunction} ${opts.spreadingDelay},opacity ${opts.clearingDuration} ${opts.clearingTimingFunction} ${opts.clearingDelay}`;
-	rippleStyle.transform = 'scale(0) translate(0,0)';
+	// rippleStyle.transform = 'scale(0) translate(0,0)';
 	rippleStyle.background = opts.color;
 
 	// Positioning ripple
@@ -71,9 +76,15 @@ export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options:
 	}
 
 	// Enlarge ripple
-	rippleStyle.transform = `scale(${
-		Math.max(targetRect.width, targetRect.height) * 0.02
-	}) translate(0,0)`;
+	// rippleStyle.transform = `scale(${
+	// 	Math.max(targetRect.width, targetRect.height) * 0.02
+	// }) translate(0,0)`;
+	rippleStyle.transform = `scale(3) translate(0,0)`;
+
+	// const radius = diameter / 2;
+	// rippleStyle.left = `${e.clientX - target.offsetLeft - radius}px`;
+	// rippleStyle.top = `${e.clientY - target.offsetTop - radius}px`;
+
 	return ripple;
 }
 
@@ -82,7 +93,7 @@ export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options:
  */
 export function RippleStop(ripple: HTMLElement) {
 	if (ripple) {
-		ripple.addEventListener('transitionend', (e) => {
+		ripple.addEventListener('transitionend', e => {
 			if (e.propertyName === 'opacity') ripple.remove();
 		});
 		ripple.style.opacity = '' + 0;

@@ -1,5 +1,10 @@
 # Svelty-Material
 
+## 1.0.53
+
+-   Textcolor action fixed
+-   ripple effect fixed on apple devices
+
 ## 1.0.52
 
 -   Expansionpanel out transition made local because of routing

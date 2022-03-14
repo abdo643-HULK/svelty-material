@@ -7,6 +7,7 @@
 }
 
 .s-ripple-container {
+	-webkit-mask-image: -webkit-radial-gradient(white, black);
 	position: relative;
 	overflow: hidden;
 }
