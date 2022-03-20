@@ -1,6 +1,10 @@
 # Svelty-Material
 
-## 1.0.53
+## 1.0.55
+
+-   badge --s-badge-offset-x,--s-badge-offset-y unit fixed
+
+## 1.0.54
 
 -   badge direction fixed
 

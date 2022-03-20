@@ -6,8 +6,8 @@
 	position: relative;
 
 	.s-badge__badge {
-		--_badge-offset-x: var(--s-badge-offset-x, 6);
-		--_badge-offset-y: var(--s-badge-offset-y, 6);
+		--_badge-offset-x: var(--s-badge-offset-x, 6px);
+		--_badge-offset-y: var(--s-badge-offset-y, 6px);
 
 		color: $badge-color;
 		display: inline-block;
