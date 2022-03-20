@@ -1,4 +1,4 @@
-@import "./variables";
+@import './variables';
 
 .s-badge {
 	display: inline-block;
@@ -6,6 +6,9 @@
 	position: relative;
 
 	.s-badge__badge {
+		--_badge-offset-x: var(--s-badge-offset-x, 6);
+		--_badge-offset-y: var(--s-badge-offset-y, 6);
+
 		color: $badge-color;
 		display: inline-block;
 		font-size: $badge-font-size;
@@ -38,22 +41,50 @@
 			width: $badge-font-size;
 		}
 
-		&:not(.bottom) {
-			bottom: calc(100% - var(--s-badge-offset-y));
+		&:not(.block-end) {
+			bottom: calc(100% - var(--_badge-offset-y));
+
+			@supports (inset-block-end: 1px) {
+				inset-block-end: calc(100% - var(--_badge-offset-y));
+			}
 		}
 
-		&:not(.left) {
-			left: calc(100% - var(--s-badge-offset-x));
+		&.block-end {
+			inset-block-end: auto;
+			inset-block-start: calc(100% - var(--_badge-offset-y));
+
+			@supports not (inset-inline-start: 1px) {
+				bottom: auto;
+				top: calc(100% - var(--_badge-offset-y));
+
+				[dir='rtl'] & {
+					bottom: calc(100% - var(--_badge-offset-y));
+					top: auto;
+				}
+			}
 		}
 
-		&.bottom {
-			bottom: auto;
-			top: calc(100% - var(--s-badge-offset-y));
+		&:not(.inline-start) {
+			left: calc(100% - var(--_badge-offset-x));
+
+			@supports (inset-inline-start: 1px) {
+				inset-inline-start: calc(100% - var(--_badge-offset-x));
+			}
 		}
 
-		&.left {
-			left: auto;
-			right: calc(100% - var(--s-badge-offset-x));
+		&.inline-start {
+			inset-inline-start: auto;
+			inset-inline-end: calc(100% - var(--_badge-offset-x));
+
+			@supports not (inset-inline-start: 1px) {
+				left: auto;
+				right: calc(100% - var(--_badge-offset-x));
+
+				[dir='rtl'] & {
+					left: calc(100% - var(--_badge-offset-x));
+					right: auto;
+				}
+			}
 		}
 
 		&:not(.tile) {
@@ -66,7 +97,7 @@
 				border-width: $badge-bordered-width;
 				border-style: solid;
 				bottom: 0;
-				content: "";
+				content: '';
 				left: 0;
 				position: absolute;
 				right: 0;
@@ -89,12 +120,17 @@
 	}
 
 	.s-badge__wrapper {
-		flex: 0 1;
-		height: 100%;
-		left: 0;
 		pointer-events: none;
 		position: absolute;
-		top: 0;
+		flex: 0 1;
+		height: 100%;
 		width: 100%;
+		top: 0;
+		left: 0;
+
+		@supports (inset-inline-start: 1px) {
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
 	}
 }

@@ -2,6 +2,10 @@
 
 ## 1.0.53
 
+-   badge direction fixed
+
+## 1.0.53
+
 -   Textcolor action fixed
 -   ripple effect fixed on apple devices
 
