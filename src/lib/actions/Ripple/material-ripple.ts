@@ -79,7 +79,7 @@ export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options:
 	// rippleStyle.transform = `scale(${
 	// 	Math.max(targetRect.width, targetRect.height) * 0.02
 	// }) translate(0,0)`;
-	rippleStyle.transform = `scale(1.2) translate(0,0)`;
+	rippleStyle.transform = `scale(3) translate(0,0)`;
 
 	// const radius = diameter / 2;
 	// rippleStyle.left = `${e.clientX - target.offsetLeft - radius}px`;
