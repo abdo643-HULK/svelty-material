@@ -1,5 +1,10 @@
 # Svelty-Material
 
+## 1.0.57
+
+-   next try for checkbox and radio but safari still has problems.
+-   added style and restprops for the chip component
+
 ## 1.0.56
 
 -   radio and checkbox ripple fixed for keyboard

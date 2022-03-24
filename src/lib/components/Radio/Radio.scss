@@ -44,11 +44,12 @@
 	width: $radio-size;
 	position: relative;
 	user-select: none;
-	border-radius: 100%;
-	-webkit-mask-image: none;
+	// border-radius: 100%;
+	// -webkit-mask-image: none;
 
 	&::before {
-		border-radius: inherit;
+		// border-radius: inherit;
+		border-radius: 100%;
 		content: '';
 		top: 0;
 		bottom: 0;

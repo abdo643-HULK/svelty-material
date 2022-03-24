@@ -69,15 +69,15 @@
 		use:TextColor={checked || indeterminate ? color : false}
 	>
 		<input
-			type="checkbox"
 			bind:this={inputElement}
+			type="checkbox"
 			role="checkbox"
 			aria-checked={checked}
-			bind:checked
-			bind:indeterminate
 			{id}
 			{disabled}
 			{value}
+			bind:checked
+			bind:indeterminate
 			on:keydown={e => {
 				wrapper.dispatchEvent(
 					new KeyboardEvent(e.type, {

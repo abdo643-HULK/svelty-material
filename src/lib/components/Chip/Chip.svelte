@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Ripple from "../../actions/Ripple";
-	import Icon from "../Icon";
-	import closeIcon from "../../internal/Icons/close";
-	import { createEventDispatcher } from "svelte";
+	import Ripple from '../../actions/Ripple';
+	import Icon from '../Icon';
+	import closeIcon from '../../internal/Icons/close';
+	import { createEventDispatcher } from 'svelte';
 
 	// Classes to add to chip.
-	let klass = "";
+	let klass = '';
 	export { klass as class };
 
 	// Determines whether the chip is visible or not.
@@ -14,11 +14,14 @@
 	// Selected state
 	export let selected = false;
 
+	export let style: string | undefined = undefined;
+
+	type Size = 'x-small' | 'small' | 'default' | 'large' | 'x-large';
+
 	/**
 	 * Specifies the size of chip.
-	 * @type {x-small|small|default|large|x-large}
 	 */
-	export let size = "default";
+	export let size: Size = 'default';
 	export let outlined = false;
 	export let pill = false;
 	export let link = false;
@@ -29,7 +32,7 @@
 
 	function onClose(e: MouseEvent) {
 		active = false;
-		dispatch("close", e);
+		dispatch('close', e);
 	}
 </script>
 
@@ -42,7 +45,9 @@
 		class:link
 		class:label
 		class:selected
+		{style}
 		on:click
+		{...$$restProps}
 	>
 		<slot />
 		{#if close}
