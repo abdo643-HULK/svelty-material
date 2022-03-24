@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.58
+
+-   changed ripple scale back
+
 ## 1.0.57
 
 -   next try for checkbox and radio but safari still has problems.
