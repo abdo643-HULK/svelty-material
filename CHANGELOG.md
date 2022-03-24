@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.56
+
+-   radio and checkbox ripple fixed for keyboard
+
 ## 1.0.55
 
 -   badge --s-badge-offset-x,--s-badge-offset-y unit fixed

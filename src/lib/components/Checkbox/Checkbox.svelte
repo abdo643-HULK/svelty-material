@@ -39,6 +39,8 @@
 	// The <input/> element of the checkbox.
 	export let inputElement = null;
 
+	let wrapper: HTMLDivElement;
+
 	id = id || `s-checkbox-${uid(5)}`;
 
 	$: if (Array.isArray(group) && value != null) {
@@ -60,6 +62,7 @@
 
 <div class="s-checkbox" {style}>
 	<div
+		bind:this={wrapper}
 		class="s-checkbox__wrapper {klass}"
 		class:disabled
 		use:Ripple={{ centered: true }}
@@ -75,6 +78,20 @@
 			{id}
 			{disabled}
 			{value}
+			on:keydown={e => {
+				wrapper.dispatchEvent(
+					new KeyboardEvent(e.type, {
+						...e,
+					}),
+				);
+			}}
+			on:keyup={e => {
+				wrapper.dispatchEvent(
+					new KeyboardEvent(e.type, {
+						...e,
+					}),
+				);
+			}}
 			on:change={groupUpdate}
 			on:change
 		/>

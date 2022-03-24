@@ -31,27 +31,44 @@
 	// The <input/> element of the radio.
 	export let inputElement: HTMLInputElement | undefined = undefined;
 
+	let wrapper: HTMLDivElement;
+
 	id = id || `s-radio-${uid(5)}`;
 	$: active = group === value;
 </script>
 
 <div class="s-radio" {style}>
 	<div
+		bind:this={wrapper}
 		class="s-radio__wrapper {klass}"
 		class:disabled
 		use:TextColor={!disabled && active && color}
 		use:Ripple={{ centered: true }}
 	>
 		<input
-			type="radio"
 			bind:this={inputElement}
+			type="radio"
 			role="radio"
 			aria-selected={active}
-			bind:group
-			on:click
 			{id}
 			{value}
 			{disabled}
+			bind:group
+			on:click
+			on:keydown={e => {
+				wrapper.dispatchEvent(
+					new KeyboardEvent(e.type, {
+						...e,
+					}),
+				);
+			}}
+			on:keyup={e => {
+				wrapper.dispatchEvent(
+					new KeyboardEvent(e.type, {
+						...e,
+					}),
+				);
+			}}
 		/>
 		<div class="s-radio__background" />
 	</div>
