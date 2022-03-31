@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.60
+
+-   button/link hover now only shows for mouse input
+
 ## 1.0.59
 
 -   textarea label position fixed and border of wraper fixed

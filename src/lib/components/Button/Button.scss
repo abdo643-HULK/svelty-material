@@ -66,8 +66,10 @@
 
 	&:not(:disabled),
 	&:not(.disabled) {
-		&:hover::before {
-			opacity: var(--s-btn-hover-opacity, $btn-hover-opacity);
+		@media screen and (any-hover: hover) and (pointer: fine) {
+			&:hover::before {
+				opacity: var(--s-btn-hover-opacity, $btn-hover-opacity);
+			}
 		}
 
 		&.active::before {
