@@ -17,7 +17,7 @@
 	export let autogrow = false;
 	export let noResize = false;
 	export let disabled = false;
-	export let placeholder: string | undefined = undefined;
+	export let placeholder: string = ' ';
 	export let hint = '';
 	export let counter = false;
 	export let rules: Function[] = [];
@@ -32,8 +32,8 @@
 
 	let focused = false;
 	let errorMessages: string[] = [];
-	let labelActive: string | boolean;
-	$: labelActive = !!placeholder || value;
+	// let labelActive: string | boolean;
+	// $: labelActive = !!placeholder || value;
 
 	export function validate() {
 		errorMessages = rules.map(r => r(value)).filter(r => typeof r === 'string');
@@ -94,9 +94,6 @@
 		<slot name="prepend" />
 
 		<div class="s-text-field__input">
-			<label for={id} class:active={labelActive}>
-				<slot />
-			</label>
 			<textarea
 				bind:this={textarea}
 				type="text"
@@ -115,6 +112,10 @@
 				on:change
 				{...$$restProps}
 			/>
+			<label for={id}>
+				<!-- class:active={labelActive} -->
+				<slot />
+			</label>
 		</div>
 
 		{#if clearable && value !== ''}

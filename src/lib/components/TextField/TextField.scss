@@ -82,8 +82,8 @@
 
 	&:hover {
 		&::before {
-			border-color: var(--theme-text-fields-border-hover);
-			border-width: var(--theme-text-fields-border-width-hover);
+			border-color: var(--theme-text-fields-border-hover, rgba(0, 0, 0, 0.87));
+			border-width: var(--theme-text-fields-border-width-hover, #{$default-border-width});
 		}
 	}
 
@@ -167,7 +167,6 @@
 		}
 
 		label {
-			// top: $text-field-filled-label-top;
 			align-self: center;
 			top: unset;
 
@@ -176,8 +175,17 @@
 			}
 		}
 
+		textarea + label {
+			top: $text-field-filled-label-top;
+		}
+
 		input:focus + label,
 		input:not(:placeholder-shown) + label {
+			transform: $text-field-filled-label-active-transform;
+		}
+
+		textarea:focus + label,
+		textarea:not(:placeholder-shown) + label {
 			transform: $text-field-filled-label-active-transform;
 		}
 	}

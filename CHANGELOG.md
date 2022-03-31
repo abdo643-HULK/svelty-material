@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.59
+
+-   textarea label position fixed and border of wraper fixed
+
 ## 1.0.58
 
 -   changed ripple scale back

@@ -4,6 +4,7 @@
 	import Button from '$lib/components/Button';
 
 	import { getContext } from 'svelte';
+	import Textarea from '$lib/components/Textarea/Textarea.svelte';
 
 	const product = {
 		ID: 'sdmsld',
@@ -48,6 +49,10 @@
 			};
 		});
 </script>
+
+<div style="height: 100vh;">
+	<Textarea name="notes" class="cart-notes" rows={3} filled>Anmerkungen</Textarea>
+</div>
 
 <Card>
 	<div>

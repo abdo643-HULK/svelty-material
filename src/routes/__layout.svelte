@@ -45,7 +45,7 @@
 	});
 </script>
 
-<MaterialAppMin>
+<MaterialApp theme="dark">
 	<div id="main-content">
 		<slot />
 	</div>
@@ -59,4 +59,4 @@
 	>
 		<svelte:component this={modalBody} {...componentProps} on:close={close} />
 	</Dialog>
-</MaterialAppMin>
+</MaterialApp>
