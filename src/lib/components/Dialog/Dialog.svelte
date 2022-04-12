@@ -197,19 +197,13 @@
 	}
 
 	function close() {
+		dispatch('overlay-click');
 		if (!persistent) active = false;
 	}
 </script>
 
 <div class="s-dialog__container">
-	<Overlay
-		{...overlay}
-		{active}
-		on:click={() => {
-			close();
-			dispatch('overlay-click');
-		}}
-	/>
+	<Overlay {...overlay} {active} on:click={close} />
 	<!--
 	A dialog can have more than just the "document" role.
 	In most situations a "dialog" or "alertdialog" would 
@@ -231,18 +225,18 @@
 			style:--s-dialog-width={width}
 			tabindex="-1"
 			{role}
+			{...$$restProps}
 			use:dialog={{
 				onEscape: () => (active = false),
 				preventScroll,
 				scrollPadding,
 			}}
-			{...$$restProps}
 		>
 			<div
 				class="s-dialog__content {klass}"
 				class:fullscreen
 				use:clickOutside={{
-					cb: () => (active = false),
+					cb: close,
 				}}
 				transition:transition={{ duration: 300, start: 0.1 }}
 				on:introstart

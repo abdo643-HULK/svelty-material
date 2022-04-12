@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.62
+
+-   forgot click outside
+
 ## 1.0.61
 
 -   overlay click added to dialog
