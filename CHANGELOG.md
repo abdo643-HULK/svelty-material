@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.0.61
+
+-   overlay click added to dialog
+
 ## 1.0.60
 
 -   button/link hover now only shows for mouse input

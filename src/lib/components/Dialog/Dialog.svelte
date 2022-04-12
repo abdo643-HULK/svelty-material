@@ -173,13 +173,17 @@
 	export let alignItems: AlignItems | '' = '';
 
 	interface $$Events {
-		open: () => void;
-		close: () => void;
-		introstart: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
-		outrostart: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
-		introend: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
-		outroend: svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		'open': () => void;
+		'close': () => void;
+		'introstart': svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		'outrostart': svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		'introend': svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		'outroend': svelte.JSX.EventHandler<CustomEvent<null>, HTMLDivElement> | null | undefined;
+		'overlay-click': () => void;
+		'escape': () => void;
 	}
+
+	const dispatch = createEventDispatcher();
 
 	$: _alignItems = alignItems as string;
 
@@ -198,12 +202,19 @@
 </script>
 
 <div class="s-dialog__container">
-	<Overlay {...overlay} {active} on:click={close} />
+	<Overlay
+		{...overlay}
+		{active}
+		on:click={() => {
+			close();
+			dispatch('overlay-click');
+		}}
+	/>
 	<!--
 	A dialog can have more than just the "document" role.
 	In most situations a "dialog" or "alertdialog" would 
 	be a more appropriate role.
--->
+	-->
 	{#if active}
 		<!-- 
 		Without this container we wouldn't be able to 
