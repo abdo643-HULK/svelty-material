@@ -9,9 +9,10 @@
 	position: fixed;
 	top: 0;
 	inset: 0;
-	z-index: 1010;
+	// z-index: 1010;
 	height: 100%;
 	visibility: hidden;
+	isolation: isolate;
 
 	&.active {
 		visibility: visible;
@@ -22,14 +23,14 @@
 	align-items: var(--s-dialog-align-items, center);
 	display: flex;
 	height: var(--s-dialog-height); //100%
+	width: var(--s-dialog-width);
 	justify-content: var(--s-dialog-justify-content, center);
 	// position: fixed;
 	// left: 0;
 	// top: 0;
 	transform-origin: center top;
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
-	width: 100%;
-	z-index: 1020;
+	z-index: var(--s-dialog-z-index, 1);
 	outline: none;
 	overflow-y: var(--s-dialog-overflow, scroll);
 

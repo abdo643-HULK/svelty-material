@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.3
+
+-   Dialog: z-index added as var and added isolation
+
 ## 1.1.2
 
 -   Dialog: real fix with visibility
