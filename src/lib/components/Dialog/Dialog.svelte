@@ -5,11 +5,11 @@
 
 	// import clickOutside from '$lib/actions/ClickOutside';
 
-	import { scale } from 'svelte/transition';
+	import { scale, TransitionConfig } from 'svelte/transition';
 	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { getFocusableChildren } from '../../utils/focus';
 
-	import type { AlignItems } from '$lib/@types';
+	import type { AlignItems, TransitionFn } from '$lib/@types';
 
 	interface DialogOptions {
 		onEscape: Function;
@@ -161,10 +161,9 @@
 	export { klass as class };
 	export let active = false;
 	// export let persistent = false;
-	export let width: string | number = 500;
 	export let fullscreen = false;
-	export let inTransition = scale;
-	export let outTransition = scale;
+	export let inTransition: TransitionFn = scale;
+	export let outTransition: TransitionFn = scale;
 
 	export let role: 'dialog' | 'alert' | 'alertdialog' | 'document' = 'dialog';
 	export let ariaLabel: string | undefined = undefined;
@@ -235,7 +234,6 @@
 			aria-labelledby={ariaLabelledBy}
 			aria-describedby={ariaDescribedBy}
 			style:--s-dialog-align-items={_alignItems}
-			style:--s-dialog-width={width}
 			tabindex="-1"
 			{role}
 			{...$$restProps}

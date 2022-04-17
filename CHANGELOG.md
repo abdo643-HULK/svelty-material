@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.7
+
+-   Dialog: removed js width variable and added better typing
+
 ## 1.1.6
 
 -   Dialog: added forgotten css visibility

@@ -27,7 +27,7 @@
 	align-items: var(--s-dialog-align-items, center);
 	display: flex;
 	height: var(--s-dialog-height); //100%
-	width: var(--s-dialog-width);
+	width: var(--s-dialog-width, auto);
 	justify-content: var(--s-dialog-justify-content, center);
 	// position: fixed;
 	// left: 0;

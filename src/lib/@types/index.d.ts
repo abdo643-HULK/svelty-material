@@ -30,3 +30,10 @@ export type AlignItems =
 	| 'flex-end'
 	| ['safe', 'flex-end']
 	| ['unsafe', 'flex-end'];
+
+export interface TransitionParams {}
+
+export type TransitionFn<T extends TransitionParams = TransitionParams> = (
+	node: HTMLElement,
+	params?: T,
+) => TransitionConfig;
