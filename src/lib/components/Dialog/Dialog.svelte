@@ -163,7 +163,9 @@
 	// export let persistent = false;
 	export let width: string | number = 500;
 	export let fullscreen = false;
-	export let transition = scale;
+	export let inTransition = scale;
+	export let outTransition = scale;
+
 	export let role: 'dialog' | 'alert' | 'alertdialog' | 'document' = 'dialog';
 	export let ariaLabel: string | undefined = undefined;
 	export let ariaLabelledBy: string | undefined = undefined;
@@ -171,6 +173,8 @@
 	export let overlay = {};
 	export let preventScroll = true;
 	export let alignItems: AlignItems | '' = '';
+
+	let isActive = false;
 
 	interface $$Events {
 		'open': () => void;
@@ -202,7 +206,7 @@
 	// }
 </script>
 
-<div class="s-dialog__container" class:active>
+<div class="s-dialog__container" class:active={isActive}>
 	<Overlay {...overlay} {active} on:click={() => dispatch('overlay-click')} />
 	<!--
 	A dialog can have more than just the "document" role.
@@ -238,11 +242,18 @@
 			<div
 				class="s-dialog__content {klass}"
 				class:fullscreen
-				transition:transition={{ duration: 300, start: 0.1 }}
-				on:introstart
-				on:outrostart
+				in:inTransition={{ duration: 500, start: 0.1 }}
+				out:outTransition={{ duration: 500, start: 0.1 }}
+				on:introstart={() => {
+					isActive = true;
+					dispatch('introstart');
+				}}
 				on:introend
-				on:outroend
+				on:outrostart
+				on:outroend={() => {
+					isActive = false;
+					dispatch('outroend');
+				}}
 			>
 				<slot />
 			</div>

@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.4
+
+-   Dialog: fixed hiding container
+
 ## 1.1.3
 
 -   Dialog: z-index added as var and added isolation
