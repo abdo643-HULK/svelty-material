@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.1
+
+-   Dialog: removed clickOutside import
+
 ## 1.1.0
 
 -   breaking: dialog doesn't close automatically on overlay click anymore

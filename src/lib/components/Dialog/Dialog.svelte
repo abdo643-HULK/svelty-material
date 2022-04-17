@@ -3,7 +3,7 @@
 	const ESC_KEY = 'Esc';
 	const ESCAPE_KEY = 'Escape';
 
-	import clickOutside from '$lib/actions/ClickOutside';
+	// import clickOutside from '$lib/actions/ClickOutside';
 
 	import { scale } from 'svelte/transition';
 	import { createEventDispatcher, onMount, tick } from 'svelte';
