@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.0
+
+-   breaking: dialog doesn't close automatically on overlay click anymore
+
 ## 1.0.62
 
 -   forgot click outside

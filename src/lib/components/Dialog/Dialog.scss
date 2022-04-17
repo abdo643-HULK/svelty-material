@@ -3,16 +3,27 @@
 .s-dialog__container {
 	display: flex;
 	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	inset: 0;
+
+	&.active {
+		z-index: 1010;
+		height: 100%;
+	}
 }
 
 .s-dialog {
 	align-items: var(--s-dialog-align-items, center);
 	display: flex;
-	height: var(--s-dialog-height, 100%);
+	height: var(--s-dialog-height); //100%
 	justify-content: var(--s-dialog-justify-content, center);
-	position: fixed;
-	left: 0;
-	top: 0;
+	// position: fixed;
+	// left: 0;
+	// top: 0;
 	transform-origin: center top;
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
 	width: 100%;

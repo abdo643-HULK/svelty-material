@@ -160,7 +160,7 @@
 	let klass = '';
 	export { klass as class };
 	export let active = false;
-	export let persistent = false;
+	// export let persistent = false;
 	export let width: string | number = 500;
 	export let fullscreen = false;
 	export let transition = scale;
@@ -196,14 +196,14 @@
 		scrollPadding = '17px';
 	}
 
-	function close() {
-		dispatch('overlay-click');
-		if (!persistent) active = false;
-	}
+	// function close() {
+	// 	dispatch('overlay-click');
+	// 	if (!persistent) active = false;
+	// }
 </script>
 
-<div class="s-dialog__container">
-	<Overlay {...overlay} {active} on:click={close} />
+<div class="s-dialog__container" class:active>
+	<Overlay {...overlay} {active} on:click={() => dispatch('overlay-click')} />
 	<!--
 	A dialog can have more than just the "document" role.
 	In most situations a "dialog" or "alertdialog" would 
@@ -232,12 +232,12 @@
 				scrollPadding,
 			}}
 		>
+			<!-- use:clickOutside={{
+					cb: close,
+				}} -->
 			<div
 				class="s-dialog__content {klass}"
 				class:fullscreen
-				use:clickOutside={{
-					cb: close,
-				}}
 				transition:transition={{ duration: 300, start: 0.1 }}
 				on:introstart
 				on:outrostart
