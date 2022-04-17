@@ -12,8 +12,11 @@
 	// z-index: 1010;
 	height: 100%;
 	width: 100%;
-	visibility: hidden;
 	isolation: isolate;
+
+	&:not(.is-closing) {
+		visibility: hidden;
+	}
 
 	&.active {
 		visibility: visible;

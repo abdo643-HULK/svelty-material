@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.6
+
+-   Dialog: added forgotten css visibility
+
 ## 1.1.5
 
 -   Dialog: added more classes for state
