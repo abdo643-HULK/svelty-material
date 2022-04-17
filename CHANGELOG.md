@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.5
+
+-   Dialog: added more classes for state
+
 ## 1.1.4
 
 -   Dialog: fixed hiding container

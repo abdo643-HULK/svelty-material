@@ -171,10 +171,13 @@
 	export let ariaLabelledBy: string | undefined = undefined;
 	export let ariaDescribedBy: string | undefined = undefined;
 	export let overlay = {};
+	export let containerProps = {};
 	export let preventScroll = true;
 	export let alignItems: AlignItems | '' = '';
 
 	let isActive = false;
+	let isOpening = false;
+	let isClosing = false;
 
 	interface $$Events {
 		'open': () => void;
@@ -206,7 +209,13 @@
 	// }
 </script>
 
-<div class="s-dialog__container" class:active={isActive}>
+<div
+	class="s-dialog__container"
+	class:active
+	class:is-opening={isOpening}
+	class:is-closing={isClosing}
+	{...containerProps}
+>
 	<Overlay {...overlay} {active} on:click={() => dispatch('overlay-click')} />
 	<!--
 	A dialog can have more than just the "document" role.
@@ -236,22 +245,25 @@
 				scrollPadding,
 			}}
 		>
-			<!-- use:clickOutside={{
-					cb: close,
-				}} -->
 			<div
 				class="s-dialog__content {klass}"
 				class:fullscreen
 				in:inTransition={{ duration: 500, start: 0.1 }}
 				out:outTransition={{ duration: 500, start: 0.1 }}
 				on:introstart={() => {
-					isActive = true;
+					isOpening = true;
 					dispatch('introstart');
 				}}
-				on:introend
-				on:outrostart
+				on:introend={() => {
+					isOpening = false;
+					dispatch('introend');
+				}}
+				on:outrostart={() => {
+					isClosing = true;
+					dispatch('outrostart');
+				}}
 				on:outroend={() => {
-					isActive = false;
+					isClosing = false;
 					dispatch('outroend');
 				}}
 			>
