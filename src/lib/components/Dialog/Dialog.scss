@@ -3,16 +3,18 @@
 .s-dialog__container {
 	display: flex;
 	flex-direction: column;
-
 	justify-content: center;
 	align-items: center;
+
 	position: fixed;
 	top: 0;
 	inset: 0;
+	z-index: 1010;
+	height: 100%;
+	visibility: hidden;
 
 	&.active {
-		z-index: 1010;
-		height: 100%;
+		visibility: visible;
 	}
 }
 

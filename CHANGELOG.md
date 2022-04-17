@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.1.2
+
+-   Dialog: real fix with visibility
+
 ## 1.1.1
 
 -   Dialog: removed clickOutside import
