@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.2.0
+
+-   Dialog: Removed svelte `on:` listeners because they don't get statically analyzed and removed if unused and with lots of components this can have a lot of performance overhead.
+
 ## 1.1.8
 
 -   Dialog: divided into more components for more control
