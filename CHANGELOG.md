@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.2.1
+
+-   Dialog: fixed ESC when dialog opened but no element focused
+
 ## 1.2.0
 
 -   Dialog: Removed svelte `on:` listeners because they don't get statically analyzed and removed if unused and with lots of components this can have a lot of performance overhead.

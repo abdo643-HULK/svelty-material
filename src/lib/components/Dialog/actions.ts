@@ -31,9 +31,8 @@ export function modal(
 		// Set the focus to the dialog element
 		moveFocusToDialog();
 
-		if (preventScroll) {
-			body.classList.add('no-scroll');
-		}
+		if (preventScroll) body.classList.add('no-scroll');
+
 		// Bind a focus event listener to the body element to make sure the focus
 		// stays trapped inside the dialog while open, and start listening for some
 		// specific key presses (TAB and ESC)
@@ -77,7 +76,7 @@ export function modal(
 	}
 
 	function bindKeypress(ev: KeyboardEvent) {
-		if (!node.contains(document.activeElement)) return;
+		if (document.activeElement !== node && !node.contains(document.activeElement)) return;
 
 		if (
 			(ev.key === ESC_KEY || ev.key === ESCAPE_KEY) &&
