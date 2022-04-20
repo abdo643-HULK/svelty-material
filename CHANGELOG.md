@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.2.2
+
+-   Dialog: real fix
+
 ## 1.2.1
 
 -   Dialog: fixed ESC when dialog opened but no element focused

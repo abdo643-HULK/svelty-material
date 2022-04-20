@@ -13,6 +13,8 @@ export interface DialogActionOptions {
 	onEscape?(): void;
 }
 
+let count = 0;
+
 export function modal(
 	node: HTMLElement,
 	{ onEscape = noop, preventScroll = true, scrollPadding }: DialogActionOptions,
@@ -28,6 +30,7 @@ export function modal(
 	dispatch('open');
 
 	async function open() {
+		++count;
 		// Set the focus to the dialog element
 		moveFocusToDialog();
 
@@ -52,7 +55,8 @@ export function modal(
 	}
 
 	function hide() {
-		body.classList.remove('no-scroll');
+		--count;
+		if (!count) body.classList.remove('no-scroll');
 		body.removeEventListener('focus', maintainFocus, true);
 		document.removeEventListener('keydown', bindKeypress);
 
@@ -76,7 +80,7 @@ export function modal(
 	}
 
 	function bindKeypress(ev: KeyboardEvent) {
-		if (document.activeElement !== node && !node.contains(document.activeElement)) return;
+		if (!node.contains(document.activeElement)) return;
 
 		if (
 			(ev.key === ESC_KEY || ev.key === ESCAPE_KEY) &&
