@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.2.3
+
+-   Dialog: fix of the real fix
+
 ## 1.2.2
 
 -   Dialog: real fix

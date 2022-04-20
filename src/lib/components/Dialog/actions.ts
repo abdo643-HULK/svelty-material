@@ -1,5 +1,5 @@
 import { noop } from 'svelte/internal';
-import { createEventDispatcher } from 'svelte';
+import { tick, createEventDispatcher } from 'svelte';
 
 import { getFocusableChildren } from '$lib/utils/focus';
 
@@ -74,7 +74,8 @@ export function modal(
 		// body.classList.remove('no-scroll');
 	}
 
-	function moveFocusToDialog() {
+	async function moveFocusToDialog() {
+		await tick();
 		const focused = node.querySelector<HTMLElement>('[autofocus]') || node;
 		focused.focus();
 	}
