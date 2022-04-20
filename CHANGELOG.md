@@ -1,5 +1,11 @@
 # Svelty-Material
 
+## 1.1.8
+
+-   Dialog: divided into more components for more control
+-   Dialog: added a lot of events for the "s-dialog" element
+-   Dialog: fixed nested dialogs closing on escape
+
 ## 1.1.7
 
 -   Dialog: removed js width variable and added better typing
