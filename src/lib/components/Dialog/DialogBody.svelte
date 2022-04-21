@@ -1,7 +1,21 @@
-<script lang="ts">
+<script context="module" lang="ts">
+	import { browser } from '$app/env';
+	import { scale, fade } from 'svelte/transition';
+
 	import { AlignItems } from '$lib/@types';
 	import { modal } from './actions';
 
+	import type { TransitionFn } from '$lib/@types';
+
+	function setTransition(mq: MediaQueryList, transition: TransitionFn | undefined) {
+		if (transition !== undefined) return transition;
+		return mq.matches ? scale : fade;
+	}
+
+	const defaultConfig = { duration: 600, start: 0.1 };
+</script>
+
+<script lang="ts">
 	let klass = '';
 	export { klass as class };
 	export let active = false;
@@ -17,6 +31,20 @@
 	export let preventScroll = true;
 	export let alignItems: AlignItems | '' = '';
 	export let scrollPadding = '';
+
+	export let inTransition: TransitionFn = scale;
+	export let outTransition: TransitionFn = scale;
+	export let inTransitionConfig = defaultConfig;
+	export let outTransitionConfig = defaultConfig;
+
+	let _inTransition: TransitionFn;
+	let _outTransition: TransitionFn;
+
+	$: if (browser) {
+		const reducedMotionMq = window.matchMedia('(prefers-reduced-motion: no-preference)');
+		_inTransition = setTransition(reducedMotionMq, inTransition);
+		_outTransition = setTransition(reducedMotionMq, outTransition);
+	}
 
 	$: _alignItems = alignItems as string;
 </script>
@@ -42,6 +70,12 @@
 			preventScroll,
 			scrollPadding,
 		}}
+		in:_inTransition={inTransitionConfig}
+		out:_outTransition={outTransitionConfig}
+		on:introstart
+		on:introend
+		on:outrostart
+		on:outroend
 	>
 		<slot />
 	</div>
