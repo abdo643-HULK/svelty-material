@@ -32,7 +32,7 @@
 	// position: fixed;
 	// left: 0;
 	// top: 0;
-	transform-origin: center top;
+	transform-origin: var(--s-dialog-transform-origin, center);
 	transition: 0.2s map-get($transitions, 'fast-in-fast-out'), z-index 1ms;
 	z-index: var(--s-dialog-z-index, 1);
 	outline: none;

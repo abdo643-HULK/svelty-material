@@ -1,12 +1,20 @@
 <script context="module" lang="ts">
-	import { scale } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
+	import { browser } from '$app/env';
 
 	import Overlay, { type OverlayProps } from '../Overlay';
 
 	import { modal } from './actions';
 
 	import type { AlignItems, TransitionFn } from '$lib/@types';
+
+	function setTransition(mq: MediaQueryList, transition: TransitionFn | undefined) {
+		if (transition !== undefined) return transition;
+		return mq.matches ? scale : fade;
+	}
+
+	const defaultConfig = { duration: 600, start: 0.1 };
 </script>
 
 <script lang="ts">
@@ -26,8 +34,10 @@
 	export let active = false;
 	// export let persistent = false;
 	export let fullscreen = false;
-	export let inTransition: TransitionFn = scale;
-	export let outTransition: TransitionFn = scale;
+	export let inTransition: TransitionFn | undefined;
+	export let outTransition: TransitionFn | undefined;
+	export let inTransitionConfig = defaultConfig;
+	export let outTransitionConfig = defaultConfig;
 
 	export let role: 'dialog' | 'alert' | 'alertdialog' | 'document' = 'dialog';
 
@@ -53,6 +63,15 @@
 	let isClosing = false;
 
 	const dispatch = createEventDispatcher();
+
+	let _inTransition: TransitionFn;
+	let _outTransition: TransitionFn;
+
+	$: if (browser) {
+		const reducedMotionMq = window.matchMedia('(prefers-reduced-motion: no-preference)');
+		_inTransition = setTransition(reducedMotionMq, inTransition);
+		_outTransition = setTransition(reducedMotionMq, outTransition);
+	}
 
 	$: _alignItems = alignItems as string;
 
@@ -112,8 +131,8 @@
 				class="s-dialog__content {klass}"
 				class:fullscreen
 				{...dialogContentProps}
-				in:inTransition={{ duration: 500, start: 0.1 }}
-				out:outTransition={{ duration: 500, start: 0.1 }}
+				in:_inTransition={inTransitionConfig}
+				out:_outTransition={outTransitionConfig}
 				on:introstart={() => {
 					isOpening = true;
 					dispatch('introstart');
@@ -170,6 +189,5 @@
 		on:pointerleave
 		on:pointerout
 		on:pointerover -->
-
 <style lang="scss" src="./Dialog.scss" global>
 </style>

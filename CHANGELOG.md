@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.2.4
+
+-   Dialog: fix of the fix of the fix, We wait until the animation finishes to focus, should fix jumping behaviour
+
 ## 1.2.3
 
 -   Dialog: fix of the real fix

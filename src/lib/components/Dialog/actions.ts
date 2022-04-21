@@ -1,5 +1,5 @@
 import { noop } from 'svelte/internal';
-import { tick, createEventDispatcher } from 'svelte';
+import { createEventDispatcher } from 'svelte';
 
 import { getFocusableChildren } from '$lib/utils/focus';
 
@@ -35,12 +35,15 @@ export function modal(
 		moveFocusToDialog();
 
 		if (preventScroll) body.classList.add('no-scroll');
+		// const transition = window.getComputedStyle(node, null).getPropertyValue('transition');
 
 		// Bind a focus event listener to the body element to make sure the focus
 		// stays trapped inside the dialog while open, and start listening for some
 		// specific key presses (TAB and ESC)
 		body.addEventListener('focus', maintainFocus, true);
 		document.addEventListener('keydown', bindKeypress);
+		node.addEventListener('transitionend', moveFocusToDialog);
+		node.addEventListener('introend', moveFocusToDialog);
 
 		// if (isSafari) {
 		// 	body.style.overflow = 'hidden';
@@ -59,6 +62,8 @@ export function modal(
 		if (!count) body.classList.remove('no-scroll');
 		body.removeEventListener('focus', maintainFocus, true);
 		document.removeEventListener('keydown', bindKeypress);
+		node.removeEventListener('transitionend', moveFocusToDialog);
+		node.removeEventListener('introend', moveFocusToDialog);
 
 		// If there was a focused element before the dialog was opened (and it has a
 		// `focus` method), restore the focus back to it
@@ -75,7 +80,6 @@ export function modal(
 	}
 
 	async function moveFocusToDialog() {
-		await tick();
 		const focused = node.querySelector<HTMLElement>('[autofocus]') || node;
 		focused.focus();
 	}
