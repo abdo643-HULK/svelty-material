@@ -17,12 +17,12 @@ const defaults = {
 };
 
 /**
- * Creates a ripple element but does not destroy it (use RippleStop for that)
+ * Creates a ripple element but does not destroy it (use rippleStop for that)
  *
  * @param {*} options
  * @returns Ripple element
  */
-export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options: any = {}) {
+export function rippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options: any = {}) {
 	e.stopImmediatePropagation();
 	const opts = { ...defaults, ...options };
 
@@ -91,11 +91,10 @@ export function RippleStart(e: TouchEvent | MouseEvent | KeyboardEvent, options:
 /**
  * Destroys the ripple, slowly fading it out.
  */
-export function RippleStop(ripple: HTMLElement) {
-	if (ripple) {
-		ripple.addEventListener('transitionend', e => {
-			if (e.propertyName === 'opacity') ripple.remove();
-		});
-		ripple.style.opacity = '' + 0;
-	}
+export function rippleStop(ripple: HTMLElement) {
+	if (ripple == null) return;
+	ripple.addEventListener('transitionend', e => {
+		if (e.propertyName === 'opacity') ripple.remove();
+	});
+	ripple.style.opacity = '' + 0;
 }

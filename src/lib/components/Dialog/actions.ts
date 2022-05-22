@@ -42,7 +42,7 @@ export function modal(
 		// specific key presses (TAB and ESC)
 		body.addEventListener('focus', maintainFocus, true);
 		document.addEventListener('keydown', bindKeypress);
-		node.addEventListener('transitionend', moveFocusToDialog);
+		node.addEventListener('transitionend', transitionEndHandler);
 		node.addEventListener('introend', moveFocusToDialog);
 
 		// if (isSafari) {
@@ -62,7 +62,7 @@ export function modal(
 		if (!count) body.classList.remove('no-scroll');
 		body.removeEventListener('focus', maintainFocus, true);
 		document.removeEventListener('keydown', bindKeypress);
-		node.removeEventListener('transitionend', moveFocusToDialog);
+		node.removeEventListener('transitionend', transitionEndHandler);
 		node.removeEventListener('introend', moveFocusToDialog);
 
 		// If there was a focused element before the dialog was opened (and it has a
@@ -79,7 +79,12 @@ export function modal(
 		// body.classList.remove('no-scroll');
 	}
 
-	async function moveFocusToDialog() {
+	function transitionEndHandler(e: TransitionEvent) {
+		if (e.target !== node) return;
+		moveFocusToDialog();
+	}
+
+	function moveFocusToDialog() {
 		const focused = node.querySelector<HTMLElement>('[autofocus]') || node;
 		focused.focus();
 	}

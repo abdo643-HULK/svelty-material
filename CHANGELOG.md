@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 1.2.5
+
+-   modal action: transitionend bubbling fixed. Know if checks if target is the same as the node
+
 ## 1.2.4
 
 -   Dialog: fix of the fix of the fix, We wait until the animation finishes to focus, should fix jumping behaviour
