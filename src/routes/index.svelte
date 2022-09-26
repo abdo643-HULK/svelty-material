@@ -5,6 +5,7 @@
 
 	import { getContext } from 'svelte';
 	import Textarea from '$lib/components/Textarea/Textarea.svelte';
+	import Chip from '$lib/components/Chip';
 
 	const product = {
 		ID: 'sdmsld',
@@ -53,6 +54,8 @@
 <div style="height: 100vh;">
 	<Textarea name="notes" class="cart-notes" rows={3} filled>Anmerkungen</Textarea>
 </div>
+
+<Chip>HAllo</Chip>
 
 <Card>
 	<div>

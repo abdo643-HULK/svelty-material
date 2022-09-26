@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import { fade, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 
 	import Overlay, { type OverlayProps } from '../Overlay';
 

@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 2.0.0
+
+-   updated to newer sveltekit version, because of $app/env
+
 ## 1.2.5
 
 -   modal action: transitionend bubbling fixed. Know if checks if target is the same as the node

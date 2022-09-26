@@ -49,7 +49,7 @@
 	<div id="main-content">
 		<slot />
 	</div>
-	<Dialog
+	<!-- <Dialog
 		width="auto"
 		role="dialog"
 		alignItems="flex-start"
@@ -58,5 +58,5 @@
 		on:close={() => console.log('hide')}
 	>
 		<svelte:component this={modalBody} {...componentProps} on:close={close} />
-	</Dialog>
+	</Dialog> -->
 </MaterialApp>

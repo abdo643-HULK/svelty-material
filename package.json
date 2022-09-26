@@ -1,6 +1,6 @@
 {
 	"name": "svelty-material",
-	"version": "1.2.5",
+	"version": "2.0.0",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
 	"type": "module",
@@ -39,19 +39,19 @@
 		"svelte": ">=3.29.4"
 	},
 	"devDependencies": {
-		"@sveltejs/kit": "^1.0.0-next.260",
-		"@sveltejs/vite-plugin-svelte": "^1.0.0-next.37",
+		"@sveltejs/kit": "^1.0.0-next.504",
+		"@sveltejs/vite-plugin-svelte": "^1.0.8",
 		"npm-run-all": "^4.1.5",
-		"sass": "^1.49.7",
-		"svelte": "^3.46.4",
-		"svelte-check": "^2.4.3",
-		"svelte-preprocess": "^4.10.2",
-		"svelte2tsx": "^0.4.14",
-		"tslib": "^2.3.1",
-		"typescript": "^4.5.5",
-		"vite": "^2.8.0"
+		"sass": "^1.55.0",
+		"svelte": "^3.50.1",
+		"svelte-check": "^2.9.1",
+		"svelte-preprocess": "^4.10.7",
+		"svelte2tsx": "^0.5.19",
+		"tslib": "^2.4.0",
+		"typescript": "^4.8.3",
+		"vite": "3.1.3"
 	},
 	"dependencies": {
-		"nouislider": "^15.5.1"
+		"nouislider": "^15.6.1"
 	}
 }

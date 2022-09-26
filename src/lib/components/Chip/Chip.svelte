@@ -1,8 +1,11 @@
 <script lang="ts">
-	import Ripple from '../../actions/Ripple';
 	import Icon from '../Icon';
+	import Ripple from '../../actions/Ripple';
 	import closeIcon from '../../internal/Icons/close';
+
 	import { createEventDispatcher } from 'svelte';
+
+	import { dev } from '$app/environment';
 
 	// Classes to add to chip.
 	let klass = '';
@@ -11,9 +14,14 @@
 	// Determines whether the chip is visible or not.
 	export let active = true;
 
+	export let as: 'a' | 'span' | 'button' = 'span';
+
 	// Selected state
 	export let selected = false;
-
+	/**
+	 * should only be used if as is a link
+	 */
+	export let href: string | undefined = undefined;
 	export let style: string | undefined = undefined;
 
 	type Size = 'x-small' | 'small' | 'default' | 'large' | 'x-large';
@@ -28,6 +36,13 @@
 	export let label = false;
 	export let close = false;
 
+	if (dev) {
+		if (href !== undefined && as !== 'a')
+			console.warn(
+				`Chip Component: href should only be used with " as='a' " but was passed: ${as}`,
+			);
+	}
+
 	const dispatch = createEventDispatcher();
 
 	function onClose(e: MouseEvent) {
@@ -37,7 +52,8 @@
 </script>
 
 {#if active}
-	<span
+	<svelte:element
+		this={as}
 		class="s-chip {klass} size-{size}"
 		use:Ripple={link}
 		class:outlined
@@ -45,6 +61,7 @@
 		class:link
 		class:label
 		class:selected
+		{href}
 		{style}
 		on:click
 		{...$$restProps}
@@ -57,7 +74,7 @@
 				</slot>
 			</div>
 		{/if}
-	</span>
+	</svelte:element>
 {/if}
 
 <style lang="scss" src="./Chip.scss" global>

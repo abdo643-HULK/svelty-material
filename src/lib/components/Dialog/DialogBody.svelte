@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { scale, fade } from 'svelte/transition';
 
 	import { AlignItems } from '$lib/@types';
