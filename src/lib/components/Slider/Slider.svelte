@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Input from '../Input';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { API, Options, target } from 'nouislider';

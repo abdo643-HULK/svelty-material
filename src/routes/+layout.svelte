@@ -13,7 +13,7 @@
 
 	import Dialog from '$lib/components/Dialog/Dialog.svelte';
 	import ModalBody from '$lib/site/ModalBody.svelte';
-	import MaterialApp from '$lib/components/MaterialApp';
+	import MaterialApp from '$lib/components/MaterialApp/MaterialApp.svelte';
 	import MaterialAppMin from '$lib/components/MaterialApp/MaterialAppMin.svelte';
 
 	let active = false;

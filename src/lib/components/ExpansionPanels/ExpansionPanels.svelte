@@ -2,7 +2,7 @@
 	export const EXPANSION_PANELS = {};
 </script>
 
-<script>
+<script lang="ts">
 	import { createEventDispatcher, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 

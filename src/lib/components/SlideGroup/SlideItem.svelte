@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Class from '../../internal/Class';
 
 	import { getContext } from 'svelte';

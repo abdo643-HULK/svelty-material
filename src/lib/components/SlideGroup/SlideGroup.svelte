@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
 	export const SLIDE_GROUP = {};
 
 	export type SlideGroup = (item: HTMLElement) => void;

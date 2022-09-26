@@ -1,5 +1,5 @@
-<script>
-	import { ListGroup, ListItem } from '../List';
+<script lang="ts">
+	import { ListGroup, ListItem } from '../List/index.js';
 
 	interface VListItem {
 		text: string;
@@ -14,7 +14,8 @@
 	export let items: VListItem[] = [];
 	export let itemClasses = '';
 	export let style = '';
-	export let offsetFunction = (x: number) => `${(x + 1) * 28}px`;
+	// export let offsetFunction = (x: number) => `${(x + 1) * 28}px`;
+	export let offsetFunction = (x: number) => (x + 1) * 28;
 
 	export const depth = 0;
 </script>

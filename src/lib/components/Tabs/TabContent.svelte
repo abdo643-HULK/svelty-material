@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import WindowItem from '../Window/WindowItem.svelte';
 
 	let klass = '';

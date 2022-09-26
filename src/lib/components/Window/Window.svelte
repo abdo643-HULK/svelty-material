@@ -1,10 +1,10 @@
-<script context="module">
+<script lang="ts" context="module">
 	import { onMount, setContext } from 'svelte';
 
 	export const WINDOW = {};
 </script>
 
-<script>
+<script lang="ts">
 	let klass = '';
 	export { klass as class };
 	export let activeClass = 'active';

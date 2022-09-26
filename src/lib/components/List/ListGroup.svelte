@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import { slide } from 'svelte/transition';
 	import { onMount, setContext } from 'svelte';
 	import ListItem from './ListItem.svelte';
-	import Style from '../../internal/Style';
+	import Style from '../../internal/Style.js';
 
 	let klass = 'primary-text';
 	export { klass as class };

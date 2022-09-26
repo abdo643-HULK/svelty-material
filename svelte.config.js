@@ -3,32 +3,18 @@ import preprocess from 'svelte-preprocess';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: preprocess({
-		defaults: {
-			markup: 'html',
-			script: 'typescript',
-			style: 'scss'
-		},
 		scss: {
-			includePaths: ['src/theme']
+			includePaths: ['src/theme'],
 		},
 		typescript: {
-			tsconfigFile: './tsconfig.json'
-		}
-	}),
-	kit: {
-		package: {
-			// dir: 'svelte-material-components',
-			emitTypes: true,
-			// excludes all .d.ts and files starting with _ as the name
-			exports: (filepath) => !/^_|\/_|\.d\.ts$/.test(filepath),
-			files: (id) => !id.startsWith('site/')
+			tsconfigFile: './tsconfig.json',
 		},
-		vite: {
-			server: {
-				port: 3001
-			}
-		}
-	}
+	}),
+	package: {
+		// dir: 'svelte-material-components',
+		// excludes all .d.ts and files starting with _ as the name
+		files: id => !id.startsWith('site/'),
+	},
 };
 
 export default config;

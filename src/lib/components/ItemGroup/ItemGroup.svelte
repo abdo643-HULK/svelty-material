@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
 	export const ITEM_GROUP = {};
 
 	export interface ItemGroup {

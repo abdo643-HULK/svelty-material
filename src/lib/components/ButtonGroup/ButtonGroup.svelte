@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import ItemGroup from '../ItemGroup';
 
 	// Classes to add to button group.

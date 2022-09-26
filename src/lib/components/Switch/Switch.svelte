@@ -1,9 +1,9 @@
-<script context="module">
-	import uid from '../../internal/uid';
+<script lang="ts" context="module">
+	import uid from '../../internal/uid.js';
 </script>
 
 <script lang="ts">
-	import TextColor from '../../internal/TextColor';
+	import TextColor from '../../internal/TextColor.js';
 
 	// Add class to switch wrapper.
 	let klass = '';

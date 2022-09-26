@@ -1,6 +1,7 @@
 {
+	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
-		"moduleResolution": "node",
+		"moduleResolution": "NodeNext",
 		"module": "es2020",
 		"lib": ["es2020", "dom", "DOM.Iterable"],
 		"target": "ES2020",
@@ -13,17 +14,8 @@
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"baseUrl": ".",
-		"paths": {
-			"$lib/*": ["src/lib/*"]
-		}
+		"forceConsistentCasingInFileNames": true
 	},
 	"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.svelte"],
-	"exclude": [
-		"build",
-		"node_modules",
-		".svelte-kit",
-		"src/lib/Material/components/Slider/nouislider.min.js"
-	]
+	"exclude": ["build", "node_modules", "src/lib/Material/components/Slider/nouislider.min.js"]
 }

@@ -5,10 +5,10 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "vite dev",
 		"dev:check": "npm-run-all --parallel dev check:watch",
-		"package": "svelte-kit package",
-		"build": "svelte-kit build",
+		"package": "svelte-package",
+		"build": "vite build",
 		"check": "svelte-check --tsconfig ./tsconfig.json --threshold error",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch --threshold error --ignore .svelte-kit",
 		"release": "pnpm package && cd package && pnpm publish"
@@ -40,6 +40,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "^1.0.0-next.504",
+		"@sveltejs/package": "1.0.0-next.5",
 		"@sveltejs/vite-plugin-svelte": "^1.0.8",
 		"npm-run-all": "^4.1.5",
 		"sass": "^1.55.0",

@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
 </script>
 
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
-	import BackgroundColor from '../../internal/BackgroundColor';
+	import BackgroundColor from '../../internal/BackgroundColor/index.js';
 
 	let klass = '';
 	export { klass as class };

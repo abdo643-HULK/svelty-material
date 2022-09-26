@@ -2,10 +2,10 @@
 	import { browser } from '$app/environment';
 	import { scale, fade } from 'svelte/transition';
 
-	import { AlignItems } from '$lib/@types';
-	import { modal } from './actions';
+	import { AlignItems } from '$lib/@types/index.js';
+	import { modal } from './actions.js';
 
-	import type { TransitionFn } from '$lib/@types';
+	import type { TransitionFn } from '$lib/@types/index.js';
 
 	function setTransition(mq: MediaQueryList, transition: TransitionFn | undefined) {
 		if (transition !== undefined) return transition;
