@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 2.0.4
+
+-   script and config changes
+
 ## 2.0.3
 
 -   publishing batch
