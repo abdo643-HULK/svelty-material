@@ -1,7 +1,7 @@
 import { noop } from 'svelte/internal';
 import { createEventDispatcher } from 'svelte';
 
-import { getFocusableChildren } from '$lib/utils/focus';
+import { getFocusableChildren } from '$lib/utils/focus.js';
 
 const TAB_KEY = 'Tab';
 const ESC_KEY = 'Esc';

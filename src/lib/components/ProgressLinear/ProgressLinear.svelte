@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BackgroundColor from '../../internal/BackgroundColor';
+	import BackgroundColor from '../../internal/BackgroundColor/index.js';
 
 	let klass = '';
 	export { klass as class };

@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import Button from '../Button/Button.svelte';
+
 	import { fade } from 'svelte/transition';
-
-	const dispatch = createEventDispatcher();
-
-	import Button from '../Button';
+	import { createEventDispatcher } from 'svelte';
 
 	let klass = '';
 	export { klass as class };
@@ -18,6 +16,8 @@
 	export let dismissible = false;
 	export let border = false;
 	export let coloredBorder = false;
+
+	const dispatch = createEventDispatcher();
 
 	function dismiss() {
 		visible = false;

@@ -42,37 +42,41 @@
 
 	const dispatch = createEventDispatcher();
 	const values = writable(value);
-	const Disabled = writable(disabled);
+	const Disabled = writable<typeof disabled>(disabled);
 
 	$: values.set(value);
-	$: Disabled.set(disabled as boolean);
+	$: Disabled.set(disabled);
 
 	let startIndex = -1;
+
+	function selectPanel(index: number) {
+		if (value.includes(index)) {
+			if (!(mandatory && value.length === 1)) {
+				value.splice(value.indexOf(index), 1);
+				value = value;
+				dispatch('change', { index, active: false });
+			}
+		} else {
+			if (multiple) {
+				value.push(index);
+				value = value;
+			} else {
+				value = [index];
+			}
+			dispatch('change', { index, active: true });
+		}
+	}
+
+	function index() {
+		startIndex += 1;
+		return startIndex;
+	}
 
 	setContext(EXPANSION_PANELS, {
 		values,
 		Disabled,
-		selectPanel: (index: number) => {
-			if (value.includes(index)) {
-				if (!(mandatory && value.length === 1)) {
-					value.splice(value.indexOf(index), 1);
-					value = value;
-					dispatch('change', { index, active: false });
-				}
-			} else {
-				if (multiple) {
-					value.push(index);
-					value = value;
-				} else {
-					value = [index];
-				}
-				dispatch('change', { index, active: true });
-			}
-		},
-		index: () => {
-			startIndex += 1;
-			return startIndex;
-		},
+		selectPanel,
+		index,
 	});
 </script>
 

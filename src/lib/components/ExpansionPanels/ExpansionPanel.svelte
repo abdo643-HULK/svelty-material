@@ -1,11 +1,19 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
-	import { EXPANSION_PANELS } from './ExpansionPanels.svelte';
-	import { slide } from 'svelte/transition';
-	import Icon from '../Icon';
-	import down from '../../internal/Icons/down';
+	import Icon from '../Icon/Icon.svelte';
+	import down from '../../internal/Icons/down.js';
 
-	const { values, Disabled, selectPanel, index } = getContext(EXPANSION_PANELS);
+	import { getContext } from 'svelte';
+	import { slide } from 'svelte/transition';
+
+	import ExpansionPanels, { EXPANSION_PANELS } from './ExpansionPanels.svelte';
+	import type { Writable } from 'svelte/store';
+
+	const { values, Disabled, selectPanel, index } = getContext<{
+		values: Writable<NonNullable<ExpansionPanels['$$prop_def']['value']>>;
+		Disabled: Writable<ExpansionPanels['$$prop_def']['disabled']>;
+		selectPanel(index: number): void;
+		index(): number;
+	}>(EXPANSION_PANELS);
 
 	// Classes to add to the panel.
 	let klass = '';

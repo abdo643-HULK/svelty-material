@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ItemGroup from '../ItemGroup';
+	import ItemGroup from '../ItemGroup/ItemGroup.svelte';
 
 	// Classes to add to button group.
 	let klass = '';

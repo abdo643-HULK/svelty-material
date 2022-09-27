@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
-	import uid from '../../internal/uid';
-	import Ripple from '../../actions/Ripple';
-	import TextColor from '../../internal/TextColor';
+	import uid from '../../internal/uid.js';
+	import Ripple from '../../actions/Ripple/index.js';
+	import TextColor from '../../internal/TextColor.js';
 
 	const check = 'M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z';
 	const dash = 'M4,11L4,13L20,13L20,11L4,11Z';

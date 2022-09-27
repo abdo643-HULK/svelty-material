@@ -1,4 +1,4 @@
-import { rippleStart, rippleStop } from './material-ripple';
+import { rippleStart, rippleStop } from './material-ripple.js';
 
 export default (node: HTMLElement, _options = {}) => {
 	let options = _options;

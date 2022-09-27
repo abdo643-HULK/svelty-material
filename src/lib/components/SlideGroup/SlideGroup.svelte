@@ -6,10 +6,11 @@
 
 <script lang="ts">
 	import { setContext, afterUpdate } from 'svelte';
-	import ItemGroup from '../ItemGroup';
-	import prevIcon from '../../internal/Icons/prev';
-	import nextIcon from '../../internal/Icons/next';
-	import Icon from '../Icon';
+
+	import Icon from '../Icon/Icon.svelte';
+	import ItemGroup from '../ItemGroup/ItemGroup.svelte';
+	import prevIcon from '../../internal/Icons/prev.js';
+	import nextIcon from '../../internal/Icons/next.js';
 
 	let klass = '';
 	export { klass as class };

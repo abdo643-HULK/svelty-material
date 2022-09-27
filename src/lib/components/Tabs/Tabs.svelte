@@ -3,13 +3,10 @@
 </script>
 
 <script lang="ts">
-	import SlideGroup from '../SlideGroup';
-	import Window from '../Window';
 	import { onMount, setContext } from 'svelte';
 
-	let sliderElement: HTMLDivElement;
-	let windowComponent: Window;
-	const tabs: HTMLElement[] = [];
+	import Window from '../Window/Window.svelte';
+	import SlideGroup from '../SlideGroup/SlideGroup.svelte';
 
 	let klass = '';
 	export { klass as class };
@@ -25,6 +22,11 @@
 	export let sliderClass = '';
 	export let ripple = {};
 	export let vertical = false;
+
+	let sliderElement: HTMLDivElement;
+	let windowComponent: Window;
+
+	const tabs: HTMLElement[] = [];
 
 	setContext(TABS, {
 		ripple,

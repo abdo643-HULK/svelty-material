@@ -1,10 +1,10 @@
 <script context="module">
-	import uid from '../../internal/uid';
+	import uid from '../../internal/uid.js';
 </script>
 
 <script lang="ts">
-	import TextColor from '../../internal/TextColor';
-	import Ripple from '../../actions/Ripple';
+	import TextColor from '../../internal/TextColor.js';
+	import Ripple from '../../actions/Ripple/index.js';
 
 	// Add class to radio wrapper.
 	let klass = '';

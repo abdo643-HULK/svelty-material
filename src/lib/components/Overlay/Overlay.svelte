@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
+	import { fade, type FadeParams } from 'svelte/transition';
 
 	import type { TransitionConfig } from 'svelte/transition';
 
 	type T = $$Generic;
+
+	type TransitionFn = <T>(node: HTMLDivElement, options: T) => TransitionConfig;
 
 	let klass = '';
 	export { klass as class };
 	export let style = '';
 
 	export let overlay: HTMLDivElement | undefined = undefined;
-	export let transition: <T>(node: HTMLDivElement, options: T) => TransitionConfig = fade;
-	export let inOpts: T = { duration: 250 } as unknown as T;
-	export let outOpts: T = { duration: 250 } as unknown as T;
+	export let transition: TransitionFn = <TransitionFn>fade;
+	export let inOpts: T = <T>({ duration: 250 } as FadeParams);
+	export let outOpts: T = <T>({ duration: 250 } as FadeParams);
 	export let active = true;
 	export let absolute = false;
 </script>

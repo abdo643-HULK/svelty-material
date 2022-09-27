@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Input from '../Input';
-	import Icon from '../Icon';
-	import uid from '../../internal/uid';
-	import clearIcon from '../../internal/Icons/close';
+	import Icon from '../Icon/Icon.svelte';
+	import Input from '../Input/Input.svelte';
+	import uid from '../../internal/uid.js';
+	import clearIcon from '../../internal/Icons/close.js';
 
 	export let value = '';
 	export let color = 'primary';

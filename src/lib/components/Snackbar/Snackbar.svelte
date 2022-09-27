@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import Style from '../../internal/Style';
+	import Style from '../../internal/Style.js';
 
 	let klass = '';
 	export { klass as class };

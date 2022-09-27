@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProgressLinear from '../ProgressLinear';
+	import ProgressLinear from '../ProgressLinear/ProgressLinear.svelte';
 
 	let klass = '';
 	export { klass as class };

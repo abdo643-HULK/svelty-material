@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Icon from '../Icon';
-	import Input from '../Input';
-	import uid from '../../internal/uid';
-	import clearIcon from '../../internal/Icons/close';
+	import Icon from '../Icon/Icon.svelte';
+	import Input from '../Input/Input.svelte';
+	import uid from '../../internal/uid.js';
+	import clearIcon from '../../internal/Icons/close.js';
 
 	let klass = '';
 	export { klass as class };
@@ -37,7 +37,7 @@
 	// $: labelActive = !!placeholder || value || focused;
 
 	export function validate() {
-		errorMessages = rules.map((r) => r(value)).filter((r) => typeof r === 'string');
+		errorMessages = rules.map(r => r(value)).filter(r => typeof r === 'string');
 		error = errorMessages.length ? true : false;
 		return error;
 	}

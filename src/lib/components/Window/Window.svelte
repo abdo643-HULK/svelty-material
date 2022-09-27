@@ -14,8 +14,9 @@
 	export let continuous = true;
 
 	let container: HTMLDivElement;
-	const windowItems: HTMLElement[] = [];
 	let moving = false;
+
+	const windowItems: HTMLElement[] = [];
 
 	setContext(WINDOW, (window: HTMLElement) => {
 		windowItems.push(window);

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Input from '../Input';
-	import Icon from '../Icon';
-	import uid from '../../internal/uid';
-	import clearIcon from '../../internal/Icons/close';
+	import Icon from '../Icon/Icon.svelte';
+	import Input from '../Input/Input.svelte';
+	import uid from '../../internal/uid.js';
+	import clearIcon from '../../internal/Icons/close.js';
 
 	let klass = '';
 	export { klass as class };
@@ -38,9 +38,7 @@
 	$: labelActive = !!placeholder || value || focused;
 
 	export function validate() {
-		errorMessages = rules
-			.map((r) => r(value))
-			.filter((r) => typeof r === 'string');
+		errorMessages = rules.map(r => r(value)).filter(r => typeof r === 'string');
 		if (errorMessages.length) error = true;
 		else {
 			error = false;
@@ -66,16 +64,7 @@
 	}
 </script>
 
-<Input
-	class="s-text-field {klass}"
-	{color}
-	{dense}
-	{readonly}
-	{disabled}
-	{error}
-	{success}
-	{style}
->
+<Input class="s-text-field {klass}" {color} {dense} {readonly} {disabled} {error} {success} {style}>
 	<!-- Slot for prepend outside the input. -->
 	<slot slot="prepend-outer" name="prepend-outer" />
 	<div
@@ -137,9 +126,7 @@
 		<div>
 			<span>{hint}</span>
 			{#each messages as message}<span>{message}</span>{/each}
-			{#each errorMessages.slice(0, errorCount) as message}<span
-					>{message}</span
-				>{/each}
+			{#each errorMessages.slice(0, errorCount) as message}<span>{message}</span>{/each}
 		</div>
 		{#if counter}<span>{value.length} / {counter}</span>{/if}
 	</div>

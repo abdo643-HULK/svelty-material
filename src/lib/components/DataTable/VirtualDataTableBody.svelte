@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 
-	import DataTableRow from 'svelte-material-components/src/components/DataTable/DataTableRow.svelte';
+	import DataTableRow from './DataTableRow.svelte';
 
 	// props
 	let klass = '';
@@ -154,7 +154,7 @@
 >
 	<tbody
 		bind:this={content}
-		class="s-tbl-body virtual-table-content"
+		class="s-tbl-body virtual-table-content {klass}"
 		style="padding-top: {top}px; padding-bottom: {bottom}px;"
 	>
 		{#each visible as row (row.index)}

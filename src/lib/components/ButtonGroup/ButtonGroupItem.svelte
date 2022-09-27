@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '../Button';
+	import Button from '../Button/Button.svelte';
 
 	import { getContext } from 'svelte';
 	import { ITEM_GROUP } from '../ItemGroup/ItemGroup.svelte';

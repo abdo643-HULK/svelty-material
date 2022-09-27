@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Input from '../Input';
+	import Input from '../Input/index.js';
 	import { onMount, createEventDispatcher } from 'svelte';
-	import { API, Options, target } from 'nouislider';
+	import type { API, Options, target } from 'nouislider';
 
 	interface SliderElement extends target {}
 

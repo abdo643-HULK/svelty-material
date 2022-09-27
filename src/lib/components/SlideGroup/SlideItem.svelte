@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Class from '../../internal/Class';
+	import Class from '../../internal/Class/index.js';
 
 	import { getContext } from 'svelte';
 	import { SLIDE_GROUP } from './SlideGroup.svelte';

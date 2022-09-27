@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Icon from '../Icon';
-	import Ripple from '../../actions/Ripple';
-	import closeIcon from '../../internal/Icons/close';
+	import Icon from '../Icon/Icon.svelte';
+	import Ripple from '../../actions/Ripple/index.js';
+	import closeIcon from '../../internal/Icons/close.js';
 
 	import { createEventDispatcher } from 'svelte';
 

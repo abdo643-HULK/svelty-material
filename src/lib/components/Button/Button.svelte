@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Ripple from '../../actions/Ripple';
-	import Class from '../../internal/Class';
+	import Ripple from '../../actions/Ripple/index.js';
+	import Class from '../../internal/Class/index.js';
 
 	let klass = '';
 	export { klass as class };

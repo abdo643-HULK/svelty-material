@@ -1,13 +1,14 @@
 <script context="module" lang="ts">
-	import { fade, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
+	import { fade, scale } from 'svelte/transition';
+
 	import { browser } from '$app/environment';
 
-	import Overlay, { type OverlayProps } from '../Overlay';
+	import Overlay, { type OverlayProps } from '../Overlay/index.js';
 
-	import { modal } from './actions';
+	import { modal } from './actions.js';
 
-	import type { AlignItems, TransitionFn } from '$lib/@types';
+	import type { AlignItems, TransitionFn } from '$lib/@types/index.js';
 
 	function setTransition(mq: MediaQueryList, transition: TransitionFn | undefined) {
 		if (transition !== undefined) return transition;

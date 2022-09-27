@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TextColor from '../../internal/TextColor';
+	import TextColor from '../../internal/TextColor.js';
 
 	let klass = '';
 	export { klass as class };
