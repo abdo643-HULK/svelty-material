@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 2.0.1
+
+-   imports fixed
+
 ## 2.0.0
 
 -   updated to newer sveltekit version, because of $app/env
