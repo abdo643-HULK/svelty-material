@@ -1,17 +1,17 @@
 {
 	"name": "svelty-material",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": "Svelte Materialify fork with ts support and updated scss.",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"dev:check": "npm-run-all --parallel dev check:watch",
-		"package": "svelte-package ./package",
+		"package": "svelte-package",
 		"build": "vite build",
 		"check": "svelte-check --tsconfig ./tsconfig.json --threshold error",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch --threshold error --ignore .svelte-kit",
-		"release": "pnpm package && cd package && pnpm publish"
+		"release": "pnpm package && cd package && pnpm publish ./package"
 	},
 	"repository": {
 		"type": "git",

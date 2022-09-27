@@ -1,5 +1,9 @@
 # Svelty-Material
 
+## 2.0.3
+
+-   publishing batch
+
 ## 2.0.2
 
 -   packaging batch
